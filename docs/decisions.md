@@ -187,3 +187,29 @@ the Play Data safety answers (`store/play/README.md`). The Play listing (`store/
 external storage and biometrics (`expo-secure-store`'s optional authentication, unused) from the release manifest.
 Store reviewers and users see only what Globik needs: internet, network state and vibration (haptics).
 **Consequences:** using `requireAuthentication` in secure-store later means unblocking the biometric permissions.
+
+## 022 · RNRepo: prebuilt native libraries for Android and iOS builds
+
+**Decision:** native builds use [RNRepo](https://github.com/software-mansion/rnrepo) (Software Mansion, public
+beta): a Maven repository (`packages.rnrepo.org`, group `org.rnrepo.public`, GPG-signed, built on public GitHub
+workflows) of prebuilt Android AARs and iOS xcframeworks for popular libraries, one per library version × React
+Native version, New Architecture only. Its Expo config plugin `@rnrepo/expo-config-plugin` (in `app.json`) makes
+`expo prebuild` add the Gradle plugin (`org.rnrepo.tools.prebuilds-plugin`, from `@rnrepo/build-tools`), the
+repository, and the CocoaPods hook (`rnrepo_post_install`) to the Podfile. At configuration time the plugin swaps
+each library that has an artifact for the exact installed versions for the AAR and builds every other one from
+source, as before, so local builds and CI need no other setup, account or token. `@rnrepo/build-tools` is a direct
+dependency because `node-linker=hoisted` (`.npmrc`) and the generated Gradle file resolve it from the project root.
+Why: the release AAB compiles the C++ of worklets, reanimated and Skia for three ABIs, which took about 1.5 h on the
+8 GB development Mac and ran a 16 GB GitHub runner out of memory (decision 019).
+**Consequences:** artifacts exist only for library/React Native pairs RNRepo has built. With React Native 0.88.1
+(November 2026) none do yet (its newest is 0.87.1), so for now every library still builds from source; builds pick
+artifacts up by themselves once they're published, and whenever a dependency moves past RNRepo, that library
+silently falls back to source. Dependency upgrades should therefore stay on versions RNRepo covers when build time
+matters (rnrepo.org lists them). Not covered at all: `react-native-pulsar` and Expo's own modules (`expo`,
+`expo-modules-core` for SDK 58), which always build from source. Debug Android builds use source worklets and
+reanimated anyway (`expo-modules-core` links worklets as a Gradle project); release builds can use the prebuilt
+ones. Patching a covered library (patch-package, `pnpm patch`) or changing its build-time flags needs a `denyList`
+entry in `rnrepo.config.json`, or the patch is ignored. Builds now also talk to `packages.rnrepo.org`; if it
+misbehaves, `DISABLE_RNREPO` (set to any value) turns the Gradle plugin off for one build, and the _Android release_
+workflow's `rnrepo` input does the same. Downloaded AARs live in Gradle's cache, which `setup-gradle` keeps between
+CI runs.

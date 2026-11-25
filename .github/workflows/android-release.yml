@@ -20,6 +20,10 @@ on:
         description: Upload to Google Play (otherwise only build the artifact)
         type: boolean
         default: true
+      rnrepo:
+        description: Use RNRepo prebuilt native libraries (off = compile all of them from source)
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -90,16 +94,37 @@ jobs:
             echo "GEOQUIZ_UPLOAD_KEY_PASSWORD=$ANDROID_KEY_PASSWORD"
           } >> "$GITHUB_ENV"
 
+      # The RNRepo Gradle plugin is off whenever DISABLE_RNREPO is set, to any value (decision 022).
+      - name: Disable RNRepo
+        if: ${{ !inputs.rnrepo }}
+        run: echo "DISABLE_RNREPO=1" >> "$GITHUB_ENV"
+
       - run: npx expo prebuild -p android --no-install
         env:
           NODE_ENV: production
+      # Configuration only, no compiling: RNRepo prints which libraries come prebuilt and which fall back to source
+      # at the info level, which the real build would bury in its log. Same JVM arguments as the build below, so it
+      # reuses this daemon instead of leaving an idle one holding memory.
+      - name: RNRepo prebuilt libraries
+        if: ${{ inputs.rnrepo }}
+        working-directory: android
+        env:
+          NODE_ENV: production
+        run: |
+          ./gradlew bundleRelease --dry-run --info -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g" \
+            -PreactNativeArchitectures=armeabi-v7a,arm64-v8a,x86_64 \
+            | awk '/RNRepo\] Found the following supported prebuilt packages/{p=1} /RNRepo\] Provider package/{p=0} p' \
+            > "$RUNNER_TEMP/rnrepo.txt"
+          cat "$RUNNER_TEMP/rnrepo.txt"
+          { echo '### RNRepo'; echo '```'; cat "$RUNNER_TEMP/rnrepo.txt"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
       - name: Build the release bundle
         working-directory: android
         env:
           NODE_ENV: production
         # The generated gradle.properties caps the daemon at 2 GB, too little for a release build. A bigger heap plus
         # parallel C++ builds for every ABI ran the 16 GB runner out of memory (it was shut down), so: 4 GB, three
-        # workers, and no 32-bit x86 (emulators only; Play needs the 64-bit ABIs).
+        # workers, and no 32-bit x86 (emulators only; Play needs the 64-bit ABIs). Keep these limits while any C++
+        # library (worklets, reanimated, Skia) still builds from source; RNRepo prebuilds would remove that load.
         run: >-
           ./gradlew bundleRelease --max-workers=3
           -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g"

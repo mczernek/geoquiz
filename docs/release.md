@@ -76,7 +76,8 @@ add protection rules such as required reviewers or a `main`-only branch policy);
 | `ANDROID_VERSION_CODE_OFFSET`          | variable | Android, opt. | Added to the run number to form `versionCode` (default `100`, see _Versioning_)                                                                   | plain                                |
 
 `EXPO_PUBLIC_*` values end up in the shipped app, so they are variables, not secrets. Without the Supabase ones the
-app builds and works offline-only.
+app builds and works offline-only. RNRepo (prebuilt native libraries, below) needs no secret or variable: its
+repository is public.
 
 ### 5. Google Play (closed testing)
 
@@ -161,8 +162,9 @@ supabase migration new <name>                      # schema change (backward com
   redeploys the current `main`.
 - **Android:** _Actions → Android release → Run workflow_ on `main`. Inputs: **track** (`alpha` = closed testing,
   default; `internal`, `beta`, `production`), **status** (`draft` default, `completed`), **upload** (default on;
-  off = build only). Every run keeps the AAB and R8 `mapping.txt` as an artifact for 30 days; with upload on, both
-  go to Play, release name `<version> (<versionCode>)`. It is manual on purpose, also after a deploy.
+  off = build only), **rnrepo** (default on; off = compile every native library from source, see below). Every run
+  keeps the AAB and R8 `mapping.txt` as an artifact for 30 days; with upload on, both go to Play, release name
+  `<version> (<versionCode>)`. It is manual on purpose, also after a deploy.
 - **Locally**, `npx expo prebuild -p android && cd android && ./gradlew bundleRelease` gives a debug-signed bundle
   (fine for testing, rejected by Play). Set `GEOQUIZ_UPLOAD_STORE_FILE` (absolute path),
   `GEOQUIZ_UPLOAD_STORE_PASSWORD`, `GEOQUIZ_UPLOAD_KEY_ALIAS`, `GEOQUIZ_UPLOAD_KEY_PASSWORD` and optionally
@@ -176,3 +178,19 @@ supabase migration new <name>                      # schema change (backward com
   `android-release.yml`, so every run, uploaded or not, has a new, increasing number. Build-only runs use a number
   too; that only leaves gaps. If the workflow is renamed or recreated its run counter restarts: raise the offset
   above the last uploaded versionCode. `android.versionCode` in `app.json` is only the local fallback.
+
+### Prebuilt native libraries (RNRepo)
+
+`@rnrepo/expo-config-plugin` (decision 022) makes every `expo prebuild` wire
+[RNRepo](https://github.com/software-mansion/rnrepo) into Gradle and the Podfile. Android and iOS builds, local and
+CI, then download prebuilt AARs / xcframeworks from `packages.rnrepo.org` for each library whose installed version
+has one for our React Native version, and build the rest from source. No account or token.
+
+- **Which libraries came prebuilt:** the _RNRepo_ section of the _Android release_ run summary (step _RNRepo prebuilt
+  libraries_). Locally: `cd android && ./gradlew bundleRelease --dry-run --info | grep RNRepo`. With React Native
+  0.88.1 the list is still empty: RNRepo has no artifacts for 0.88 yet, so everything builds from source.
+- **Turn it off** for one build: `DISABLE_RNREPO=1 ./gradlew …` (any value disables it), or uncheck **rnrepo** in
+  the workflow. To always build one library from source (e.g. a patched one), list it in `rnrepo.config.json` at the
+  repository root: `{ "denyList": { "android": ["react-native-screens"], "ios": [] } }`.
+- **Upgrading** a native library or React Native: check rnrepo.org (supported libraries) for the new versions, or
+  that library builds from source again.
