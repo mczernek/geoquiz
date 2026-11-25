@@ -7,6 +7,8 @@ export const colors = {
   white: '#FFFFFF',
   glass: 'rgba(255,255,255,0.16)',
   glassBorder: 'rgba(255,255,255,0.38)',
+  /** Behind white controls that float over the globe (stays readable over yellow land). */
+  scrim: 'rgba(42,10,94,0.45)',
   card: '#FFFFFF',
 
   oceanLight: '#46C2FF',

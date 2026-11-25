@@ -33,9 +33,14 @@ function describeUser(user: User | null): SyncStore['user'] {
   return user ? { id: user.id, email: user.email ?? null, anonymous: Boolean(user.is_anonymous) } : null;
 }
 
+/** Supabase returns plain `{ message }` objects (PostgREST errors), not Error instances. */
+function messageOf(e: unknown): string {
+  if (e && typeof e === 'object' && 'message' in e) return String((e as { message: unknown }).message);
+  return String(e);
+}
+
 function isNetworkError(e: unknown): boolean {
-  const msg = e instanceof Error ? e.message : String(e);
-  return /network|fetch|timed? ?out|offline|internet/i.test(msg);
+  return /network|fetch|timed? ?out|offline|internet|load failed/i.test(messageOf(e));
 }
 
 /** Signs in anonymously the first time, so progress has an owner on the server (decision 009). */
@@ -133,7 +138,7 @@ export function syncNow(): Promise<void> {
         useSyncStatus.setState({ status: 'synced', lastSyncedAt: Date.now() });
       } catch (e) {
         const offline = isNetworkError(e);
-        useSyncStatus.setState({ status: offline ? 'offline' : 'error', error: offline ? null : String(e) });
+        useSyncStatus.setState({ status: offline ? 'offline' : 'error', error: offline ? null : messageOf(e) });
         again = false;
       }
     } while (again);

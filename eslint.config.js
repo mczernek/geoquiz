@@ -9,6 +9,11 @@ module.exports = defineConfig([
     ignores: ['dist/*', 'ios/*', 'android/*', 'src/data/flags.ts'],
   },
   {
+    // jest.mock factories must be hoisted above imports and may require() their mocks.
+    files: ['**/__tests__/**'],
+    rules: { 'import/first': 'off', '@typescript-eslint/no-require-imports': 'off' },
+  },
+  {
     files: ['scripts/**', 'supabase/tests/**'],
     languageOptions: { globals: globals.node },
   },

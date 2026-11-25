@@ -93,7 +93,8 @@ export const useProgress = create<ProgressState>()(
       // Cards are zeroed rather than deleted, so the reset reaches other devices through sync (decision 009).
       reset: () =>
         set((s) => {
-          const now = Date.now();
+          // Strictly newer than every card, so the reset wins everywhere even within the same millisecond.
+          const now = Math.max(Date.now(), ...Object.values(s.cards).map((c) => c.updatedAt + 1));
           const zero: CardState = { box: 0, due: now, seen: 0, correct: 0, wrong: 0, lastSeen: 0, updatedAt: now };
           const keys = Object.keys(s.cards);
           return {

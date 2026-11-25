@@ -5,3 +5,4 @@ assets
 pnpm-lock.yaml
 src/data/countries.json
 src/data/flags.ts
+design/icon

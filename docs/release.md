@@ -53,7 +53,7 @@ Create the repository, push, and set:
 3. Credentials: `eas credentials` (EAS can manage iOS certificates and the Android keystore).
 4. Stores: App Store Connect app record + Google Play app (first upload of the Android bundle by hand). For
    `--auto-submit`: an App Store Connect API key and a Google Play service account in EAS.
-5. Replace the placeholder icon and splash (`assets/images/`): they are Expo's defaults.
+5. Icons and splash are generated from the globe renderer (`pnpm icons`, sources in `design/icon`).
 
 ## Everyday
 

@@ -6,6 +6,7 @@ import { useProgress } from '@/state/progress';
 import { AccountError, deleteAccount, pendingChanges, signIn, signOut, signUp } from '@/sync/account';
 import { syncNow, useSyncStatus, type SyncStatus } from '@/sync/engine';
 import { colors, fonts, radius } from '@/theme';
+import { GlobeSlot } from '@/globe/GlobeSlot';
 import { Button } from '@/ui/Button';
 import { Chip } from '@/ui/Chip';
 import { confirm } from '@/ui/confirm';
@@ -193,6 +194,7 @@ export default function AccountScreen() {
     <Screen title="Account">
       <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView
+          style={styles.scroll}
           contentContainerStyle={[styles.content, { paddingBottom: insets.bottom + 24 }]}
           keyboardShouldPersistTaps="handled"
         >
@@ -220,6 +222,7 @@ export default function AccountScreen() {
             </Text>
           </View>
         </ScrollView>
+        <GlobeSlot style={styles.globe} fill={0.85} />
       </KeyboardAvoidingView>
     </Screen>
   );
@@ -227,6 +230,8 @@ export default function AccountScreen() {
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
+  scroll: { flexGrow: 0, flexShrink: 1 },
+  globe: { flex: 1, minHeight: 140 },
   content: { padding: 16, gap: 14 },
   card: { gap: 10 },
   row: { flexDirection: 'row', gap: 10, flexWrap: 'wrap' },

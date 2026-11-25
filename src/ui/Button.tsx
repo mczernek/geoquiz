@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.glass,
+    backgroundColor: colors.scrim,
     borderWidth: 1,
     borderColor: colors.glassBorder,
   },
