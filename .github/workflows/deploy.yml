@@ -1,14 +1,15 @@
 name: Deploy
 
-# Every push (merge) to main: checks, then database migrations, then the web app to Netlify production
-# (https://globik-app.netlify.app). Migrations run before the client ships, so they must stay backward compatible
-# with released apps. Android builds are manual: android-release.yml (docs/release.md).
+# Pushing a `release-*` tag: checks, then database migrations, then the web app to Netlify production
+# (https://globik-app.netlify.app). Only tags deploy, not every merge to main, so Netlify's free-plan credits last
+# (decision 024). Migrations run before the client ships, so they must stay backward compatible with released apps.
+# Android builds are manual: android-release.yml (docs/release.md).
 on:
   push:
-    branches: [main]
+    tags: ['release-*']
   workflow_dispatch:
-  # One-off: Netlify refused deploys (free plan usage) until the billing period reset on 2026-11-26 08:00 UTC; this
-  # ships whatever main holds then. Remove after it has run.
+  # One-off, asked for before tag releases: Netlify refused deploys (free plan usage) until the billing period reset
+  # on 2026-11-26 08:00 UTC; this ships whatever main holds then. Remove after it has run.
   schedule:
     - cron: '15 8 26 11 *'
 

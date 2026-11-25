@@ -51,7 +51,8 @@ UI changes: run the app (`pnpm ios` / `pnpm android` / `pnpm web`) and check it 
 
 ## Releasing
 
-Merge/push to `main` → `deploy.yml`: checks, `supabase db push` (production), Netlify production. Android: the
+Push a `release-*` tag → `deploy.yml`: checks, `supabase db push` (production), Netlify production. Merges to `main`
+only run CI. Android: the
 manual `android-release.yml` builds the AAB on GitHub Actions and uploads it to Google Play (`docs/release.md`).
-Never push or merge to `main`, apply migrations to production, run `android-release.yml` or submit builds without
-the human asking.
+Never push or merge to `main`, push a release tag, apply migrations to production, run `android-release.yml` or
+submit builds without the human asking.

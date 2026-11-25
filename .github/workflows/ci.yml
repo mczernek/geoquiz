@@ -1,9 +1,11 @@
 name: CI
 
-# Lint, typecheck, unit + database tests and the web export on pull requests. Pushes to main run these checks
-# through deploy.yml (which calls this workflow), so they don't run twice.
+# Lint, typecheck, unit + database tests and the web export on pull requests and main. Release tags run these checks
+# again through deploy.yml (which calls this workflow) before anything deploys.
 on:
   pull_request:
+  push:
+    branches: [main]
   workflow_call:
   workflow_dispatch:
 

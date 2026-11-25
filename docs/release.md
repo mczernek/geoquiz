@@ -1,14 +1,14 @@
 # Setup & release
 
-Every push (merge) to `main` deploys: CI checks → database migrations (Supabase production) → the web app (Netlify
-site `globik-app`, https://globik-app.netlify.app). Android release builds run on GitHub Actions by hand and upload
+Pushing a `release-*` tag deploys: CI checks → database migrations (Supabase production) → the web app (Netlify
+site `globik-app`, https://globik-app.netlify.app). Merging to `main` only runs the checks (decision 024). Android release builds run on GitHub Actions by hand and upload
 to Google Play (decision 019). iOS has no pipeline yet.
 
-| Workflow              | Trigger                      | What                                                                  |
-| --------------------- | ---------------------------- | --------------------------------------------------------------------- |
-| `ci.yml`              | pull requests (and called)   | lint, format, typecheck, unit + database tests, web export            |
-| `deploy.yml`          | push to `main`, manual       | `ci.yml` → `supabase db push` → `pnpm build:web` → Netlify production |
-| `android-release.yml` | manual (`workflow_dispatch`) | `ci.yml` → prebuild → signed `bundleRelease` → artifact + Play upload |
+| Workflow              | Trigger                       | What                                                                  |
+| --------------------- | ----------------------------- | --------------------------------------------------------------------- |
+| `ci.yml`              | pull requests, push to `main` | lint, format, typecheck, unit + database tests, web export            |
+| `deploy.yml`          | `release-*` tag, manual       | `ci.yml` → `supabase db push` → `pnpm build:web` → Netlify production |
+| `android-release.yml` | manual (`workflow_dispatch`)  | `ci.yml` → prebuild → signed `bundleRelease` → artifact + Play upload |
 
 ## One-time setup
 
@@ -175,7 +175,7 @@ client's JavaScript origins.
    - **HTML tag**: copy only the `content="…"` value into the GitHub variable `EXPO_PUBLIC_GOOGLE_SITE_VERIFICATION`;
      the build adds `<meta name="google-site-verification" …>` to the head of `index.html`
      (`scripts/site-verification.mjs`).
-2. Merge to `main` (or _Actions → Deploy → Run workflow_) and wait for the deploy; check the file loads (or that
+2. Merge to `main`, push a release tag (_Releasing_ below) and wait for the deploy; check the file loads (or that
    _View source_ of the home page shows the tag) in a private window.
 3. Back in Search Console: **Verify**. Keep the file or the variable afterwards: Google re-checks periodically and
    ownership lapses without it.
@@ -211,9 +211,13 @@ supabase migration new <name>                      # schema change (backward com
 
 ## Releasing
 
-- **Web + backend:** merging a pull request into `main` deploys it (`deploy.yml`): migrations first, then the web
-  app, so migrations must stay backward compatible with the released apps. _Actions → Deploy → Run workflow_
-  redeploys the current `main`.
+- **Web + backend:** tag the commit on `main` and push the tag; `deploy.yml` runs migrations first, then the web
+  app, so migrations must stay backward compatible with the released apps:
+  ```sh
+  git tag release-1.1.2 && git push origin release-1.1.2   # next one the same day/version: release-1.1.2-2
+  ```
+  Merges to `main` don't deploy: every Netlify deploy spends free-plan credits (decision 024). _Actions → Deploy →
+  Run workflow_ (on a tag or `main`) redeploys by hand.
 - **Android:** _Actions → Android release → Run workflow_ on `main`. Inputs: **track** (`alpha` = closed testing,
   default; `internal`, `beta`, `production`), **status** (`draft` default, `completed`), **upload** (default on;
   off = build only), **rnrepo** (default on; off = compile every native library from source, see below). Every run

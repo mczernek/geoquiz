@@ -232,3 +232,11 @@ sign-in's redirect URI) is also its own top private domain and can't be verified
 either web sign-in by ID token (Google's button + `signInWithIdToken`) or a Supabase custom domain; publishing with
 only non-sensitive scopes doesn't wait for it (docs/release.md → Google OAuth consent screen). A change to what the
 app stores, or to the Google data it uses, must update the privacy policy's Google section too.
+
+## 024 · Web and migrations deploy on `release-*` tags, not on every merge
+
+**Decision:** `deploy.yml` runs when a `release-*` tag is pushed (or by hand), not on pushes to `main`; `ci.yml`
+checks `main` instead. Supersedes the trigger in 019. Netlify's free plan counts credits per production deploy, and
+deploying every merge used them up within a day (deploys then fail with `Forbidden` until the billing period resets).
+**Consequences:** `main` can be ahead of production; releasing is an explicit tag. Migrations ship with the tag too, so
+a merged migration doesn't reach the database until the next release.
