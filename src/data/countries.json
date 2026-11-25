@@ -2,7 +2,11 @@
  {
   "code": "AF",
   "name": "Afghanistan",
+  "namePl": "Afganistan",
   "capitals": [
+   "Kabul"
+  ],
+  "capitalsPl": [
    "Kabul"
   ],
   "continent": "asia",
@@ -19,14 +23,16 @@
    "Afganistan",
    "Islamska Republika Afganistanu"
   ],
-  "capitalAliases": [
-   "Kabul"
-  ]
+  "capitalAliases": []
  },
  {
   "code": "AL",
   "name": "Albania",
+  "namePl": "Albania",
   "capitals": [
+   "Tirana"
+  ],
+  "capitalsPl": [
    "Tirana"
   ],
   "continent": "europe",
@@ -44,15 +50,17 @@
    "Shqipnia",
    "Republika Albanii"
   ],
-  "capitalAliases": [
-   "Tirana"
-  ]
+  "capitalAliases": []
  },
  {
   "code": "DZ",
   "name": "Algeria",
+  "namePl": "Algieria",
   "capitals": [
    "Algiers"
+  ],
+  "capitalsPl": [
+   "Algier"
   ],
   "continent": "africa",
   "focus": [
@@ -69,12 +77,18 @@
    "Algieria",
    "Algierska Republika Ludowo-Demokratyczna"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Algier"
+  ]
  },
  {
   "code": "AD",
   "name": "Andorra",
+  "namePl": "Andora",
   "capitals": [
+   "Andorra la Vella"
+  ],
+  "capitalsPl": [
    "Andorra la Vella"
   ],
   "continent": "europe",
@@ -96,7 +110,11 @@
  {
   "code": "AO",
   "name": "Angola",
+  "namePl": "Angola",
   "capitals": [
+   "Luanda"
+  ],
+  "capitalsPl": [
    "Luanda"
   ],
   "continent": "africa",
@@ -118,7 +136,11 @@
  {
   "code": "AG",
   "name": "Antigua and Barbuda",
+  "namePl": "Antigua i Barbuda",
   "capitals": [
+   "Saint John's"
+  ],
+  "capitalsPl": [
    "Saint John's"
   ],
   "continent": "north-america",
@@ -137,7 +159,11 @@
  {
   "code": "AR",
   "name": "Argentina",
+  "namePl": "Argentyna",
   "capitals": [
+   "Buenos Aires"
+  ],
+  "capitalsPl": [
    "Buenos Aires"
   ],
   "continent": "south-america",
@@ -159,8 +185,12 @@
  {
   "code": "AM",
   "name": "Armenia",
+  "namePl": "Armenia",
   "capitals": [
    "Yerevan"
+  ],
+  "capitalsPl": [
+   "Erywań"
   ],
   "continent": "asia",
   "focus": [
@@ -176,12 +206,18 @@
    "Հայաստանի Հանրապետություն",
    "Republika Armenii"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Erywań"
+  ]
  },
  {
   "code": "AU",
   "name": "Australia",
+  "namePl": "Australia",
   "capitals": [
+   "Canberra"
+  ],
+  "capitalsPl": [
    "Canberra"
   ],
   "continent": "oceania",
@@ -201,8 +237,12 @@
  {
   "code": "AT",
   "name": "Austria",
+  "namePl": "Austria",
   "capitals": [
    "Vienna"
+  ],
+  "capitalsPl": [
+   "Wiedeń"
   ],
   "continent": "europe",
   "focus": [
@@ -219,14 +259,18 @@
    "Republika Austrii"
   ],
   "capitalAliases": [
-   "Wien",
-   "Wiedeń"
+   "Wiedeń",
+   "Wien"
   ]
  },
  {
   "code": "AZ",
   "name": "Azerbaijan",
+  "namePl": "Azerbejdżan",
   "capitals": [
+   "Baku"
+  ],
+  "capitalsPl": [
    "Baku"
   ],
   "continent": "asia",
@@ -248,7 +292,11 @@
  {
   "code": "BS",
   "name": "Bahamas",
+  "namePl": "Bahamy",
   "capitals": [
+   "Nassau"
+  ],
+  "capitalsPl": [
    "Nassau"
   ],
   "continent": "north-america",
@@ -268,7 +316,11 @@
  {
   "code": "BH",
   "name": "Bahrain",
+  "namePl": "Bahrajn",
   "capitals": [
+   "Manama"
+  ],
+  "capitalsPl": [
    "Manama"
   ],
   "continent": "asia",
@@ -290,7 +342,11 @@
  {
   "code": "BD",
   "name": "Bangladesh",
+  "namePl": "Bangladesz",
   "capitals": [
+   "Dhaka"
+  ],
+  "capitalsPl": [
    "Dhaka"
   ],
   "continent": "asia",
@@ -312,7 +368,11 @@
  {
   "code": "BB",
   "name": "Barbados",
+  "namePl": "Barbados",
   "capitals": [
+   "Bridgetown"
+  ],
+  "capitalsPl": [
    "Bridgetown"
   ],
   "continent": "north-america",
@@ -329,8 +389,12 @@
  {
   "code": "BY",
   "name": "Belarus",
+  "namePl": "Białoruś",
   "capitals": [
    "Minsk"
+  ],
+  "capitalsPl": [
+   "Mińsk"
   ],
   "continent": "europe",
   "focus": [
@@ -355,8 +419,12 @@
  {
   "code": "BE",
   "name": "Belgium",
+  "namePl": "Belgia",
   "capitals": [
    "Brussels"
+  ],
+  "capitalsPl": [
+   "Bruksela"
   ],
   "continent": "europe",
   "focus": [
@@ -379,15 +447,19 @@
    "Królestwo Belgii"
   ],
   "capitalAliases": [
+   "Bruksela",
    "Bruxelles",
-   "Brussel",
-   "Bruksela"
+   "Brussel"
   ]
  },
  {
   "code": "BZ",
   "name": "Belize",
+  "namePl": "Belize",
   "capitals": [
+   "Belmopan"
+  ],
+  "capitalsPl": [
    "Belmopan"
   ],
   "continent": "north-america",
@@ -404,7 +476,11 @@
  {
   "code": "BJ",
   "name": "Benin",
+  "namePl": "Benin",
   "capitals": [
+   "Porto-Novo"
+  ],
+  "capitalsPl": [
    "Porto-Novo"
   ],
   "continent": "africa",
@@ -424,7 +500,11 @@
  {
   "code": "BT",
   "name": "Bhutan",
+  "namePl": "Bhutan",
   "capitals": [
+   "Thimphu"
+  ],
+  "capitalsPl": [
    "Thimphu"
   ],
   "continent": "asia",
@@ -443,7 +523,12 @@
  {
   "code": "BO",
   "name": "Bolivia",
+  "namePl": "Boliwia",
   "capitals": [
+   "Sucre",
+   "La Paz"
+  ],
+  "capitalsPl": [
    "Sucre",
    "La Paz"
   ],
@@ -472,8 +557,12 @@
  {
   "code": "BA",
   "name": "Bosnia and Herzegovina",
+  "namePl": "Bośnia i Hercegowina",
   "capitals": [
    "Sarajevo"
+  ],
+  "capitalsPl": [
+   "Sarajewo"
   ],
   "continent": "europe",
   "focus": [
@@ -487,14 +576,21 @@
    "Bosnia-Herzegovina",
    "Босна и Херцеговина",
    "Bośnia i Hercegowina",
-   "Bosnia"
+   "Bosnia",
+   "Bośnia"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Sarajewo"
+  ]
  },
  {
   "code": "BW",
   "name": "Botswana",
+  "namePl": "Botswana",
   "capitals": [
+   "Gaborone"
+  ],
+  "capitalsPl": [
    "Gaborone"
   ],
   "continent": "africa",
@@ -515,7 +611,11 @@
  {
   "code": "BR",
   "name": "Brazil",
+  "namePl": "Brazylia",
   "capitals": [
+   "Brasília"
+  ],
+  "capitalsPl": [
    "Brasília"
   ],
   "continent": "south-america",
@@ -538,7 +638,11 @@
  {
   "code": "BN",
   "name": "Brunei",
+  "namePl": "Brunei",
   "capitals": [
+   "Bandar Seri Begawan"
+  ],
+  "capitalsPl": [
    "Bandar Seri Begawan"
   ],
   "continent": "asia",
@@ -561,7 +665,11 @@
  {
   "code": "BG",
   "name": "Bulgaria",
+  "namePl": "Bułgaria",
   "capitals": [
+   "Sofia"
+  ],
+  "capitalsPl": [
    "Sofia"
   ],
   "continent": "europe",
@@ -585,8 +693,12 @@
  {
   "code": "BF",
   "name": "Burkina Faso",
+  "namePl": "Burkina Faso",
   "capitals": [
    "Ouagadougou"
+  ],
+  "capitalsPl": [
+   "Wagadugu"
   ],
   "continent": "africa",
   "focus": [
@@ -597,12 +709,18 @@
   "area": 0.00674,
   "hasShape": true,
   "aliases": [],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Wagadugu"
+  ]
  },
  {
   "code": "BI",
   "name": "Burundi",
+  "namePl": "Burundi",
   "capitals": [
+   "Gitega"
+  ],
+  "capitalsPl": [
    "Gitega"
   ],
   "continent": "africa",
@@ -624,7 +742,11 @@
  {
   "code": "KH",
   "name": "Cambodia",
+  "namePl": "Kambodża",
   "capitals": [
+   "Phnom Penh"
+  ],
+  "capitalsPl": [
    "Phnom Penh"
   ],
   "continent": "asia",
@@ -645,8 +767,12 @@
  {
   "code": "CM",
   "name": "Cameroon",
+  "namePl": "Kamerun",
   "capitals": [
    "Yaoundé"
+  ],
+  "capitalsPl": [
+   "Jaunde"
   ],
   "continent": "africa",
   "focus": [
@@ -659,15 +785,20 @@
   "aliases": [
    "Republic of Cameroon",
    "République du Cameroun",
-   "WybrzeŻe Kości Słoniowej",
-   "Republika WybrzeŻa Kości Słoniowej"
+   "Kamerun"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Jaunde"
+  ]
  },
  {
   "code": "CA",
   "name": "Canada",
+  "namePl": "Kanada",
   "capitals": [
+   "Ottawa"
+  ],
+  "capitalsPl": [
    "Ottawa"
   ],
   "continent": "north-america",
@@ -686,7 +817,11 @@
  {
   "code": "CV",
   "name": "Cape Verde",
+  "namePl": "Republika Zielonego Przylądka",
   "capitals": [
+   "Praia"
+  ],
+  "capitalsPl": [
    "Praia"
   ],
   "continent": "africa",
@@ -701,15 +836,20 @@
    "Republic of Cabo Verde",
    "República de Cabo Verde",
    "Republika Zielonego Przylądka",
-   "Cabo Verde"
+   "Cabo Verde",
+   "Wyspy Zielonego Przylądka"
   ],
   "capitalAliases": []
  },
  {
   "code": "CF",
   "name": "Central African Republic",
+  "namePl": "Republika Środkowoafrykańska",
   "capitals": [
    "Bangui"
+  ],
+  "capitalsPl": [
+   "Bangi"
   ],
   "continent": "africa",
   "focus": [
@@ -723,13 +863,19 @@
    "République centrafricaine",
    "Republika Środkowoafrykańska"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Bangi"
+  ]
  },
  {
   "code": "TD",
   "name": "Chad",
+  "namePl": "Czad",
   "capitals": [
    "N'Djamena"
+  ],
+  "capitalsPl": [
+   "Ndżamena"
   ],
   "continent": "africa",
   "focus": [
@@ -746,12 +892,18 @@
    "Czad",
    "Republika Czadu"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Ndżamena"
+  ]
  },
  {
   "code": "CL",
   "name": "Chile",
+  "namePl": "Chile",
   "capitals": [
+   "Santiago"
+  ],
+  "capitalsPl": [
    "Santiago"
   ],
   "continent": "south-america",
@@ -772,8 +924,12 @@
  {
   "code": "CN",
   "name": "China",
+  "namePl": "Chiny",
   "capitals": [
    "Beijing"
+  ],
+  "capitalsPl": [
+   "Pekin"
   ],
   "continent": "asia",
   "focus": [
@@ -794,15 +950,19 @@
    "Chińska Republika Ludowa"
   ],
   "capitalAliases": [
-   "Peking",
-   "Pekin"
+   "Pekin",
+   "Peking"
   ]
  },
  {
   "code": "CO",
   "name": "Colombia",
+  "namePl": "Kolumbia",
   "capitals": [
    "Bogotá"
+  ],
+  "capitalsPl": [
+   "Bogota"
   ],
   "continent": "south-america",
   "focus": [
@@ -818,12 +978,18 @@
    "Kolumbia",
    "Republika Kolumbii"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Bogota"
+  ]
  },
  {
   "code": "KM",
   "name": "Comoros",
+  "namePl": "Komory",
   "capitals": [
+   "Moroni"
+  ],
+  "capitalsPl": [
    "Moroni"
   ],
   "continent": "africa",
@@ -847,7 +1013,11 @@
  {
   "code": "CR",
   "name": "Costa Rica",
+  "namePl": "Kostaryka",
   "capitals": [
+   "San José"
+  ],
+  "capitalsPl": [
    "San José"
   ],
   "continent": "north-america",
@@ -869,8 +1039,12 @@
  {
   "code": "HR",
   "name": "Croatia",
+  "namePl": "Chorwacja",
   "capitals": [
    "Zagreb"
+  ],
+  "capitalsPl": [
+   "Zagrzeb"
   ],
   "continent": "europe",
   "focus": [
@@ -894,8 +1068,12 @@
  {
   "code": "CU",
   "name": "Cuba",
+  "namePl": "Kuba",
   "capitals": [
    "Havana"
+  ],
+  "capitalsPl": [
+   "Hawana"
   ],
   "continent": "north-america",
   "focus": [
@@ -918,8 +1096,12 @@
  {
   "code": "CY",
   "name": "Cyprus",
+  "namePl": "Cypr",
   "capitals": [
    "Nicosia"
+  ],
+  "capitalsPl": [
+   "Nikozja"
   ],
   "continent": "europe",
   "focus": [
@@ -938,13 +1120,19 @@
    "Cypr",
    "Republika Cypryjska"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Nikozja"
+  ]
  },
  {
   "code": "CZ",
   "name": "Czechia",
+  "namePl": "Czechy",
   "capitals": [
    "Prague"
+  ],
+  "capitalsPl": [
+   "Praga"
   ],
   "continent": "europe",
   "focus": [
@@ -962,15 +1150,19 @@
    "Republika Czeska"
   ],
   "capitalAliases": [
-   "Praha",
-   "Praga"
+   "Praga",
+   "Praha"
   ]
  },
  {
   "code": "DK",
   "name": "Denmark",
+  "namePl": "Dania",
   "capitals": [
    "Copenhagen"
+  ],
+  "capitalsPl": [
+   "Kopenhaga"
   ],
   "continent": "europe",
   "focus": [
@@ -988,15 +1180,19 @@
    "Królestwo Danii"
   ],
   "capitalAliases": [
-   "København",
-   "Kopenhaga"
+   "Kopenhaga",
+   "København"
   ]
  },
  {
   "code": "DJ",
   "name": "Djibouti",
+  "namePl": "Dżibuti",
   "capitals": [
    "Djibouti"
+  ],
+  "capitalsPl": [
+   "Dżibuti"
   ],
   "continent": "africa",
   "focus": [
@@ -1023,7 +1219,11 @@
  {
   "code": "DM",
   "name": "Dominica",
+  "namePl": "Dominika",
   "capitals": [
+   "Roseau"
+  ],
+  "capitalsPl": [
    "Roseau"
   ],
   "continent": "north-america",
@@ -1046,7 +1246,11 @@
  {
   "code": "DO",
   "name": "Dominican Republic",
+  "namePl": "Dominikana",
   "capitals": [
+   "Santo Domingo"
+  ],
+  "capitalsPl": [
    "Santo Domingo"
   ],
   "continent": "north-america",
@@ -1066,8 +1270,12 @@
  {
   "code": "CD",
   "name": "DR Congo",
+  "namePl": "Demokratyczna Republika Konga",
   "capitals": [
    "Kinshasa"
+  ],
+  "capitalsPl": [
+   "Kinszasa"
   ],
   "continent": "africa",
   "focus": [
@@ -1086,12 +1294,18 @@
    "Demokratyczna Republika Konga",
    "Congo Kinshasa"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Kinszasa"
+  ]
  },
  {
   "code": "EC",
   "name": "Ecuador",
+  "namePl": "Ekwador",
   "capitals": [
+   "Quito"
+  ],
+  "capitalsPl": [
    "Quito"
   ],
   "continent": "south-america",
@@ -1112,8 +1326,12 @@
  {
   "code": "EG",
   "name": "Egypt",
+  "namePl": "Egipt",
   "capitals": [
    "Cairo"
+  ],
+  "capitalsPl": [
+   "Kair"
   ],
   "continent": "africa",
   "focus": [
@@ -1135,7 +1353,11 @@
  {
   "code": "SV",
   "name": "El Salvador",
+  "namePl": "Salwador",
   "capitals": [
+   "San Salvador"
+  ],
+  "capitalsPl": [
    "San Salvador"
   ],
   "continent": "north-america",
@@ -1157,7 +1379,11 @@
  {
   "code": "GQ",
   "name": "Equatorial Guinea",
+  "namePl": "Gwinea Równikowa",
   "capitals": [
+   "Malabo"
+  ],
+  "capitalsPl": [
    "Malabo"
   ],
   "continent": "africa",
@@ -1181,7 +1407,11 @@
  {
   "code": "ER",
   "name": "Eritrea",
+  "namePl": "Erytrea",
   "capitals": [
+   "Asmara"
+  ],
+  "capitalsPl": [
    "Asmara"
   ],
   "continent": "africa",
@@ -1206,7 +1436,11 @@
  {
   "code": "EE",
   "name": "Estonia",
+  "namePl": "Estonia",
   "capitals": [
+   "Tallinn"
+  ],
+  "capitalsPl": [
    "Tallinn"
   ],
   "continent": "europe",
@@ -1223,14 +1457,17 @@
    "Eesti Vabariik",
    "Republika Estońska"
   ],
-  "capitalAliases": [
-   "Tallinn"
-  ]
+  "capitalAliases": []
  },
  {
   "code": "SZ",
   "name": "Eswatini",
+  "namePl": "Eswatini",
   "capitals": [
+   "Mbabane",
+   "Lobamba"
+  ],
+  "capitalsPl": [
    "Mbabane",
    "Lobamba"
   ],
@@ -1249,16 +1486,19 @@
    "Swatini",
    "Ngwane",
    "Umbuso weSwatini",
-   "Suazi",
-   "Królestwo Suazi"
+   "Suazi"
   ],
   "capitalAliases": []
  },
  {
   "code": "ET",
   "name": "Ethiopia",
+  "namePl": "Etiopia",
   "capitals": [
    "Addis Ababa"
+  ],
+  "capitalsPl": [
+   "Addis Abeba"
   ],
   "continent": "africa",
   "focus": [
@@ -1275,12 +1515,18 @@
    "Etiopia",
    "Federalna Demokratyczna Republika Etiopii"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Addis Abeba"
+  ]
  },
  {
   "code": "FJ",
   "name": "Fiji",
+  "namePl": "Fidżi",
   "capitals": [
+   "Suva"
+  ],
+  "capitalsPl": [
    "Suva"
   ],
   "continent": "oceania",
@@ -1304,7 +1550,11 @@
  {
   "code": "FI",
   "name": "Finland",
+  "namePl": "Finlandia",
   "capitals": [
+   "Helsinki"
+  ],
+  "capitalsPl": [
    "Helsinki"
   ],
   "continent": "europe",
@@ -1323,15 +1573,17 @@
    "Finlandia",
    "Republika Finlandii"
   ],
-  "capitalAliases": [
-   "Helsinki"
-  ]
+  "capitalAliases": []
  },
  {
   "code": "FR",
   "name": "France",
+  "namePl": "Francja",
   "capitals": [
    "Paris"
+  ],
+  "capitalsPl": [
+   "Paryż"
   ],
   "continent": "europe",
   "focus": [
@@ -1354,7 +1606,11 @@
  {
   "code": "GA",
   "name": "Gabon",
+  "namePl": "Gabon",
   "capitals": [
+   "Libreville"
+  ],
+  "capitalsPl": [
    "Libreville"
   ],
   "continent": "africa",
@@ -1375,8 +1631,12 @@
  {
   "code": "GM",
   "name": "Gambia",
+  "namePl": "Gambia",
   "capitals": [
    "Banjul"
+  ],
+  "capitalsPl": [
+   "Bandżul"
   ],
   "continent": "africa",
   "focus": [
@@ -1390,12 +1650,18 @@
    "Republic of the Gambia",
    "Republika Gambii"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Bandżul"
+  ]
  },
  {
   "code": "GE",
   "name": "Georgia",
+  "namePl": "Gruzja",
   "capitals": [
+   "Tbilisi"
+  ],
+  "capitalsPl": [
    "Tbilisi"
   ],
   "continent": "asia",
@@ -1415,7 +1681,11 @@
  {
   "code": "DE",
   "name": "Germany",
+  "namePl": "Niemcy",
   "capitals": [
+   "Berlin"
+  ],
+  "capitalsPl": [
    "Berlin"
   ],
   "continent": "europe",
@@ -1432,15 +1702,17 @@
    "Niemcy",
    "Republika Federalna Niemiec"
   ],
-  "capitalAliases": [
-   "Berlin"
-  ]
+  "capitalAliases": []
  },
  {
   "code": "GH",
   "name": "Ghana",
+  "namePl": "Ghana",
   "capitals": [
    "Accra"
+  ],
+  "capitalsPl": [
+   "Akra"
   ],
   "continent": "africa",
   "focus": [
@@ -1454,13 +1726,19 @@
    "Republic of Ghana",
    "Republika Ghany"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Akra"
+  ]
  },
  {
   "code": "GR",
   "name": "Greece",
+  "namePl": "Grecja",
   "capitals": [
    "Athens"
+  ],
+  "capitalsPl": [
+   "Ateny"
   ],
   "continent": "europe",
   "focus": [
@@ -1478,15 +1756,19 @@
    "Republika Grecka"
   ],
   "capitalAliases": [
-   "Athina",
-   "Ateny"
+   "Ateny",
+   "Athina"
   ]
  },
  {
   "code": "GD",
   "name": "Grenada",
+  "namePl": "Grenada",
   "capitals": [
    "St. George's"
+  ],
+  "capitalsPl": [
+   "Saint George's"
   ],
   "continent": "north-america",
   "focus": [
@@ -1497,13 +1779,19 @@
   "area": 0.00000709,
   "hasShape": true,
   "aliases": [],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Saint George's"
+  ]
  },
  {
   "code": "GT",
   "name": "Guatemala",
+  "namePl": "Gwatemala",
   "capitals": [
    "Guatemala City"
+  ],
+  "capitalsPl": [
+   "Gwatemala"
   ],
   "continent": "north-america",
   "focus": [
@@ -1525,8 +1813,12 @@
  {
   "code": "GN",
   "name": "Guinea",
+  "namePl": "Gwinea",
   "capitals": [
    "Conakry"
+  ],
+  "capitalsPl": [
+   "Konakry"
   ],
   "continent": "africa",
   "focus": [
@@ -1542,12 +1834,18 @@
    "Gwinea",
    "Republika Gwinei"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Konakry"
+  ]
  },
  {
   "code": "GW",
   "name": "Guinea-Bissau",
+  "namePl": "Gwinea Bissau",
   "capitals": [
+   "Bissau"
+  ],
+  "capitalsPl": [
    "Bissau"
   ],
   "continent": "africa",
@@ -1569,7 +1867,11 @@
  {
   "code": "GY",
   "name": "Guyana",
+  "namePl": "Gujana",
   "capitals": [
+   "Georgetown"
+  ],
+  "capitalsPl": [
    "Georgetown"
   ],
   "continent": "south-america",
@@ -1590,7 +1892,11 @@
  {
   "code": "HT",
   "name": "Haiti",
+  "namePl": "Haiti",
   "capitals": [
+   "Port-au-Prince"
+  ],
+  "capitalsPl": [
    "Port-au-Prince"
   ],
   "continent": "north-america",
@@ -1612,7 +1918,11 @@
  {
   "code": "HN",
   "name": "Honduras",
+  "namePl": "Honduras",
   "capitals": [
+   "Tegucigalpa"
+  ],
+  "capitalsPl": [
    "Tegucigalpa"
   ],
   "continent": "north-america",
@@ -1633,8 +1943,12 @@
  {
   "code": "HU",
   "name": "Hungary",
+  "namePl": "Węgry",
   "capitals": [
    "Budapest"
+  ],
+  "capitalsPl": [
+   "Budapeszt"
   ],
   "continent": "europe",
   "focus": [
@@ -1654,8 +1968,12 @@
  {
   "code": "IS",
   "name": "Iceland",
+  "namePl": "Islandia",
   "capitals": [
    "Reykjavik"
+  ],
+  "capitalsPl": [
+   "Reykjavík"
   ],
   "continent": "europe",
   "focus": [
@@ -1673,14 +1991,18 @@
    "Republika Islandii"
   ],
   "capitalAliases": [
-   "Reykjavik"
+   "Reykjavík"
   ]
  },
  {
   "code": "IN",
   "name": "India",
+  "namePl": "Indie",
   "capitals": [
    "New Delhi"
+  ],
+  "capitalsPl": [
+   "Nowe Delhi"
   ],
   "continent": "asia",
   "focus": [
@@ -1699,15 +2021,19 @@
    "Republika Indii"
   ],
   "capitalAliases": [
-   "Delhi",
-   "Nowe Delhi"
+   "Nowe Delhi",
+   "Delhi"
   ]
  },
  {
   "code": "ID",
   "name": "Indonesia",
+  "namePl": "Indonezja",
   "capitals": [
    "Jakarta"
+  ],
+  "capitalsPl": [
+   "Dżakarta"
   ],
   "continent": "asia",
   "focus": [
@@ -1723,13 +2049,19 @@
    "Indonezja",
    "Republika Indonezji"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Dżakarta"
+  ]
  },
  {
   "code": "IR",
   "name": "Iran",
+  "namePl": "Iran",
   "capitals": [
    "Tehran"
+  ],
+  "capitalsPl": [
+   "Teheran"
   ],
   "continent": "asia",
   "focus": [
@@ -1752,8 +2084,12 @@
  {
   "code": "IQ",
   "name": "Iraq",
+  "namePl": "Irak",
   "capitals": [
    "Baghdad"
+  ],
+  "capitalsPl": [
+   "Bagdad"
   ],
   "continent": "asia",
   "focus": [
@@ -1776,7 +2112,11 @@
  {
   "code": "IE",
   "name": "Ireland",
+  "namePl": "Irlandia",
   "capitals": [
+   "Dublin"
+  ],
+  "capitalsPl": [
    "Dublin"
   ],
   "continent": "europe",
@@ -1794,15 +2134,17 @@
    "Irlandia",
    "Republika Irlandii"
   ],
-  "capitalAliases": [
-   "Dublin"
-  ]
+  "capitalAliases": []
  },
  {
   "code": "IL",
   "name": "Israel",
+  "namePl": "Izrael",
   "capitals": [
    "Jerusalem"
+  ],
+  "capitalsPl": [
+   "Jerozolima"
   ],
   "continent": "asia",
   "focus": [
@@ -1825,8 +2167,12 @@
  {
   "code": "IT",
   "name": "Italy",
+  "namePl": "Włochy",
   "capitals": [
    "Rome"
+  ],
+  "capitalsPl": [
+   "Rzym"
   ],
   "continent": "europe",
   "focus": [
@@ -1843,15 +2189,19 @@
    "Republika Włoska"
   ],
   "capitalAliases": [
-   "Roma",
-   "Rzym"
+   "Rzym",
+   "Roma"
   ]
  },
  {
   "code": "CI",
   "name": "Ivory Coast",
+  "namePl": "Wybrzeże Kości Słoniowej",
   "capitals": [
    "Yamoussoukro"
+  ],
+  "capitalsPl": [
+   "Jamusukro"
   ],
   "continent": "africa",
   "focus": [
@@ -1866,17 +2216,21 @@
    "Côte d'Ivoire",
    "Cote d'Ivoire",
    "République de Côte d'Ivoire",
-   "WybrzeŻe Kości Słoniowej",
-   "Republika WybrzeŻa Kości Słoniowej"
+   "Wybrzeże Kości Słoniowej"
   ],
   "capitalAliases": [
+   "Jamusukro",
    "Yamusukro"
   ]
  },
  {
   "code": "JM",
   "name": "Jamaica",
+  "namePl": "Jamajka",
   "capitals": [
+   "Kingston"
+  ],
+  "capitalsPl": [
    "Kingston"
   ],
   "continent": "north-america",
@@ -1895,8 +2249,12 @@
  {
   "code": "JP",
   "name": "Japan",
+  "namePl": "Japonia",
   "capitals": [
    "Tokyo"
+  ],
+  "capitalsPl": [
+   "Tokio"
   ],
   "continent": "asia",
   "focus": [
@@ -1918,7 +2276,11 @@
  {
   "code": "JO",
   "name": "Jordan",
+  "namePl": "Jordania",
   "capitals": [
+   "Amman"
+  ],
+  "capitalsPl": [
    "Amman"
   ],
   "continent": "asia",
@@ -1940,7 +2302,11 @@
  {
   "code": "KZ",
   "name": "Kazakhstan",
+  "namePl": "Kazachstan",
   "capitals": [
+   "Astana"
+  ],
+  "capitalsPl": [
    "Astana"
   ],
   "continent": "asia",
@@ -1969,7 +2335,11 @@
  {
   "code": "KE",
   "name": "Kenya",
+  "namePl": "Kenia",
   "capitals": [
+   "Nairobi"
+  ],
+  "capitalsPl": [
    "Nairobi"
   ],
   "continent": "africa",
@@ -1991,8 +2361,12 @@
  {
   "code": "KI",
   "name": "Kiribati",
+  "namePl": "Kiribati",
   "capitals": [
    "South Tarawa"
+  ],
+  "capitalsPl": [
+   "Tarawa Południowa"
   ],
   "continent": "oceania",
   "focus": [
@@ -2008,13 +2382,19 @@
    "Ribaberiki Kiribati",
    "Republika Kiribati"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Tarawa Południowa"
+  ]
  },
  {
   "code": "XK",
   "name": "Kosovo",
+  "namePl": "Kosowo",
   "capitals": [
    "Pristina"
+  ],
+  "capitalsPl": [
+   "Prisztina"
   ],
   "continent": "europe",
   "focus": [
@@ -2030,13 +2410,19 @@
    "Kosowo",
    "Republika Kosowa"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Prisztina"
+  ]
  },
  {
   "code": "KW",
   "name": "Kuwait",
+  "namePl": "Kuwejt",
   "capitals": [
    "Kuwait City"
+  ],
+  "capitalsPl": [
+   "Kuwejt"
   ],
   "continent": "asia",
   "focus": [
@@ -2053,15 +2439,19 @@
    "Państwo Kuwejt"
   ],
   "capitalAliases": [
-   "Kuwait",
-   "Kuwejt"
+   "Kuwejt",
+   "Kuwait"
   ]
  },
  {
   "code": "KG",
   "name": "Kyrgyzstan",
+  "namePl": "Kirgistan",
   "capitals": [
    "Bishkek"
+  ],
+  "capitalsPl": [
+   "Biszkek"
   ],
   "continent": "asia",
   "focus": [
@@ -2079,13 +2469,19 @@
    "Kirgistan",
    "Republika Kirgiska"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Biszkek"
+  ]
  },
  {
   "code": "LA",
   "name": "Laos",
+  "namePl": "Laos",
   "capitals": [
    "Vientiane"
+  ],
+  "capitalsPl": [
+   "Wientian"
   ],
   "continent": "asia",
   "focus": [
@@ -2101,13 +2497,19 @@
    "Sathalanalat Paxathipatai Paxaxon Lao",
    "Laotańska Republika Ludowo-Demokratyczna"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Wientian"
+  ]
  },
  {
   "code": "LV",
   "name": "Latvia",
+  "namePl": "Łotwa",
   "capitals": [
    "Riga"
+  ],
+  "capitalsPl": [
+   "Ryga"
   ],
   "continent": "europe",
   "focus": [
@@ -2130,8 +2532,12 @@
  {
   "code": "LB",
   "name": "Lebanon",
+  "namePl": "Liban",
   "capitals": [
    "Beirut"
+  ],
+  "capitalsPl": [
+   "Bejrut"
   ],
   "continent": "asia",
   "focus": [
@@ -2154,7 +2560,11 @@
  {
   "code": "LS",
   "name": "Lesotho",
+  "namePl": "Lesotho",
   "capitals": [
+   "Maseru"
+  ],
+  "capitalsPl": [
    "Maseru"
   ],
   "continent": "africa",
@@ -2175,7 +2585,11 @@
  {
   "code": "LR",
   "name": "Liberia",
+  "namePl": "Liberia",
   "capitals": [
+   "Monrovia"
+  ],
+  "capitalsPl": [
    "Monrovia"
   ],
   "continent": "africa",
@@ -2195,8 +2609,12 @@
  {
   "code": "LY",
   "name": "Libya",
+  "namePl": "Libia",
   "capitals": [
    "Tripoli"
+  ],
+  "capitalsPl": [
+   "Trypolis"
   ],
   "continent": "africa",
   "focus": [
@@ -2212,12 +2630,18 @@
    "Libia",
    "Państwo Libia"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Trypolis"
+  ]
  },
  {
   "code": "LI",
   "name": "Liechtenstein",
+  "namePl": "Liechtenstein",
   "capitals": [
+   "Vaduz"
+  ],
+  "capitalsPl": [
    "Vaduz"
   ],
   "continent": "europe",
@@ -2238,8 +2662,12 @@
  {
   "code": "LT",
   "name": "Lithuania",
+  "namePl": "Litwa",
   "capitals": [
    "Vilnius"
+  ],
+  "capitalsPl": [
+   "Wilno"
   ],
   "continent": "europe",
   "focus": [
@@ -2262,8 +2690,12 @@
  {
   "code": "LU",
   "name": "Luxembourg",
+  "namePl": "Luksemburg",
   "capitals": [
    "Luxembourg"
+  ],
+  "capitalsPl": [
+   "Luksemburg"
   ],
   "continent": "europe",
   "focus": [
@@ -2288,8 +2720,12 @@
  {
   "code": "MG",
   "name": "Madagascar",
+  "namePl": "Madagaskar",
   "capitals": [
    "Antananarivo"
+  ],
+  "capitalsPl": [
+   "Antananarywa"
   ],
   "continent": "africa",
   "focus": [
@@ -2306,12 +2742,18 @@
    "Madagaskar",
    "Republika Madagaskaru"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Antananarywa"
+  ]
  },
  {
   "code": "MW",
   "name": "Malawi",
+  "namePl": "Malawi",
   "capitals": [
+   "Lilongwe"
+  ],
+  "capitalsPl": [
    "Lilongwe"
   ],
   "continent": "africa",
@@ -2331,7 +2773,12 @@
  {
   "code": "MY",
   "name": "Malaysia",
+  "namePl": "Malezja",
   "capitals": [
+   "Kuala Lumpur",
+   "Putrajaya"
+  ],
+  "capitalsPl": [
    "Kuala Lumpur",
    "Putrajaya"
   ],
@@ -2351,8 +2798,12 @@
  {
   "code": "MV",
   "name": "Maldives",
+  "namePl": "Malediwy",
   "capitals": [
    "Malé"
+  ],
+  "capitalsPl": [
+   "Male"
   ],
   "continent": "asia",
   "focus": [
@@ -2369,12 +2820,18 @@
    "Malediwy",
    "Republika Malediwów"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Male"
+  ]
  },
  {
   "code": "ML",
   "name": "Mali",
+  "namePl": "Mali",
   "capitals": [
+   "Bamako"
+  ],
+  "capitalsPl": [
    "Bamako"
   ],
   "continent": "africa",
@@ -2395,7 +2852,11 @@
  {
   "code": "MT",
   "name": "Malta",
+  "namePl": "Malta",
   "capitals": [
+   "Valletta"
+  ],
+  "capitalsPl": [
    "Valletta"
   ],
   "continent": "europe",
@@ -2416,7 +2877,11 @@
  {
   "code": "MH",
   "name": "Marshall Islands",
+  "namePl": "Wyspy Marshalla",
   "capitals": [
+   "Majuro"
+  ],
+  "capitalsPl": [
    "Majuro"
   ],
   "continent": "oceania",
@@ -2438,8 +2903,12 @@
  {
   "code": "MR",
   "name": "Mauritania",
+  "namePl": "Mauretania",
   "capitals": [
    "Nouakchott"
+  ],
+  "capitalsPl": [
+   "Nawakszut"
   ],
   "continent": "africa",
   "focus": [
@@ -2455,12 +2924,18 @@
    "Mauretania",
    "Islamska Republika Mauretańska"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Nawakszut"
+  ]
  },
  {
   "code": "MU",
   "name": "Mauritius",
+  "namePl": "Mauritius",
   "capitals": [
+   "Port Louis"
+  ],
+  "capitalsPl": [
    "Port Louis"
   ],
   "continent": "africa",
@@ -2481,8 +2956,12 @@
  {
   "code": "MX",
   "name": "Mexico",
+  "namePl": "Meksyk",
   "capitals": [
    "Mexico City"
+  ],
+  "capitalsPl": [
+   "Meksyk"
   ],
   "continent": "north-america",
   "focus": [
@@ -2500,14 +2979,17 @@
    "Meksykańskie Stany Zjednoczone"
   ],
   "capitalAliases": [
-   "Mexico City",
    "Meksyk"
   ]
  },
  {
   "code": "FM",
   "name": "Micronesia",
+  "namePl": "Mikronezja",
   "capitals": [
+   "Palikir"
+  ],
+  "capitalsPl": [
    "Palikir"
   ],
   "continent": "oceania",
@@ -2529,8 +3011,12 @@
  {
   "code": "MD",
   "name": "Moldova",
+  "namePl": "Mołdawia",
   "capitals": [
    "Chișinău"
+  ],
+  "capitalsPl": [
+   "Kiszyniów"
   ],
   "continent": "europe",
   "focus": [
@@ -2555,8 +3041,12 @@
  {
   "code": "MC",
   "name": "Monaco",
+  "namePl": "Monako",
   "capitals": [
    "Monaco"
+  ],
+  "capitalsPl": [
+   "Monako"
   ],
   "continent": "europe",
   "focus": [
@@ -2579,8 +3069,12 @@
  {
   "code": "MN",
   "name": "Mongolia",
+  "namePl": "Mongolia",
   "capitals": [
    "Ulan Bator"
+  ],
+  "capitalsPl": [
+   "Ułan Bator"
   ],
   "continent": "asia",
   "focus": [
@@ -2591,12 +3085,18 @@
   "area": 0.0384,
   "hasShape": true,
   "aliases": [],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Ułan Bator"
+  ]
  },
  {
   "code": "ME",
   "name": "Montenegro",
+  "namePl": "Czarnogóra",
   "capitals": [
+   "Podgorica"
+  ],
+  "capitalsPl": [
    "Podgorica"
   ],
   "continent": "europe",
@@ -2611,14 +3111,16 @@
    "Crna Gora",
    "Czarnogóra"
   ],
-  "capitalAliases": [
-   "Podgorica"
-  ]
+  "capitalAliases": []
  },
  {
   "code": "MA",
   "name": "Morocco",
+  "namePl": "Maroko",
   "capitals": [
+   "Rabat"
+  ],
+  "capitalsPl": [
    "Rabat"
   ],
   "continent": "africa",
@@ -2640,7 +3142,11 @@
  {
   "code": "MZ",
   "name": "Mozambique",
+  "namePl": "Mozambik",
   "capitals": [
+   "Maputo"
+  ],
+  "capitalsPl": [
    "Maputo"
   ],
   "continent": "africa",
@@ -2662,7 +3168,11 @@
  {
   "code": "MM",
   "name": "Myanmar",
+  "namePl": "Mjanma",
   "capitals": [
+   "Naypyidaw"
+  ],
+  "capitalsPl": [
    "Naypyidaw"
   ],
   "continent": "asia",
@@ -2688,8 +3198,12 @@
  {
   "code": "NA",
   "name": "Namibia",
+  "namePl": "Namibia",
   "capitals": [
    "Windhoek"
+  ],
+  "capitalsPl": [
+   "Windhuk"
   ],
   "continent": "africa",
   "focus": [
@@ -2704,12 +3218,18 @@
    "Namibië",
    "Republika Namibii"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Windhuk"
+  ]
  },
  {
   "code": "NR",
   "name": "Nauru",
+  "namePl": "Nauru",
   "capitals": [
+   "Yaren"
+  ],
+  "capitalsPl": [
    "Yaren"
   ],
   "continent": "oceania",
@@ -2734,8 +3254,12 @@
  {
   "code": "NP",
   "name": "Nepal",
+  "namePl": "Nepal",
   "capitals": [
    "Kathmandu"
+  ],
+  "capitalsPl": [
+   "Katmandu"
   ],
   "continent": "asia",
   "focus": [
@@ -2750,12 +3274,18 @@
    "Loktāntrik Ganatantra Nepāl",
    "Federalna Demokratyczna Republika Nepalu"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Katmandu"
+  ]
  },
  {
   "code": "NL",
   "name": "Netherlands",
+  "namePl": "Holandia",
   "capitals": [
+   "Amsterdam"
+  ],
+  "capitalsPl": [
    "Amsterdam"
   ],
   "continent": "europe",
@@ -2772,16 +3302,19 @@
    "Nederland",
    "The Netherlands",
    "Holandia",
-   "Królestwo Niderlandów"
+   "Królestwo Niderlandów",
+   "Niderlandy"
   ],
-  "capitalAliases": [
-   "Amsterdam"
-  ]
+  "capitalAliases": []
  },
  {
   "code": "NZ",
   "name": "New Zealand",
+  "namePl": "Nowa Zelandia",
   "capitals": [
+   "Wellington"
+  ],
+  "capitalsPl": [
    "Wellington"
   ],
   "continent": "oceania",
@@ -2801,7 +3334,11 @@
  {
   "code": "NI",
   "name": "Nicaragua",
+  "namePl": "Nikaragua",
   "capitals": [
+   "Managua"
+  ],
+  "capitalsPl": [
    "Managua"
   ],
   "continent": "north-america",
@@ -2823,7 +3360,11 @@
  {
   "code": "NE",
   "name": "Niger",
+  "namePl": "Niger",
   "capitals": [
+   "Niamey"
+  ],
+  "capitalsPl": [
    "Niamey"
   ],
   "continent": "africa",
@@ -2844,8 +3385,12 @@
  {
   "code": "NG",
   "name": "Nigeria",
+  "namePl": "Nigeria",
   "capitals": [
    "Abuja"
+  ],
+  "capitalsPl": [
+   "Abudża"
   ],
   "continent": "africa",
   "focus": [
@@ -2861,13 +3406,19 @@
    "Naíjíríà",
    "Federalna Republika Nigerii"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Abudża"
+  ]
  },
  {
   "code": "KP",
   "name": "North Korea",
+  "namePl": "Korea Północna",
   "capitals": [
    "Pyongyang"
+  ],
+  "capitalsPl": [
+   "Pjongjang"
   ],
   "continent": "asia",
   "focus": [
@@ -2888,13 +3439,18 @@
    "Koreańska Republika Ludowo-Demokratyczna"
   ],
   "capitalAliases": [
+   "Pjongjang",
    "Phenian"
   ]
  },
  {
   "code": "MK",
   "name": "North Macedonia",
+  "namePl": "Macedonia Północna",
   "capitals": [
+   "Skopje"
+  ],
+  "capitalsPl": [
    "Skopje"
   ],
   "continent": "europe",
@@ -2921,7 +3477,11 @@
  {
   "code": "NO",
   "name": "Norway",
+  "namePl": "Norwegia",
   "capitals": [
+   "Oslo"
+  ],
+  "capitalsPl": [
    "Oslo"
   ],
   "continent": "europe",
@@ -2941,15 +3501,17 @@
    "Norwegia",
    "Królestwo Norwegii"
   ],
-  "capitalAliases": [
-   "Oslo"
-  ]
+  "capitalAliases": []
  },
  {
   "code": "OM",
   "name": "Oman",
+  "namePl": "Oman",
   "capitals": [
    "Muscat"
+  ],
+  "capitalsPl": [
+   "Maskat"
   ],
   "continent": "asia",
   "focus": [
@@ -2964,12 +3526,18 @@
    "Salṭanat ʻUmān",
    "Sułtanat Omanu"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Maskat"
+  ]
  },
  {
   "code": "PK",
   "name": "Pakistan",
+  "namePl": "Pakistan",
   "capitals": [
+   "Islamabad"
+  ],
+  "capitalsPl": [
    "Islamabad"
   ],
   "continent": "asia",
@@ -2991,7 +3559,11 @@
  {
   "code": "PW",
   "name": "Palau",
+  "namePl": "Palau",
   "capitals": [
+   "Ngerulmud"
+  ],
+  "capitalsPl": [
    "Ngerulmud"
   ],
   "continent": "oceania",
@@ -3014,7 +3586,11 @@
  {
   "code": "PS",
   "name": "Palestine",
+  "namePl": "Palestyna",
   "capitals": [
+   "Ramallah"
+  ],
+  "capitalsPl": [
    "Ramallah"
   ],
   "continent": "asia",
@@ -3037,8 +3613,12 @@
  {
   "code": "PA",
   "name": "Panama",
+  "namePl": "Panama",
   "capitals": [
    "Panama City"
+  ],
+  "capitalsPl": [
+   "Panama"
   ],
   "continent": "north-america",
   "focus": [
@@ -3060,7 +3640,11 @@
  {
   "code": "PG",
   "name": "Papua New Guinea",
+  "namePl": "Papua-Nowa Gwinea",
   "capitals": [
+   "Port Moresby"
+  ],
+  "capitalsPl": [
    "Port Moresby"
   ],
   "continent": "oceania",
@@ -3082,7 +3666,11 @@
  {
   "code": "PY",
   "name": "Paraguay",
+  "namePl": "Paragwaj",
   "capitals": [
+   "Asunción"
+  ],
+  "capitalsPl": [
    "Asunción"
   ],
   "continent": "south-america",
@@ -3105,7 +3693,11 @@
  {
   "code": "PE",
   "name": "Peru",
+  "namePl": "Peru",
   "capitals": [
+   "Lima"
+  ],
+  "capitalsPl": [
    "Lima"
   ],
   "continent": "south-america",
@@ -3126,7 +3718,11 @@
  {
   "code": "PH",
   "name": "Philippines",
+  "namePl": "Filipiny",
   "capitals": [
+   "Manila"
+  ],
+  "capitalsPl": [
    "Manila"
   ],
   "continent": "asia",
@@ -3148,8 +3744,12 @@
  {
   "code": "PL",
   "name": "Poland",
+  "namePl": "Polska",
   "capitals": [
    "Warsaw"
+  ],
+  "capitalsPl": [
+   "Warszawa"
   ],
   "continent": "europe",
   "focus": [
@@ -3171,8 +3771,12 @@
  {
   "code": "PT",
   "name": "Portugal",
+  "namePl": "Portugalia",
   "capitals": [
    "Lisbon"
+  ],
+  "capitalsPl": [
+   "Lizbona"
   ],
   "continent": "europe",
   "focus": [
@@ -3190,14 +3794,18 @@
    "Republika Portugalska"
   ],
   "capitalAliases": [
-   "Lisboa",
-   "Lizbona"
+   "Lizbona",
+   "Lisboa"
   ]
  },
  {
   "code": "QA",
   "name": "Qatar",
+  "namePl": "Katar",
   "capitals": [
+   "Doha"
+  ],
+  "capitalsPl": [
    "Doha"
   ],
   "continent": "asia",
@@ -3219,7 +3827,11 @@
  {
   "code": "CG",
   "name": "Republic of the Congo",
+  "namePl": "Kongo",
   "capitals": [
+   "Brazzaville"
+  ],
+  "capitalsPl": [
    "Brazzaville"
   ],
   "continent": "africa",
@@ -3243,8 +3855,12 @@
  {
   "code": "RO",
   "name": "Romania",
+  "namePl": "Rumunia",
   "capitals": [
    "Bucharest"
+  ],
+  "capitalsPl": [
+   "Bukareszt"
   ],
   "continent": "europe",
   "focus": [
@@ -3267,8 +3883,12 @@
  {
   "code": "RU",
   "name": "Russia",
+  "namePl": "Rosja",
   "capitals": [
    "Moscow"
+  ],
+  "capitalsPl": [
+   "Moskwa"
   ],
   "continent": "europe",
   "focus": [
@@ -3292,7 +3912,11 @@
  {
   "code": "RW",
   "name": "Rwanda",
+  "namePl": "Rwanda",
   "capitals": [
+   "Kigali"
+  ],
+  "capitalsPl": [
    "Kigali"
   ],
   "continent": "africa",
@@ -3314,7 +3938,11 @@
  {
   "code": "KN",
   "name": "Saint Kitts and Nevis",
+  "namePl": "Saint Kitts i Nevis",
   "capitals": [
+   "Basseterre"
+  ],
+  "capitalsPl": [
    "Basseterre"
   ],
   "continent": "north-america",
@@ -3337,7 +3965,11 @@
  {
   "code": "LC",
   "name": "Saint Lucia",
+  "namePl": "Saint Lucia",
   "capitals": [
+   "Castries"
+  ],
+  "capitalsPl": [
    "Castries"
   ],
   "continent": "north-america",
@@ -3356,7 +3988,11 @@
  {
   "code": "VC",
   "name": "Saint Vincent and the Grenadines",
+  "namePl": "Saint Vincent i Grenadyny",
   "capitals": [
+   "Kingstown"
+  ],
+  "capitalsPl": [
    "Kingstown"
   ],
   "continent": "north-america",
@@ -3377,7 +4013,11 @@
  {
   "code": "WS",
   "name": "Samoa",
+  "namePl": "Samoa",
   "capitals": [
+   "Apia"
+  ],
+  "capitalsPl": [
    "Apia"
   ],
   "continent": "oceania",
@@ -3398,7 +4038,11 @@
  {
   "code": "SM",
   "name": "San Marino",
+  "namePl": "San Marino",
   "capitals": [
+   "San Marino"
+  ],
+  "capitalsPl": [
    "San Marino"
   ],
   "continent": "europe",
@@ -3420,7 +4064,11 @@
  {
   "code": "ST",
   "name": "São Tomé and Príncipe",
+  "namePl": "Wyspy Świętego Tomasza i Książęca",
   "capitals": [
+   "São Tomé"
+  ],
+  "capitalsPl": [
    "São Tomé"
   ],
   "continent": "africa",
@@ -3445,8 +4093,12 @@
  {
   "code": "SA",
   "name": "Saudi Arabia",
+  "namePl": "Arabia Saudyjska",
   "capitals": [
    "Riyadh"
+  ],
+  "capitalsPl": [
+   "Rijad"
   ],
   "continent": "asia",
   "focus": [
@@ -3470,7 +4122,11 @@
  {
   "code": "SN",
   "name": "Senegal",
+  "namePl": "Senegal",
   "capitals": [
+   "Dakar"
+  ],
+  "capitalsPl": [
    "Dakar"
   ],
   "continent": "africa",
@@ -3490,8 +4146,12 @@
  {
   "code": "RS",
   "name": "Serbia",
+  "namePl": "Serbia",
   "capitals": [
    "Belgrade"
+  ],
+  "capitalsPl": [
+   "Belgrad"
   ],
   "continent": "europe",
   "focus": [
@@ -3516,7 +4176,11 @@
  {
   "code": "SC",
   "name": "Seychelles",
+  "namePl": "Seszele",
   "capitals": [
+   "Victoria"
+  ],
+  "capitalsPl": [
    "Victoria"
   ],
   "continent": "africa",
@@ -3539,7 +4203,11 @@
  {
   "code": "SL",
   "name": "Sierra Leone",
+  "namePl": "Sierra Leone",
   "capitals": [
+   "Freetown"
+  ],
+  "capitalsPl": [
    "Freetown"
   ],
   "continent": "africa",
@@ -3558,8 +4226,12 @@
  {
   "code": "SG",
   "name": "Singapore",
+  "namePl": "Singapur",
   "capitals": [
    "Singapore"
+  ],
+  "capitalsPl": [
+   "Singapur"
   ],
   "continent": "asia",
   "focus": [
@@ -3584,8 +4256,12 @@
  {
   "code": "SK",
   "name": "Slovakia",
+  "namePl": "Słowacja",
   "capitals": [
    "Bratislava"
+  ],
+  "capitalsPl": [
+   "Bratysława"
   ],
   "continent": "europe",
   "focus": [
@@ -3608,8 +4284,12 @@
  {
   "code": "SI",
   "name": "Slovenia",
+  "namePl": "Słowenia",
   "capitals": [
    "Ljubljana"
+  ],
+  "capitalsPl": [
+   "Lublana"
   ],
   "continent": "europe",
   "focus": [
@@ -3632,7 +4312,11 @@
  {
   "code": "SB",
   "name": "Solomon Islands",
+  "namePl": "Wyspy Salomona",
   "capitals": [
+   "Honiara"
+  ],
+  "capitalsPl": [
    "Honiara"
   ],
   "continent": "oceania",
@@ -3651,8 +4335,12 @@
  {
   "code": "SO",
   "name": "Somalia",
+  "namePl": "Somalia",
   "capitals": [
    "Mogadishu"
+  ],
+  "capitalsPl": [
+   "Mogadiszu"
   ],
   "continent": "africa",
   "focus": [
@@ -3669,14 +4357,22 @@
    "Jumhūriyyat aṣ-Ṣūmāl al-Fiderāliyya",
    "Federalna Republika Somalii"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Mogadiszu"
+  ]
  },
  {
   "code": "ZA",
   "name": "South Africa",
+  "namePl": "Republika Południowej Afryki",
   "capitals": [
    "Pretoria",
    "Cape Town",
+   "Bloemfontein"
+  ],
+  "capitalsPl": [
+   "Pretoria",
+   "Kapsztad",
    "Bloemfontein"
   ],
   "continent": "africa",
@@ -3691,18 +4387,22 @@
    "Republic of South Africa",
    "RSA",
    "Suid-Afrika",
-   "Południowa Afryka",
-   "Republika Południowej Afryki"
+   "Republika Południowej Afryki",
+   "RPA"
   ],
   "capitalAliases": [
-   "Pretoria"
+   "Kapsztad"
   ]
  },
  {
   "code": "KR",
   "name": "South Korea",
+  "namePl": "Korea Południowa",
   "capitals": [
    "Seoul"
+  ],
+  "capitalsPl": [
+   "Seul"
   ],
   "continent": "asia",
   "focus": [
@@ -3727,8 +4427,12 @@
  {
   "code": "SS",
   "name": "South Sudan",
+  "namePl": "Sudan Południowy",
   "capitals": [
    "Juba"
+  ],
+  "capitalsPl": [
+   "Dżuba"
   ],
   "continent": "africa",
   "focus": [
@@ -3740,16 +4444,21 @@
   "hasShape": true,
   "aliases": [
    "Republic of South Sudan",
-   "Sudan",
-   "Republika Sudanu"
+   "Sudan Południowy"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Dżuba"
+  ]
  },
  {
   "code": "ES",
   "name": "Spain",
+  "namePl": "Hiszpania",
   "capitals": [
    "Madrid"
+  ],
+  "capitalsPl": [
+   "Madryt"
   ],
   "continent": "europe",
   "focus": [
@@ -3772,9 +4481,14 @@
  {
   "code": "LK",
   "name": "Sri Lanka",
+  "namePl": "Sri Lanka",
   "capitals": [
    "Sri Jayawardenepura Kotte",
    "Colombo"
+  ],
+  "capitalsPl": [
+   "Sri Dźajawardanapura Kotte",
+   "Kolombo"
   ],
   "continent": "asia",
   "focus": [
@@ -3789,13 +4503,20 @@
    "ilaṅkai",
    "Demokratyczno-Socjalistyczna Republika Sri Lanki"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Sri Dźajawardanapura Kotte",
+   "Kolombo"
+  ]
  },
  {
   "code": "SD",
   "name": "Sudan",
+  "namePl": "Sudan",
   "capitals": [
    "Khartoum"
+  ],
+  "capitalsPl": [
+   "Chartum"
   ],
   "continent": "africa",
   "focus": [
@@ -3810,12 +4531,18 @@
    "Jumhūrīyat as-Sūdān",
    "Republika Sudanu"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Chartum"
+  ]
  },
  {
   "code": "SR",
   "name": "Suriname",
+  "namePl": "Surinam",
   "capitals": [
+   "Paramaribo"
+  ],
+  "capitalsPl": [
    "Paramaribo"
   ],
   "continent": "south-america",
@@ -3839,8 +4566,12 @@
  {
   "code": "SE",
   "name": "Sweden",
+  "namePl": "Szwecja",
   "capitals": [
    "Stockholm"
+  ],
+  "capitalsPl": [
+   "Sztokholm"
   ],
   "continent": "europe",
   "focus": [
@@ -3863,8 +4594,12 @@
  {
   "code": "CH",
   "name": "Switzerland",
+  "namePl": "Szwajcaria",
   "capitals": [
    "Bern"
+  ],
+  "capitalsPl": [
+   "Berno"
   ],
   "continent": "europe",
   "focus": [
@@ -3890,8 +4625,12 @@
  {
   "code": "SY",
   "name": "Syria",
+  "namePl": "Syria",
   "capitals": [
    "Damascus"
+  ],
+  "capitalsPl": [
+   "Damaszek"
   ],
   "continent": "asia",
   "focus": [
@@ -3913,8 +4652,12 @@
  {
   "code": "TW",
   "name": "Taiwan",
+  "namePl": "Tajwan",
   "capitals": [
    "Taipei"
+  ],
+  "capitalsPl": [
+   "Tajpej"
   ],
   "continent": "asia",
   "focus": [
@@ -3934,13 +4677,19 @@
    "Tajwan",
    "Republika Chińska (Tajwan)"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Tajpej"
+  ]
  },
  {
   "code": "TJ",
   "name": "Tajikistan",
+  "namePl": "Tadżykistan",
   "capitals": [
    "Dushanbe"
+  ],
+  "capitalsPl": [
+   "Duszanbe"
   ],
   "continent": "asia",
   "focus": [
@@ -3958,12 +4707,18 @@
    "Tadżykistan",
    "Republika Tadżykistanu"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Duszanbe"
+  ]
  },
  {
   "code": "TZ",
   "name": "Tanzania",
+  "namePl": "Tanzania",
   "capitals": [
+   "Dodoma"
+  ],
+  "capitalsPl": [
    "Dodoma"
   ],
   "continent": "africa",
@@ -3985,7 +4740,11 @@
  {
   "code": "TH",
   "name": "Thailand",
+  "namePl": "Tajlandia",
   "capitals": [
+   "Bangkok"
+  ],
+  "capitalsPl": [
    "Bangkok"
   ],
   "continent": "asia",
@@ -4012,7 +4771,11 @@
  {
   "code": "TL",
   "name": "Timor-Leste",
+  "namePl": "Timor Wschodni",
   "capitals": [
+   "Dili"
+  ],
+  "capitalsPl": [
    "Dili"
   ],
   "continent": "asia",
@@ -4039,7 +4802,11 @@
  {
   "code": "TG",
   "name": "Togo",
+  "namePl": "Togo",
   "capitals": [
+   "Lomé"
+  ],
+  "capitalsPl": [
    "Lomé"
   ],
   "continent": "africa",
@@ -4061,8 +4828,12 @@
  {
   "code": "TO",
   "name": "Tonga",
+  "namePl": "Tonga",
   "capitals": [
    "Nuku'alofa"
+  ],
+  "capitalsPl": [
+   "Nukuʻalofa"
   ],
   "continent": "oceania",
   "focus": [
@@ -4076,12 +4847,18 @@
    "Kingdom of Tonga",
    "Królestwo Tonga"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Nukuʻalofa"
+  ]
  },
  {
   "code": "TT",
   "name": "Trinidad and Tobago",
+  "namePl": "Trynidad i Tobago",
   "capitals": [
+   "Port of Spain"
+  ],
+  "capitalsPl": [
    "Port of Spain"
   ],
   "continent": "north-america",
@@ -4101,7 +4878,11 @@
  {
   "code": "TN",
   "name": "Tunisia",
+  "namePl": "Tunezja",
   "capitals": [
+   "Tunis"
+  ],
+  "capitalsPl": [
    "Tunis"
   ],
   "continent": "africa",
@@ -4124,7 +4905,11 @@
  {
   "code": "TR",
   "name": "Türkiye",
+  "namePl": "Turcja",
   "capitals": [
+   "Ankara"
+  ],
+  "capitalsPl": [
    "Ankara"
   ],
   "continent": "asia",
@@ -4148,8 +4933,12 @@
  {
   "code": "TM",
   "name": "Turkmenistan",
+  "namePl": "Turkmenistan",
   "capitals": [
    "Ashgabat"
+  ],
+  "capitalsPl": [
+   "Aszchabad"
   ],
   "continent": "asia",
   "focus": [
@@ -4162,12 +4951,18 @@
   "aliases": [
    "Republika Turkmenistanu"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Aszchabad"
+  ]
  },
  {
   "code": "TV",
   "name": "Tuvalu",
+  "namePl": "Tuvalu",
   "capitals": [
+   "Funafuti"
+  ],
+  "capitalsPl": [
    "Funafuti"
   ],
   "continent": "oceania",
@@ -4184,7 +4979,11 @@
  {
   "code": "UG",
   "name": "Uganda",
+  "namePl": "Uganda",
   "capitals": [
+   "Kampala"
+  ],
+  "capitalsPl": [
    "Kampala"
   ],
   "continent": "africa",
@@ -4205,8 +5004,12 @@
  {
   "code": "UA",
   "name": "Ukraine",
+  "namePl": "Ukraina",
   "capitals": [
    "Kyiv"
+  ],
+  "capitalsPl": [
+   "Kijów"
   ],
   "continent": "europe",
   "focus": [
@@ -4221,15 +5024,19 @@
    "Ukraina"
   ],
   "capitalAliases": [
-   "Kiev",
-   "Kijów"
+   "Kijów",
+   "Kiev"
   ]
  },
  {
   "code": "AE",
   "name": "United Arab Emirates",
+  "namePl": "Zjednoczone Emiraty Arabskie",
   "capitals": [
    "Abu Dhabi"
+  ],
+  "capitalsPl": [
+   "Abu Zabi"
   ],
   "continent": "asia",
   "focus": [
@@ -4244,13 +5051,19 @@
    "Emirates",
    "Zjednoczone Emiraty Arabskie"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Abu Zabi"
+  ]
  },
  {
   "code": "GB",
   "name": "United Kingdom",
+  "namePl": "Wielka Brytania",
   "capitals": [
    "London"
+  ],
+  "capitalsPl": [
+   "Londyn"
   ],
   "continent": "europe",
   "focus": [
@@ -4263,11 +5076,12 @@
   "aliases": [
    "United Kingdom of Great Britain and Northern Ireland",
    "Great Britain",
-   "Zjednoczone Królestwo",
-   "Zjednoczone Królestwo Wielkiej Brytanii i Irlandii Północnej",
+   "Wielka Brytania",
    "UK",
    "Britain",
-   "England"
+   "England",
+   "Anglia",
+   "Zjednoczone Królestwo"
   ],
   "capitalAliases": [
    "Londyn"
@@ -4276,8 +5090,12 @@
  {
   "code": "US",
   "name": "United States",
+  "namePl": "Stany Zjednoczone",
   "capitals": [
    "Washington, D.C."
+  ],
+  "capitalsPl": [
+   "Waszyngton"
   ],
   "continent": "north-america",
   "focus": [
@@ -4293,18 +5111,24 @@
    "Stany Zjednoczone",
    "Stany Zjednoczone Ameryki",
    "America",
-   "US"
+   "US",
+   "Ameryka",
+   "Stany"
   ],
   "capitalAliases": [
+   "Waszyngton",
    "Washington",
-   "Washington DC",
-   "Waszyngton"
+   "Washington DC"
   ]
  },
  {
   "code": "UY",
   "name": "Uruguay",
+  "namePl": "Urugwaj",
   "capitals": [
+   "Montevideo"
+  ],
+  "capitalsPl": [
    "Montevideo"
   ],
   "continent": "south-america",
@@ -4326,8 +5150,12 @@
  {
   "code": "UZ",
   "name": "Uzbekistan",
+  "namePl": "Uzbekistan",
   "capitals": [
    "Tashkent"
+  ],
+  "capitalsPl": [
+   "Taszkent"
   ],
   "continent": "asia",
   "focus": [
@@ -4343,12 +5171,18 @@
    "Ўзбекистон Республикаси",
    "Republika Uzbekistanu"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Taszkent"
+  ]
  },
  {
   "code": "VU",
   "name": "Vanuatu",
+  "namePl": "Vanuatu",
   "capitals": [
+   "Port Vila"
+  ],
+  "capitalsPl": [
    "Port Vila"
   ],
   "continent": "oceania",
@@ -4370,8 +5204,12 @@
  {
   "code": "VA",
   "name": "Vatican City",
+  "namePl": "Watykan",
   "capitals": [
    "Vatican City"
+  ],
+  "capitalsPl": [
+   "Watykan"
   ],
   "continent": "europe",
   "focus": [
@@ -4391,14 +5229,18 @@
    "Holy See"
   ],
   "capitalAliases": [
-   "Vatican",
-   "Watykan"
+   "Watykan",
+   "Vatican"
   ]
  },
  {
   "code": "VE",
   "name": "Venezuela",
+  "namePl": "Wenezuela",
   "capitals": [
+   "Caracas"
+  ],
+  "capitalsPl": [
    "Caracas"
   ],
   "continent": "south-america",
@@ -4421,7 +5263,11 @@
  {
   "code": "VN",
   "name": "Vietnam",
+  "namePl": "Wietnam",
   "capitals": [
+   "Hanoi"
+  ],
+  "capitalsPl": [
    "Hanoi"
   ],
   "continent": "asia",
@@ -4439,15 +5285,17 @@
    "Wietnam",
    "Socjalistyczna Republika Wietnamu"
   ],
-  "capitalAliases": [
-   "Hanoi"
-  ]
+  "capitalAliases": []
  },
  {
   "code": "YE",
   "name": "Yemen",
+  "namePl": "Jemen",
   "capitals": [
    "Sana'a"
+  ],
+  "capitalsPl": [
+   "Sana"
   ],
   "continent": "asia",
   "focus": [
@@ -4464,12 +5312,18 @@
    "Jemen",
    "Republika Jemeńska"
   ],
-  "capitalAliases": []
+  "capitalAliases": [
+   "Sana"
+  ]
  },
  {
   "code": "ZM",
   "name": "Zambia",
+  "namePl": "Zambia",
   "capitals": [
+   "Lusaka"
+  ],
+  "capitalsPl": [
    "Lusaka"
   ],
   "continent": "africa",
@@ -4489,7 +5343,11 @@
  {
   "code": "ZW",
   "name": "Zimbabwe",
+  "namePl": "Zimbabwe",
   "capitals": [
+   "Harare"
+  ],
+  "capitalsPl": [
    "Harare"
   ],
   "continent": "africa",

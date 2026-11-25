@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Platform, StyleSheet, TextInput, View } from 'react-native';
 
+import { useI18n } from '@/i18n';
 import { colors, fonts, radius } from '@/theme';
 import { Button } from '@/ui/Button';
 
@@ -14,6 +15,7 @@ export function AnswerInput({
   onSubmit: (text: string) => void;
   onGiveUp: () => void;
 }) {
+  const { t } = useI18n();
   const [text, setText] = useState('');
   const submit = () => {
     if (text.trim()) onSubmit(text);
@@ -39,7 +41,7 @@ export function AnswerInput({
       />
       <View style={styles.row}>
         <Button
-          title="I don't know"
+          title={t.play.dontKnow}
           kind="secondary"
           size="m"
           onPress={onGiveUp}
@@ -47,7 +49,7 @@ export function AnswerInput({
           testID="give-up"
         />
         <Button
-          title="Check"
+          title={t.play.check}
           size="m"
           icon="checkmark"
           onPress={submit}

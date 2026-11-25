@@ -4,15 +4,17 @@ import { ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native'
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { CONTINENT_NAMES, CONTINENTS, countriesIn, type Continent } from '@/domain/countries';
-import { cardKey, LEARNED_BOX, MODE_NAMES, MODES, statsFor, type Mode } from '@/domain/scheduler';
+import { CONTINENTS, countriesIn, type Continent } from '@/domain/countries';
+import { cardKey, LEARNED_BOX, MODES, statsFor, type Mode } from '@/domain/scheduler';
 import { camera } from '@/globe/camera';
 import { GlobeSlot } from '@/globe/GlobeSlot';
 import { useGlobeStore } from '@/globe/store';
+import { useI18n } from '@/i18n';
 import { poolFor, useProgress } from '@/state/progress';
 import { colors } from '@/theme';
 import { Button, IconButton } from '@/ui/Button';
 import { Chip } from '@/ui/Chip';
+import { Logo } from '@/ui/Logo';
 import { GlassPanel } from '@/ui/Panel';
 import { Text } from '@/ui/Text';
 import { useNow } from '@/ui/useNow';
@@ -46,6 +48,7 @@ function useHomePaint(modes: readonly Mode[], continents: readonly Continent[]) 
 
 export default function Home() {
   const insets = useSafeAreaInsets();
+  const { t } = useI18n();
   const wide = useWindowDimensions().width >= 900;
   const settings = useProgress((s) => s.settings);
   const cards = useProgress((s) => s.cards);
@@ -70,14 +73,14 @@ export default function Home() {
     <View style={[styles.screen, { paddingTop: insets.top + 8 }]} pointerEvents="box-none">
       <Animated.View entering={FadeIn.duration(500)} style={styles.header} pointerEvents="box-none">
         <View>
-          <Text variant="display">GeoQuiz</Text>
+          <Logo />
           <Text variant="label" color="rgba(255,255,255,0.85)">
-            {total.learned} of {total.total} learned
+            {t.home.learned(total.learned, total.total)}
           </Text>
         </View>
         <View style={styles.headerButtons}>
-          <IconButton icon="stats-chart" label="Progress" onPress={() => router.push('/progress')} />
-          <IconButton icon="person" label="Account" onPress={() => router.push('/account')} />
+          <IconButton icon="stats-chart" label={t.home.progress} onPress={() => router.push('/progress')} />
+          <IconButton icon="person" label={t.home.account} onPress={() => router.push('/account')} />
         </View>
       </Animated.View>
 
@@ -91,7 +94,7 @@ export default function Home() {
         <GlassPanel style={styles.panel}>
           <ScrollView contentContainerStyle={styles.panelContent} bounces={false} showsVerticalScrollIndicator={false}>
             <Text variant="label" color="rgba(255,255,255,0.85)">
-              Learn
+              {t.home.learn}
             </Text>
             <View style={styles.chips}>
               {MODES.map((m) => (
@@ -99,7 +102,7 @@ export default function Home() {
                   key={m}
                   testID={`mode-${m}`}
                   icon={MODE_ICONS[m]}
-                  label={MODE_NAMES[m]}
+                  label={t.modes[m]}
                   detail={`${stats[m].learned}/${stats[m].total}`}
                   selected={settings.modes.includes(m)}
                   onPress={() => setModes(toggle(settings.modes, m))}
@@ -107,14 +110,14 @@ export default function Home() {
               ))}
             </View>
             <Text variant="label" color="rgba(255,255,255,0.85)" style={styles.sectionGap}>
-              Continents
+              {t.home.continentsLabel}
             </Text>
             <View style={styles.chips}>
               {CONTINENTS.map((c) => (
                 <Chip
                   key={c}
                   testID={`continent-${c}`}
-                  label={CONTINENT_NAMES[c]}
+                  label={t.continents[c]}
                   selected={settings.continents.includes(c)}
                   onPress={() => setContinents(toggle(settings.continents, c))}
                 />
@@ -124,7 +127,7 @@ export default function Home() {
         </GlassPanel>
         <Button
           testID="play"
-          title={total.due > 0 ? `Play · ${total.due} to review` : 'Play'}
+          title={total.due > 0 ? t.home.playReview(total.due) : t.home.play}
           icon="play"
           onPress={() => router.push('/play')}
         />

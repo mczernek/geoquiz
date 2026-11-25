@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "GeoQuiz",
+    "name": "Globik",
     "slug": "geoquiz",
     "version": "1.0.0",
     "orientation": "default",
@@ -27,8 +27,8 @@
     "web": {
       "output": "single",
       "bundler": "metro",
-      "name": "GeoQuiz",
-      "shortName": "GeoQuiz",
+      "name": "Globik",
+      "shortName": "Globik",
       "themeColor": "#7A06F8",
       "backgroundColor": "#7A06F8",
       "favicon": "./assets/images/favicon.png"

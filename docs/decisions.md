@@ -93,8 +93,28 @@ account (merge, newer card wins). Sign-out forgets local progress. No Google/App
 `react-native-pulsar` on iOS/Android and `pulsar-haptics` on the web (Vibration API; its audio fallback is turned
 off) behind one `haptics` interface of semantic moments (select, correct, wrong, learned, streak…).
 
-## 013 · English only, with forgiving answers
+## 013 · Forgiving answers
 
-**Decision:** UI in English. Typed answers are matched case-, accent- and punctuation-insensitively against the
+**Decision:** (UI languages: see 014.) Typed answers are matched case-, accent- and punctuation-insensitively against the
 name, official name, common alternatives and Polish names; a typo or two is forgiven (by length), unless the input
 is as close to another country's answer ("Iran" for Iraq, "Austria" for Australia is wrong).
+
+## 014 · English and Polish, chosen per device
+
+**Decision:** the UI is in English or Polish (`src/i18n`). The first launch follows the device language (`Intl` on
+native, `navigator.languages` on the web, so no extra native module); the Account screen switches it. The choice
+is stored on the device only, not synced: it belongs to the device and the backend schema stays untouched.
+Answers are accepted in both languages whatever the UI shows. Country and capital names are data
+(`countries.json`: `namePl`, `capitalsPl`); Polish capitals come from Wikidata labels, reviewed by hand
+(`scripts/data/capitals-pl.json`). Prompts avoid Polish declension by putting names in the nominative after a colon
+("Znajdź na globie: Niemcy").
+**Consequences:** a new language needs a strings file, name columns in the data build, and phrasing that keeps names
+in the nominative.
+
+## 015 · The brand is Globik; technical ids stay `geoquiz`
+
+**Decision:** the app is called **Globik** (Polish for "little globe", easy to say in English too), with the mark
+(globe + orbit + pink spark) standing in for the "o" of the wordmark (`docs/brand.md`). The repository, npm name,
+Expo slug, URL scheme, bundle id / package (`com.michalczernek.geoquiz`), storage keys and the Supabase project keep
+`geoquiz`: nothing user-visible, and renaming them would orphan installs, stored progress and deep links.
+**Consequences:** check the name's availability in the stores and as a trademark before the first release.

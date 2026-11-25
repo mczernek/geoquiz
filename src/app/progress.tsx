@@ -3,13 +3,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { SectionList, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { CONTINENT_NAMES, countriesIn, getCountry, isTiny, type Country } from '@/domain/countries';
-import { cardKey, LEARNED_BOX, MODE_NAMES, MODES, type CardState, type Mode } from '@/domain/scheduler';
+import { countriesIn, getCountry, isTiny, type Country } from '@/domain/countries';
+import { cardKey, LEARNED_BOX, MODES, type CardState, type Mode } from '@/domain/scheduler';
 import { camera, GlobeCamera } from '@/globe/camera';
 import { GlobeSlot } from '@/globe/GlobeSlot';
 import { useGlobeStore } from '@/globe/store';
 import { EMPTY_PAINT } from '@/globe/scene';
 import { haptics } from '@/haptics';
+import { countryName, useI18n } from '@/i18n';
 import { useProgress } from '@/state/progress';
 import { colors, radius } from '@/theme';
 import { Flag } from '@/ui/Flag';
@@ -35,21 +36,22 @@ function Row({
   selected: boolean;
   onPress: () => void;
 }) {
+  const { t, name, capitals } = useI18n();
   return (
     <Pressy
       onPress={onPress}
       scaleTo={0.97}
       style={[styles.row, selected && styles.rowSelected]}
       accessibilityRole="button"
-      accessibilityLabel={`${country.name}, capital ${country.capitals[0]}`}
+      accessibilityLabel={t.progress.rowLabel(name(country), capitals(country)[0])}
     >
       <Flag code={country.code} width={44} height={30} />
       <View style={styles.names}>
         <Text variant="label" color={colors.ink} numberOfLines={1}>
-          {country.name}
+          {name(country)}
         </Text>
         <Text variant="caption" color={colors.inkSoft} numberOfLines={1}>
-          {country.capitals[0]}
+          {capitals(country)[0]}
         </Text>
       </View>
       <View style={styles.badges}>
@@ -57,7 +59,10 @@ function Row({
           <View
             key={m}
             style={[styles.badge, { backgroundColor: stateColor(cards[cardKey(m, country.code)]) }]}
-            accessibilityLabel={`${MODE_NAMES[m]}: ${(cards[cardKey(m, country.code)]?.box ?? 0) >= LEARNED_BOX ? 'learned' : 'not learned yet'}`}
+            accessibilityLabel={t.progress.badgeLabel(
+              t.modes[m],
+              (cards[cardKey(m, country.code)]?.box ?? 0) >= LEARNED_BOX,
+            )}
           >
             <Ionicons name={MODE_ICONS[m]} size={13} color={colors.white} />
           </View>
@@ -69,14 +74,21 @@ function Row({
 
 export default function ProgressScreen() {
   const insets = useSafeAreaInsets();
+  const { t, language } = useI18n();
   const continents = useProgress((s) => s.settings.continents);
   const cards = useProgress((s) => s.cards);
   const setPaint = useGlobeStore((s) => s.setPaint);
   const [selected, setSelected] = useState<string | null>(null);
 
   const sections = useMemo(
-    () => continents.map((c) => ({ title: CONTINENT_NAMES[c], data: countriesIn([c]) })),
-    [continents],
+    () =>
+      continents.map((c) => ({
+        title: t.continents[c],
+        data: countriesIn([c]).sort((a, b) =>
+          countryName(a, language).localeCompare(countryName(b, language), language),
+        ),
+      })),
+    [continents, language, t],
   );
 
   useEffect(() => {
@@ -103,15 +115,15 @@ export default function ProgressScreen() {
   );
 
   return (
-    <Screen title="Progress">
+    <Screen title={t.progress.title}>
       <GlobeSlot style={styles.globe} fill={0.9} />
       <View style={styles.legend} pointerEvents="none">
         <View style={[styles.dot, { backgroundColor: colors.correctDeep }]} />
-        <Text variant="caption">learned</Text>
+        <Text variant="caption">{t.progress.learned}</Text>
         <View style={[styles.dot, { backgroundColor: colors.learning }]} />
-        <Text variant="caption">learning</Text>
+        <Text variant="caption">{t.progress.learning}</Text>
         <View style={[styles.dot, { backgroundColor: 'rgba(255,255,255,0.4)' }]} />
-        <Text variant="caption">new</Text>
+        <Text variant="caption">{t.progress.new}</Text>
       </View>
       <SectionList
         style={styles.list}

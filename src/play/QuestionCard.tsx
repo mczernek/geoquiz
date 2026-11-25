@@ -2,6 +2,7 @@ import { Platform, StyleSheet, View } from 'react-native';
 
 import { checkTyped } from '@/domain/answer';
 import type { Question } from '@/domain/questions';
+import { useI18n } from '@/i18n';
 import type { Result } from '@/state/session';
 import { colors } from '@/theme';
 import { Button } from '@/ui/Button';
@@ -10,11 +11,6 @@ import { Text } from '@/ui/Text';
 
 import { AnswerInput } from './AnswerInput';
 import { FlagChoices } from './FlagChoices';
-
-const HINT = Platform.select({
-  web: 'Drag to spin, scroll to zoom, click the country.',
-  default: 'Drag to spin, pinch to zoom, tap the country.',
-});
 
 type Answer = (result: Omit<Result, 'learned'>) => void;
 
@@ -35,6 +31,7 @@ function Prompt({ before, strong, after }: { before?: string; strong?: string; a
 /** The question and its answer controls, by variant (docs/specs/learning.md → Questions). */
 export function QuestionCard({ question, onAnswer }: { question: Question; onAnswer: Answer }) {
   const { country, variant } = question;
+  const { t, name, capitals } = useI18n();
   const typed = (kind: 'country' | 'capital') => (text: string) => {
     const verdict = checkTyped(text, country, kind);
     onAnswer(
@@ -49,7 +46,7 @@ export function QuestionCard({ question, onAnswer }: { question: Question; onAns
     case 'flag-pick':
       return (
         <View style={styles.body}>
-          <Prompt before="Which is the flag of " strong={country.name} after="?" />
+          <Prompt {...t.play.flagPick(name(country))} />
           <FlagChoices
             key={question.key}
             correct={country.code}
@@ -57,7 +54,7 @@ export function QuestionCard({ question, onAnswer }: { question: Question; onAns
             onPick={(code) => onAnswer({ correct: code === country.code, given: code, givenCountry: code })}
           />
           <Button
-            title="I don't know"
+            title={t.play.dontKnow}
             kind="secondary"
             size="m"
             onPress={giveUp}
@@ -69,11 +66,16 @@ export function QuestionCard({ question, onAnswer }: { question: Question; onAns
     case 'flag-name':
       return (
         <View style={styles.body}>
-          <Prompt before="Which country has this flag?" />
+          <Prompt before={t.play.flagName} />
           <View style={styles.bigFlag}>
             <Flag code={country.code} width={200} height={120} />
           </View>
-          <AnswerInput key={question.key} placeholder="Country" onSubmit={typed('country')} onGiveUp={giveUp} />
+          <AnswerInput
+            key={question.key}
+            placeholder={t.play.countryPlaceholder}
+            onSubmit={typed('country')}
+            onGiveUp={giveUp}
+          />
         </View>
       );
     case 'capital-of':
@@ -81,34 +83,49 @@ export function QuestionCard({ question, onAnswer }: { question: Question; onAns
         <View style={styles.body}>
           <View style={styles.row}>
             <Flag code={country.code} width={44} height={30} />
-            <Prompt before="What is the capital of " strong={country.name} after="?" />
+            <Prompt {...t.play.capitalOf(name(country))} />
           </View>
-          <AnswerInput key={question.key} placeholder="Capital" onSubmit={typed('capital')} onGiveUp={giveUp} />
+          <AnswerInput
+            key={question.key}
+            placeholder={t.play.capitalPlaceholder}
+            onSubmit={typed('capital')}
+            onGiveUp={giveUp}
+          />
         </View>
       );
     case 'capital-country':
       return (
         <View style={styles.body}>
-          <Prompt strong={country.capitals[0]} after=" is the capital of…" />
-          <AnswerInput key={question.key} placeholder="Country" onSubmit={typed('country')} onGiveUp={giveUp} />
+          <Prompt {...t.play.capitalCountry(capitals(country)[0])} />
+          <AnswerInput
+            key={question.key}
+            placeholder={t.play.countryPlaceholder}
+            onSubmit={typed('country')}
+            onGiveUp={giveUp}
+          />
         </View>
       );
     case 'map-name':
       return (
         <View style={styles.body}>
-          <Prompt before="Which country is " strong="highlighted" after="?" />
-          <AnswerInput key={question.key} placeholder="Country" onSubmit={typed('country')} onGiveUp={giveUp} />
+          <Prompt {...t.play.mapName} />
+          <AnswerInput
+            key={question.key}
+            placeholder={t.play.countryPlaceholder}
+            onSubmit={typed('country')}
+            onGiveUp={giveUp}
+          />
         </View>
       );
     case 'map-locate':
       return (
         <View style={styles.body}>
-          <Prompt before="Find " strong={country.name} after=" on the globe" />
+          <Prompt {...t.play.mapLocate(name(country))} />
           <Text variant="caption" color={colors.inkSoft}>
-            {HINT}
+            {Platform.OS === 'web' ? t.play.hintWeb : t.play.hintTouch}
           </Text>
           <Button
-            title="I don't know"
+            title={t.play.dontKnow}
             kind="secondary"
             size="m"
             onPress={giveUp}

@@ -42,6 +42,23 @@ describe('checkTyped', () => {
     expect(checkTyped('Sydney', getCountry('AU'), 'capital')).toEqual({ correct: false });
     expect(checkTyped('Kiev', getCountry('UA'), 'capital').correct).toBe(true);
   });
+  it('accepts Polish names whatever the UI language', () => {
+    expect(checkTyped('Niemcy', getCountry('DE'), 'country').correct).toBe(true);
+    expect(checkTyped('Wegry', getCountry('HU'), 'country')).toEqual({ correct: true, exact: true });
+    expect(checkTyped('Kamerun', getCountry('CM'), 'country').correct).toBe(true);
+    expect(checkTyped('RPA', getCountry('ZA'), 'country').correct).toBe(true);
+    expect(checkTyped('Kapsztad', getCountry('ZA'), 'capital').correct).toBe(true);
+    expect(checkTyped('Pekin', getCountry('CN'), 'capital').correct).toBe(true);
+    expect(checkTyped('Ułan Bator', getCountry('MN'), 'capital').correct).toBe(true);
+  });
+  it('does not take a bad translation as an answer', () => {
+    // The source data gives Cameroon the Polish name of Côte d'Ivoire.
+    expect(checkTyped('Wybrzeże Kości Słoniowej', getCountry('CM'), 'country')).toEqual({
+      correct: false,
+      matched: 'CI',
+    });
+    expect(checkTyped('Sudan', getCountry('SS'), 'country')).toEqual({ correct: false, matched: 'SD' });
+  });
   it('rejects an empty answer', () => expect(checkTyped('  ', poland, 'country').correct).toBe(false));
   it('accepts common English variants', () => {
     expect(checkTyped('USA', getCountry('US'), 'country').correct).toBe(true);

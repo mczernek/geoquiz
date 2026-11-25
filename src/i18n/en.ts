@@ -1,0 +1,120 @@
+import type { Continent } from '@/domain/countries';
+import type { Mode } from '@/domain/scheduler';
+import type { SyncStatus } from '@/sync/engine';
+
+/** English UI text; the shape every language must fill (docs/specs/i18n.md). */
+export const en = {
+  tagline: 'Learn the world by heart',
+  modes: { flag: 'Flags', capital: 'Capitals', map: 'Map' } as Record<Mode, string>,
+  continents: {
+    africa: 'Africa',
+    asia: 'Asia',
+    europe: 'Europe',
+    'north-america': 'North America',
+    'south-america': 'South America',
+    oceania: 'Oceania',
+  } as Record<Continent, string>,
+  common: { back: 'Back', cancel: 'Cancel', ok: 'OK' },
+
+  home: {
+    learned: (n: number, total: number) => `${n} of ${total} learned`,
+    progress: 'Progress',
+    account: 'Account',
+    learn: 'Learn',
+    continentsLabel: 'Continents',
+    play: 'Play',
+    playReview: (due: number) => `Play · ${due} to review`,
+  },
+
+  play: {
+    stop: 'Stop',
+    empty: 'Pick at least one continent and topic on the home screen.',
+    streak: (n: number) => `🔥 ${n} in a row!`,
+    flagPick: (country: string) => ({ before: 'Which is the flag of ', strong: country, after: '?' }),
+    flagName: 'Which country has this flag?',
+    capitalOf: (country: string) => ({ before: 'What is the capital of ', strong: country, after: '?' }),
+    capitalCountry: (capital: string) => ({ before: '', strong: capital, after: ' is the capital of…' }),
+    mapName: { before: 'Which country is ', strong: 'highlighted', after: '?' },
+    mapLocate: (country: string) => ({ before: 'Find ', strong: country, after: ' on the globe' }),
+    hintWeb: 'Drag to spin, scroll to zoom, click the country.',
+    hintTouch: 'Drag to spin, pinch to zoom, tap the country.',
+    countryPlaceholder: 'Country',
+    capitalPlaceholder: 'Capital',
+    dontKnow: "I don't know",
+    check: 'Check',
+    flagOption: (i: number) => `Flag ${i}`,
+    correct: 'Correct!',
+    correctTypo: 'Correct! (watch the spelling)',
+    reveal: 'Here it is',
+    wrong: 'Not quite',
+    pickedFlag: (country: string) => `That was the flag of ${country}.`,
+    tapped: (country: string) => `You tapped ${country}.`,
+    tappedSea: 'You tapped the sea.',
+    answered: (text: string) => `You answered “${text}”.`,
+    capital: (capitals: string) => `Capital: ${capitals}`,
+    learnedBadge: '★ Learned! It will come back for review later.',
+    next: 'Next',
+  },
+
+  progress: {
+    title: 'Progress',
+    learned: 'learned',
+    learning: 'learning',
+    new: 'new',
+    rowLabel: (country: string, capital: string) => `${country}, capital ${capital}`,
+    badgeLabel: (mode: string, learned: boolean) => `${mode}: ${learned ? 'learned' : 'not learned yet'}`,
+  },
+
+  account: {
+    title: 'Account',
+    sync: 'Sync',
+    status: {
+      disabled: 'Sync isn’t set up in this build. Progress stays on this device.',
+      idle: 'Progress is saved on this device.',
+      syncing: 'Syncing…',
+      synced: 'Progress is saved in the cloud.',
+      offline: 'You’re offline. Progress is saved on this device and syncs when you’re back online.',
+      error: 'Couldn’t sync right now. Progress is safe on this device.',
+    } as Record<SyncStatus, string>,
+    waiting: (n: number) => `${n} ${n === 1 ? 'change' : 'changes'} waiting to sync`,
+    lastSynced: (time: string) => `Last synced ${time}`,
+    syncNow: 'Sync now',
+    keepTitle: 'Keep your progress',
+    keepBody: 'Create an account to continue on your other devices. What you’ve learned here comes with you.',
+    createAccount: 'Create account',
+    signIn: 'Sign in',
+    email: 'Email',
+    password: 'Password (8+ characters)',
+    passwordLabel: 'Password',
+    confirmEmail: 'Check your inbox to confirm your email, then sign in.',
+    signedIn: 'Signed in',
+    signOut: 'Sign out',
+    signOutTitle: 'Sign out?',
+    signOutBody: (n: number) =>
+      `${n} ${n === 1 ? 'change hasn’t' : 'changes haven’t'} synced yet. If you sign out now, they’ll be lost.`,
+    deleteAccount: 'Delete account',
+    deleteTitle: 'Delete account?',
+    deleteBody: 'Your account and all your progress will be deleted. This can’t be undone.',
+    delete: 'Delete',
+    deleteFailed: 'Couldn’t delete the account',
+    language: 'Language',
+    startOver: 'Start over',
+    reset: 'Reset progress',
+    resetTitle: 'Reset progress?',
+    resetBody: 'Everything you’ve learned starts from zero, on all your devices.',
+    resetAction: 'Reset',
+    credits:
+      'Borders: Natural Earth (public domain). Country data: mledoze/countries (ODbL), Wikidata. Flags: flagcdn.com.',
+    licenses: 'Data licenses',
+  },
+
+  errors: {
+    notConfigured: 'Sync is not configured in this build.',
+    wrongCredentials: 'Wrong email or password.',
+    alreadyRegistered: 'That email already has an account. Sign in instead.',
+    shortPassword: 'Use at least 8 characters for the password.',
+    offline: "You're offline. Try again when you're connected.",
+  },
+};
+
+export type Strings = typeof en;

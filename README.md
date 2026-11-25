@@ -1,6 +1,7 @@
-# GeoQuiz
+# Globik
 
-Learn every country's flag, capital and place on the map — on a spinning 3D globe. iOS, Android and the web.
+_Learn the world by heart._ Every country's flag, capital and place on the map — on a spinning 3D globe. iOS,
+Android and the web, in English and Polish. Brand: [docs/brand.md](docs/brand.md).
 
 - Pick what to learn (flags, capitals, map — one or more) and where (one or more continents)
 - Flashcard-style spaced repetition: the app knows what you've learned and always has something to ask

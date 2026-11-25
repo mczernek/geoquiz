@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 
 import { haptics } from '@/haptics';
+import { useI18n } from '@/i18n';
 import { colors, radius } from '@/theme';
 import { Flag } from '@/ui/Flag';
 import { Pressy } from '@/ui/Pressy';
 
-/** Four flags in a 2 × 2 grid. */
 /** How long the picked flag shows green/red before the answer card. */
 const FEEDBACK_MS = 550;
 
+/** Four flags in a 2 × 2 grid. */
 export function FlagChoices({
   options,
   correct,
@@ -19,6 +20,7 @@ export function FlagChoices({
   correct: string;
   onPick: (code: string) => void;
 }) {
+  const { t } = useI18n();
   const [picked, setPicked] = useState<string | null>(null);
   const pick = (code: string) => {
     if (picked) return;
@@ -48,7 +50,7 @@ export function FlagChoices({
           key={code}
           testID={`flag-option-${i + 1}`}
           accessibilityRole="button"
-          accessibilityLabel={`Flag ${i + 1}`}
+          accessibilityLabel={t.play.flagOption(i + 1)}
           onPress={() => pick(code)}
           disabled={picked !== null}
           style={[

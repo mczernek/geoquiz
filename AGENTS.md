@@ -1,6 +1,6 @@
 # AGENTS.md
 
-GeoQuiz: learn the world's countries — flags, capitals and where they are — on a 3D globe. One Expo (React Native)
+Globik (repo and ids: `geoquiz`): learn the world's countries — flags, capitals and where they are — on a 3D globe. One Expo (React Native)
 app for iOS, Android and the web, offline-first, with progress synced to Supabase. Details: [README.md](README.md)
 and `docs/`.
 
@@ -14,6 +14,7 @@ and `docs/`.
 | `src/play/`                    | The quiz screen's parts                                                                          |
 | `src/state/`                   | Zustand stores: persisted progress, in-memory session                                            |
 | `src/sync/`                    | Supabase client, sync engine, account actions, web service worker registration                   |
+| `src/i18n/`                    | UI strings (English, Polish), language choice, localized country names                           |
 | `src/haptics/`                 | Pulsar haptics (native) and pulsar-haptics (web) behind one interface                            |
 | `src/ui/`                      | Design-system components                                                                         |
 | `src/data/`                    | Generated: `countries.json`, `flags.ts` (`pnpm data`)                                            |

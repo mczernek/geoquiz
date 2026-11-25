@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeOut, ZoomIn } from 'react-native-reanimated';
 
+import { useI18n } from '@/i18n';
 import { colors, radius } from '@/theme';
 import { Text } from '@/ui/Text';
 
 function Toast({ streak }: { streak: number }) {
+  const { t } = useI18n();
   const [visible, setVisible] = useState(true);
   useEffect(() => {
     const id = setTimeout(() => setVisible(false), 1700);
@@ -20,7 +22,7 @@ function Toast({ streak }: { streak: number }) {
         style={styles.toast}
       >
         <Text variant="title" color={colors.ink}>
-          🔥 {streak} in a row!
+          {t.play.streak(streak)}
         </Text>
       </Animated.View>
     </View>

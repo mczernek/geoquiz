@@ -3,20 +3,14 @@ import data from '@/data/countries.json';
 export const CONTINENTS = ['africa', 'asia', 'europe', 'north-america', 'south-america', 'oceania'] as const;
 export type Continent = (typeof CONTINENTS)[number];
 
-export const CONTINENT_NAMES: Record<Continent, string> = {
-  africa: 'Africa',
-  asia: 'Asia',
-  europe: 'Europe',
-  'north-america': 'North America',
-  'south-america': 'South America',
-  oceania: 'Oceania',
-};
-
 export interface Country {
   code: string;
   name: string;
+  namePl: string;
   /** First is displayed; all are accepted. */
   capitals: string[];
+  /** Polish names of `capitals`, same order. */
+  capitalsPl: string[];
   continent: Continent;
   /** Where the camera looks: [longitude, latitude, angular radius in degrees] of the main landmass. */
   focus: [number, number, number];

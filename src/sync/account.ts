@@ -1,3 +1,4 @@
+import { currentStrings } from '@/i18n';
 import { useProgress } from '@/state/progress';
 import { useSession } from '@/state/session';
 
@@ -7,16 +8,16 @@ import { supabase } from './supabase';
 export class AccountError extends Error {}
 
 function client() {
-  if (!supabase) throw new AccountError('Sync is not configured in this build.');
+  if (!supabase) throw new AccountError(currentStrings().errors.notConfigured);
   return supabase;
 }
 
 function friendly(message: string): string {
-  if (/invalid login credentials/i.test(message)) return 'Wrong email or password.';
-  if (/already registered|already been registered/i.test(message))
-    return 'That email already has an account. Sign in instead.';
-  if (/password should be at least/i.test(message)) return 'Use at least 8 characters for the password.';
-  if (/network|fetch/i.test(message)) return "You're offline. Try again when you're connected.";
+  const t = currentStrings().errors;
+  if (/invalid login credentials/i.test(message)) return t.wrongCredentials;
+  if (/already registered|already been registered/i.test(message)) return t.alreadyRegistered;
+  if (/password should be at least/i.test(message)) return t.shortPassword;
+  if (/network|fetch/i.test(message)) return t.offline;
   return message;
 }
 

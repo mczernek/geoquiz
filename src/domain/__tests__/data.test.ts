@@ -15,9 +15,16 @@ describe('country data', () => {
   it('covers every country with the continents', () => {
     expect(countriesIn([...CONTINENTS])).toHaveLength(COUNTRIES.length);
   });
-  it('has unique codes and names', () => {
+  it('has unique codes and names, in English and Polish', () => {
     expect(new Set(COUNTRIES.map((c) => c.code)).size).toBe(COUNTRIES.length);
     expect(new Set(COUNTRIES.map((c) => c.name)).size).toBe(COUNTRIES.length);
+    expect(new Set(COUNTRIES.map((c) => c.namePl)).size).toBe(COUNTRIES.length);
+  });
+  it('has a Polish name for every capital', () => {
+    for (const c of COUNTRIES) {
+      expect(c.capitalsPl).toHaveLength(c.capitals.length);
+      for (const name of c.capitalsPl) expect(name.trim()).toBe(name);
+    }
   });
 });
 

@@ -4,6 +4,8 @@ import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { useI18n } from '@/i18n';
+
 import { IconButton } from './Button';
 import { Text } from './Text';
 
@@ -15,10 +17,11 @@ export function goBack() {
 /** A secondary screen: back button + title, content below. */
 export function Screen({ title, children, right }: { title: string; children: ReactNode; right?: ReactNode }) {
   const insets = useSafeAreaInsets();
+  const { t } = useI18n();
   return (
     <View style={[styles.screen, { paddingTop: insets.top + 8 }]} pointerEvents="box-none">
       <View style={styles.header} pointerEvents="box-none">
-        <IconButton icon="arrow-back" label="Back" onPress={goBack} />
+        <IconButton icon="arrow-back" label={t.common.back} onPress={goBack} />
         <Text variant="title" style={styles.title} accessibilityRole="header">
           {title}
         </Text>

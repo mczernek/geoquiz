@@ -3,10 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { MODE_NAMES, parseCardKey } from '@/domain/scheduler';
+import { parseCardKey } from '@/domain/scheduler';
 import { GlobeSlot } from '@/globe/GlobeSlot';
 import type { TapHandler } from '@/globe/store';
 import { haptics } from '@/haptics';
+import { useI18n } from '@/i18n';
 import { AnimatedCard } from '@/play/AnimatedCard';
 import { Bump } from '@/play/Bump';
 import { Celebration, Miss } from '@/play/Celebration';
@@ -23,6 +24,7 @@ import { Text } from '@/ui/Text';
 
 export default function Play() {
   const insets = useSafeAreaInsets();
+  const { t } = useI18n();
   // Wide screens (desktop web, tablets in landscape): globe on the left, card on the right.
   const wide = useWindowDimensions().width >= 900;
   const continents = useProgress((s) => s.settings.continents);
@@ -92,13 +94,13 @@ export default function Play() {
       <View style={styles.header} pointerEvents="box-none">
         <IconButton
           icon="close"
-          label="Stop"
+          label={t.play.stop}
           onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}
         />
         <View style={styles.stats} pointerEvents="none">
           {mode && (
             <Text variant="label" color="rgba(255,255,255,0.9)">
-              {MODE_NAMES[mode]}
+              {t.modes[mode]}
             </Text>
           )}
           <Bump value={correct}>
@@ -124,7 +126,7 @@ export default function Play() {
           <Panel style={styles.panel}>
             {!question ? (
               <Text variant="heading" color={colors.ink}>
-                Pick at least one continent and topic on the home screen.
+                {t.play.empty}
               </Text>
             ) : result ? (
               <AnimatedCard key={`a${question.key}${answered}`} phase={result.correct ? 'correct' : 'wrong'}>

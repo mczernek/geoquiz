@@ -5,8 +5,6 @@
 export const MODES = ['flag', 'capital', 'map'] as const;
 export type Mode = (typeof MODES)[number];
 
-export const MODE_NAMES: Record<Mode, string> = { flag: 'Flags', capital: 'Capitals', map: 'Map' };
-
 export type CardKey = `${Mode}:${string}`;
 export function cardKey(mode: Mode, code: string): CardKey {
   return `${mode}:${code}`;

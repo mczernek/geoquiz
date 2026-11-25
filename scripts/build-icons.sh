@@ -12,6 +12,7 @@ shot() { "$chrome" --headless --disable-gpu --hide-scrollbars --default-backgrou
 for n in icon android-icon-foreground android-icon-background android-icon-monochrome splash-icon; do
   shot "$n" 1024 "$PWD/assets/images/$n.png"
 done
+shot brand-mark 512 "$PWD/assets/images/brand-mark.png"
 shot favicon 256 "$tmp/favicon.png"
 sips -z 48 48 "$tmp/favicon.png" --out assets/images/favicon.png >/dev/null
 rm -rf "$tmp"
