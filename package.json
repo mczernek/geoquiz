@@ -8,6 +8,7 @@
     "@expo/vector-icons": "^15.1.1",
     "@react-native-async-storage/async-storage": "2.2.0",
     "@react-native-community/netinfo": "12.0.1",
+    "@react-native-google-signin/google-signin": "^17.0.0",
     "@shopify/react-native-skia": "2.14.0",
     "@supabase/supabase-js": "^2.119.2",
     "d3-geo": "^3.1.2",
@@ -78,7 +79,8 @@
       "**/__tests__/**/*.test.ts?(x)"
     ],
     "modulePathIgnorePatterns": [
-      "<rootDir>/dist/"
+      "<rootDir>/dist/",
+      "<rootDir>/.claude/"
     ],
     "transformIgnorePatterns": [
       "/node_modules/(?!(.pnpm|react-native|@react-native|@react-native-community|expo|@expo|@expo-google-fonts|react-navigation|@react-navigation|topojson-))",
@@ -88,6 +90,10 @@
     "moduleNameMapper": {
       "^d3-geo$": "<rootDir>/node_modules/d3-geo/dist/d3-geo.js",
       "^d3-array$": "<rootDir>/node_modules/d3-array/dist/d3-array.js"
-    }
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/.claude/"
+    ]
   }
 }

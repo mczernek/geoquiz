@@ -136,3 +136,23 @@ it('syncs settings, newest first', async () => {
   await syncNow();
   expect(mockServer.settings.get('anon-1')?.modes).toEqual(['map', 'capital']);
 });
+
+it('after a Google redirect, merges the device’s anonymous progress into the signed-in account', async () => {
+  useProgress.getState().answer('flag:PL', true, 9_000);
+  await syncNow();
+  // The account has older progress from another device; supabase-js restored its session from the redirect URL.
+  const google = 'google-1';
+  const older = { ...mockServer.rows[0], user_id: google, updated_at: new Date(1_000).toISOString() };
+  mockServer.rows.push(
+    { ...older, box: 1, synced_at: mockTick() },
+    { ...older, card: 'map:DE', box: 2, synced_at: mockTick() },
+  );
+  mockServer.session = { user: { id: google, email: 'a@example.com', is_anonymous: false } };
+
+  await syncNow();
+
+  expect(useProgress.getState().ownerId).toBe(google);
+  expect(useSyncStatus.getState().user).toEqual({ id: google, email: 'a@example.com', anonymous: false });
+  expect(mockServer.rows.find((r) => r.user_id === google && r.card === 'flag:PL')?.box).toBe(3);
+  expect(card('map:DE').box).toBe(2);
+});

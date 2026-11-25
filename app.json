@@ -46,7 +46,8 @@
       ],
       "expo-font",
       "expo-secure-store",
-      "./plugins/withReleaseSigning"
+      "./plugins/withReleaseSigning",
+      "@react-native-google-signin/google-signin"
     ],
     "experiments": {
       "typedRoutes": true,

@@ -85,7 +85,7 @@ app work offline after the first visit.
 
 **Decision:** the app signs in anonymously (Supabase anonymous sign-ins) on first sync, so progress is on the
 server without any sign-up. "Create account" / "Sign in" (email + password) adopt the device's progress into that
-account (merge, newer card wins). Sign-out forgets local progress. No Google/Apple sign-in yet.
+account (merge, newer card wins). Sign-out forgets local progress. No Google/Apple sign-in yet (Google: see 018).
 **Consequences:** abandoned anonymous users accumulate; clean them up periodically (`docs/release.md`).
 
 ## 012 · Haptics with Pulsar
@@ -135,6 +135,24 @@ the "globik" wordmark, which has no accented letters.
 the view. Fly-to animations and inertia don't count as moves. A spin that starts right after letting go pulls
 the country the user was looking at away.
 **Consequences:** the camera arms a timer to restart its frame loop; it idles (no frames) during the pause.
+
+## 018 · Continue with Google: native ID tokens, web redirect, the iOS scheme in app.json
+
+**Decision:** Google sign-in sits beside email + password and behaves like Sign in (merge, newer card wins).
+Android and iOS use `@react-native-google-signin/google-signin` (the free, original API) for an ID token issued to
+the **web** client (`webClientId`), then `signInWithIdToken`; no Firebase files. The web uses Supabase's OAuth
+redirect with PKCE (`detectSessionInUrl` on the web only) and returns to the page it left; nothing special runs
+after the redirect, because every sync already adopts local progress when the session's user isn't the owner
+(engine.ts), the same merge email sign-in does. The button is hidden without the platform's client ids, so builds
+without Google keep working.
+The library's config plugin is listed without options for now: without options it only applies Firebase files, and
+there are none, so prebuild changes nothing. iOS needs the reversed iOS client id as a URL scheme; once that client
+exists, the plugin entry gets `{ "iosUrlScheme": "com.googleusercontent.apps.…" }` (not a secret, so it lives in
+`app.json`, which stays static JSON) in the same change that sets `EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID`. Until then the
+iOS button stays hidden, because Google's SDK aborts the app when the scheme is missing.
+**Consequences:** the Android OAuth clients must list the SHA-1 of every signing key (upload key and Play App
+Signing), or Google returns `DEVELOPER_ERROR`. Supabase links a Google sign-in to an existing account with the
+same confirmed email (automatic identity linking), so someone who signed up with a password lands in the same account.
 
 ## 019 · Deploy from `main`; Android builds on GitHub Actions, not EAS
 

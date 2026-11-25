@@ -27,6 +27,7 @@ to Google Play (decision 019). iOS has no pipeline yet.
      ./supabase/scripts/apply-auth-config.sh
    ```
    Or in the dashboard: Authentication → Sign In / Providers → allow anonymous sign-ins; email provider on.
+   For Google, see [Google sign-in](#google-sign-in) below (the same script turns the provider on).
 4. Recommended: Authentication → Attack Protection → CAPTCHA (Turnstile) is advised by Supabase for anonymous
    sign-ins at scale; the app doesn't send a captcha token yet, so leave it off until that's added.
 5. Clean up abandoned anonymous users from time to time (SQL editor or a pg_cron job):
@@ -39,7 +40,8 @@ to Google Play (decision 019). iOS has no pipeline yet.
 
 ### 2. Local config
 
-`cp .env.example .env` and fill `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
+`cp .env.example .env` and fill `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, and the
+Google client ids if you want "Continue with Google" (below).
 
 ### 3. Netlify (web)
 
@@ -108,6 +110,39 @@ app builds and works offline-only.
 ### 6. Icons and splash
 
 Generated from the globe renderer (`pnpm icons`, sources in `design/icon`).
+
+### 7. Google sign-in
+
+Optional: without the client ids the "Continue with Google" button is hidden (decision 018). Everything lives in the
+Google Cloud project **Globik** → **Google Auth Platform**:
+
+1. **Branding / Audience:** app name Globik, support email, authorized domain `netlify.app` (and `supabase.co`);
+   publish the app to production so any Google account can sign in. Scopes: the defaults (`openid`, `email`,
+   `profile`).
+2. **Clients → Create client → Web application** ("Globik web"):
+   - Authorized JavaScript origins: `https://globik-app.netlify.app` (plus `http://localhost:8081` for `pnpm web`).
+   - Authorized redirect URIs: `https://<supabase-ref>.supabase.co/auth/v1/callback`.
+   - Its client id is `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` (web **and** Android: native sign-in asks for tokens
+     issued to the web client). Its secret only goes to Supabase.
+3. **Clients → Create client → Android**, package `com.michalczernek.geoquiz`, one client per signing key:
+   - the upload key's SHA-1 (`keytool -list -v -keystore upload.jks`),
+   - the Play App Signing key's SHA-1 (Play Console → Test and release → App integrity → App signing),
+   - for local debug builds, the debug keystore's SHA-1 (`cd android && ./gradlew signingReport`).
+     The app never uses these ids; Google matches the package + signature. A missing one gives `DEVELOPER_ERROR`.
+4. **Clients → Create client → iOS** (when iOS sign-in is wanted), bundle id `com.michalczernek.geoquiz`:
+   - its client id is `EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID`;
+   - its reversed id (`com.googleusercontent.apps.<…>`, shown as "iOS URL scheme") goes into `app.json`, in the same
+     change: `["@react-native-google-signin/google-signin", { "iosUrlScheme": "com.googleusercontent.apps.<…>" }]`.
+5. **Supabase → Authentication → Sign In / Providers → Google:** enabled, client id = the web client id (then the
+   iOS client id, comma-separated, once it exists, with "Skip nonce checks" on), secret = the web client secret. Or:
+   ```sh
+   SUPABASE_ACCESS_TOKEN=… SUPABASE_PROJECT_REF=<ref> GOOGLE_WEB_CLIENT_ID=… GOOGLE_WEB_CLIENT_SECRET=… \
+     [GOOGLE_IOS_CLIENT_ID=…] ./supabase/scripts/apply-auth-config.sh
+   ```
+   The script also allows the redirects back to `https://globik-app.netlify.app/**` (Authentication → URL
+   Configuration). For local web testing add `http://localhost:8081/**` there by hand.
+6. Set `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` (and `EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID`) in `.env`, Netlify and the GitHub
+   variables. Native builds need a new build (the module is native code).
 
 ## Everyday
 

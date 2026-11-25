@@ -6,7 +6,7 @@ const globals = require('globals');
 module.exports = defineConfig([
   expoConfig,
   {
-    ignores: ['dist/*', 'ios/*', 'android/*', 'src/data/flags.ts'],
+    ignores: ['dist/*', 'ios/*', 'android/*', 'src/data/flags.ts', '.claude/*'],
   },
   {
     // jest.mock factories must be hoisted above imports and may require() their mocks.
