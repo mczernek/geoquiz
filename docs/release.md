@@ -106,14 +106,16 @@ app builds and works offline-only.
    first review), Play only accepts releases with status **draft** (the default input): finish them in the Play
    Console. After the review, choose **completed** to roll out to the testers directly.
 
-### 6. Icons and splash
+### 6. Icons, splash and the store listing
 
-Generated from the globe renderer (`pnpm icons`, sources in `design/icon`).
+Generated from the globe renderer (`pnpm icons`, sources in `design/icon`). Google Play listing (texts, graphics,
+screenshots, Data safety and other Console answers): `store/play/README.md`. Privacy policy and data deletion:
+`https://globik-app.netlify.app/privacy/` and `/delete-account/` (`public/`, decision 020).
 
 ### 7. Google sign-in
 
 Optional: without the client ids the "Continue with Google" button is hidden (decision 018). Everything lives in the
-Google Cloud project **Globik** → **Google Auth Platform**:
+Google Cloud project **AISurveys** (shared; its consent screen is branded Globik) → **Google Auth Platform**:
 
 1. **Branding / Audience:** app name Globik, support email, authorized domain `netlify.app` (and `supabase.co`);
    publish the app to production so any Google account can sign in. Scopes: the defaults (`openid`, `email`,

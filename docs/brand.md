@@ -23,7 +23,8 @@ Store subtitle ideas: "Flags, capitals and maps on a 3D globe" / "Flagi, stolice
   white wordmark on anything lighter than the purple gradient.
 - **Sources:** everything is generated, not drawn: `scripts/build-icons.ts` renders the mark from the globe renderer
   (`src/globe`) into SVG (`design/icon/`), and `pnpm icons` rasterizes the app icon, Android adaptive layers
-  (foreground, background, monochrome), splash, favicon and `assets/images/brand-mark.png` (the wordmark's "o").
+  (foreground, background, monochrome), splash, favicon, `assets/images/brand-mark.png` (the wordmark's "o") and
+  the Play Store icon and feature graphics (`store/play/graphics`).
 
 ## Colour
 

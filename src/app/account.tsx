@@ -244,11 +244,30 @@ function LanguagePicker() {
   );
 }
 
+/** The web app's static pages (public/): privacy policy and data deletion, required by the app stores. */
+const SITE = 'https://globik-app.netlify.app';
+
+function ExternalLink({ url, title }: { url: string; title: string }) {
+  return (
+    <Text
+      variant="caption"
+      color={colors.white}
+      style={styles.link}
+      onPress={() => Linking.openURL(url)}
+      accessibilityRole="link"
+    >
+      {title}
+    </Text>
+  );
+}
+
 export default function AccountScreen() {
   const insets = useSafeAreaInsets();
   const { status, user } = useSyncStatus();
   const reset = useProgress((s) => s.reset);
-  const { t } = useI18n();
+  const { t, language } = useI18n();
+  // The pages hold both languages; Polish is the second section.
+  const anchor = language === 'pl' ? '#pl' : '';
 
   const onReset = async () => {
     if (await confirm(t.account.resetTitle, t.account.resetBody, t.account.resetAction)) reset();
@@ -282,15 +301,11 @@ export default function AccountScreen() {
             <Text variant="caption" color="rgba(255,255,255,0.85)">
               {t.account.credits}
             </Text>
-            <Text
-              variant="caption"
-              color={colors.white}
-              style={styles.link}
-              onPress={() => Linking.openURL('https://github.com/mledoze/countries')}
-              accessibilityRole="link"
-            >
-              {t.account.licenses}
-            </Text>
+            <View style={styles.links}>
+              <ExternalLink url="https://github.com/mledoze/countries" title={t.account.licenses} />
+              <ExternalLink url={`${SITE}/privacy/${anchor}`} title={t.account.privacy} />
+              <ExternalLink url={`${SITE}/delete-account/${anchor}`} title={t.account.deleteData} />
+            </View>
           </View>
         </ScrollView>
         <GlobeSlot style={styles.globe} fill={0.85} />
@@ -320,6 +335,7 @@ const styles = StyleSheet.create({
   },
   about: { alignItems: 'center', gap: 2, marginTop: 6 },
   credits: { gap: 4, paddingHorizontal: 4 },
+  links: { flexDirection: 'row', flexWrap: 'wrap', columnGap: 16, rowGap: 4 },
   link: { textDecorationLine: 'underline' },
   center: { textAlign: 'center' },
 });

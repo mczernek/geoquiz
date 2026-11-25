@@ -22,6 +22,10 @@
 5. **Sign out** (warns when changes haven't synced): local progress is cleared; a new anonymous profile starts.
 6. **Delete account**: deletes the user and all their rows, then signs out.
 
+Account ends with links to the privacy policy and how to delete your data: static bilingual pages in `public/`
+(`/privacy/`, `/delete-account/`) on the web app's site, opened in the browser at the Polish section when the app is
+in Polish. The app stores link to them too (`store/play/README.md`).
+
 ## Sync (decision 009)
 
 - Every answer and settings change marks the card / settings dirty with its client timestamp.

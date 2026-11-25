@@ -19,8 +19,10 @@ and `docs/`.
 | `src/ui/`                      | Design-system components                                                                         |
 | `src/data/`                    | Generated: `countries.json`, `flags.ts` (`pnpm data`)                                            |
 | `assets/geo/`, `assets/flags/` | Generated: borders (TopoJSON, 3 levels of detail), flag PNGs                                     |
-| `scripts/`                     | Data generation and the web service worker build step                                            |
+| `scripts/`                     | Data generation, icons and store graphics, the web service worker build step                     |
 | `plugins/`                     | Local Expo config plugins (release signing / versionCode in the generated `android/`)            |
+| `public/`                      | Static web files: privacy policy, data-deletion page (copied into the web export)                |
+| `store/play/`                  | Google Play listing: texts, graphics, screenshots, proposed Console answers                      |
 | `supabase/`                    | Migrations, database tests (PGlite)                                                              |
 | `docs/specs/`                  | Behaviour specs: the source of truth                                                             |
 | `docs/decisions.md`            | Numbered decisions; add one for every non-obvious choice                                         |

@@ -169,3 +169,14 @@ environment variables, used only when they are set (otherwise debug signing, as 
 **Consequences:** renaming or recreating `android-release.yml` restarts its run counter, so the offset must then be
 raised above the last upload. A change to Expo's `build.gradle` template can break the plugin's anchors; it then
 fails the prebuild instead of shipping a debug-signed bundle. iOS has no pipeline yet.
+
+## 020 · Privacy and data-deletion pages live in the web export
+
+**Decision:** the store-required privacy policy and account-deletion pages are plain static HTML in `public/`, which
+`expo export` copies into `dist/`, so they deploy with the web app at `https://globik-app.netlify.app/privacy/` and
+`/delete-account/`. Netlify serves existing files before applying the SPA catch-all redirect (it isn't
+`force = true`). Both languages sit on one page (anchors `#en`, `#pl`): one URL per page for the stores. They load
+nothing from third parties, matching the app's no-tracking promise.
+**Consequences:** a change to what the app stores or who processes it must update `public/privacy/index.html` and
+the Play Data safety answers (`store/play/README.md`). The Play listing (`store/play/`) is proposed to target ages
+13+, keeping the app out of the Families program until it's deliberately taken on.
