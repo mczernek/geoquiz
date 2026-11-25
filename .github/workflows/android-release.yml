@@ -99,6 +99,15 @@ jobs:
         if: ${{ !inputs.rnrepo }}
         run: echo "DISABLE_RNREPO=1" >> "$GITHUB_ENV"
 
+      # Swap absorbs the peaks of parallel C++ compiles (each Gradle worker runs one compiler per core); without it
+      # the runner ran out of memory and was shut down mid-build, though the same commit had passed before.
+      - name: Add swap
+        run: |
+          sudo fallocate -l 8G /extra-swap
+          sudo chmod 600 /extra-swap
+          sudo mkswap /extra-swap
+          sudo swapon /extra-swap
+          free -h
       - run: npx expo prebuild -p android --no-install
         env:
           NODE_ENV: production
@@ -122,11 +131,11 @@ jobs:
         env:
           NODE_ENV: production
         # The generated gradle.properties caps the daemon at 2 GB, too little for a release build. A bigger heap plus
-        # parallel C++ builds for every ABI ran the 16 GB runner out of memory (it was shut down), so: 4 GB, three
-        # workers, and no 32-bit x86 (emulators only; Play needs the 64-bit ABIs). Keep these limits while any C++
+        # parallel C++ builds for every ABI ran the 16 GB runner out of memory (it was shut down), so: 4 GB, two
+        # workers (three still ran out once), swap (above), and no 32-bit x86 (emulators only; Play needs the 64-bit ABIs). Keep these limits while any C++
         # library (worklets, reanimated, Skia) still builds from source; RNRepo prebuilds would remove that load.
         run: >-
-          ./gradlew bundleRelease --max-workers=3
+          ./gradlew bundleRelease --max-workers=2
           -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g"
           -PreactNativeArchitectures=armeabi-v7a,arm64-v8a,x86_64
 
