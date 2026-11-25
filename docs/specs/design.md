@@ -16,13 +16,20 @@ One vivid look, no light/dark modes. Tokens: `src/theme.ts`.
 
 ## Motion & haptics
 
-| Moment                      | Motion                                                                              | Haptic (native / web)           |
-| --------------------------- | ----------------------------------------------------------------------------------- | ------------------------------- |
-| Press a button              | squish (spring to 0.94)                                                             | impactLight / softTap           |
-| Toggle a chip / pick a flag | squish                                                                              | selection / softTap             |
-| Tap the globe to answer     | —                                                                                   | impactMedium / tap              |
-| Correct                     | globe flies to the country, card pops in with a bounce, confetti burst, score bumps | notificationSuccess / doubleTap |
-| Wrong                       | card shakes, globe frames both countries                                            | notificationError / reject      |
-| Card learned                | star badge springs in                                                               | bloom / bounce                  |
-| Streak of 5, 10, …          | streak counter jumps, flame glows                                                   | fanfare / finale                |
-| Screen change               | the globe glides into the new screen's slot, panels slide up                        | —                               |
+The globe carries the celebration (fly-to, confetti); the card stays calm: short fades and lifts, no overshoot.
+Haptics are Pulsar presets picked by character (decision 012).
+
+| Moment                      | Motion                                                                          | Haptic (native / web) |
+| --------------------------- | ------------------------------------------------------------------------------- | --------------------- |
+| Press a button              | squish (spring to 0.94)                                                         | peck / softTap        |
+| Toggle a chip / pick a flag | squish                                                                          | flick / softTap       |
+| Tap a country on the globe  | —                                                                               | ping / tap            |
+| Tap the sea                 | —                                                                               | thud / softTap        |
+| Correct                     | globe flies to the country, confetti burst; card fades up (240 ms), score bumps | coinDrop / bounce     |
+| Wrong                       | short shake, globe frames both countries                                        | wobble / deflate      |
+| "I don't know"              | globe flies to the answer                                                       | exhale / unwind       |
+| "I was right" (override)    | card turns green, confetti                                                      | rebound / connect     |
+| Card learned                | star badge fades in                                                             | ascent / skip         |
+| Streak of 5                 | streak counter jumps, toast                                                     | fanfare / knockout    |
+| Streak of 10, 20, …         | same                                                                            | triumph / finale      |
+| Screen change               | the globe glides into the new screen's slot, panels slide up                    | —                     |

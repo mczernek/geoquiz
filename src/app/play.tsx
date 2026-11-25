@@ -22,13 +22,22 @@ import { IconButton } from '@/ui/Button';
 import { Panel } from '@/ui/Panel';
 import { Text } from '@/ui/Text';
 
+/** The haptic for a right answer, then a bigger one for a streak milestone or a newly learned card. */
+function celebrate(result: Result, first: () => void) {
+  first();
+  const { streak } = useSession.getState();
+  if (streak > 0 && streak % 10 === 0) setTimeout(haptics.bigStreak, 280);
+  else if (streak > 0 && streak % 5 === 0) setTimeout(haptics.streak, 280);
+  else if (result.learned) setTimeout(haptics.learned, 280);
+}
+
 export default function Play() {
   const insets = useSafeAreaInsets();
   const { t } = useI18n();
   // Wide screens (desktop web, tablets in landscape): globe on the left, card on the right.
   const wide = useWindowDimensions().width >= 900;
   const continents = useProgress((s) => s.settings.continents);
-  const { question, result, streak, answered, correct, start, next, answer } = useSession();
+  const { question, result, streak, answered, correct, start, next, answer, override } = useSession();
 
   useEffect(() => {
     start();
@@ -37,21 +46,24 @@ export default function Play() {
   const submit = useCallback(
     (partial: Omit<Result, 'learned'>) => {
       const full = answer(partial);
-      if (full.correct) {
-        haptics.correct();
-        const { streak: s } = useSession.getState();
-        if (s > 0 && s % 5 === 0) setTimeout(haptics.streak, 250);
-        else if (full.learned) setTimeout(haptics.learned, 250);
-      } else haptics.wrong();
+      if (full.correct) celebrate(full, haptics.correct);
+      else if (full.given === null) haptics.reveal();
+      else haptics.wrong();
     },
     [answer],
   );
+
+  const claimRight = useCallback(() => {
+    const full = override();
+    if (full) celebrate(full, haptics.override);
+  }, [override]);
 
   const onTap: TapHandler = useCallback(
     (code) => {
       const q = useSession.getState().question;
       if (!q || useSession.getState().result) return;
-      haptics.globeTap();
+      if (code) haptics.globeTap();
+      else haptics.globeMiss();
       submit({ correct: code === q.country.code, given: code ?? '', givenCountry: code ?? undefined });
     },
     [submit],
@@ -108,7 +120,7 @@ export default function Play() {
               {correct}/{answered}
             </Text>
           </Bump>
-          <Bump value={streak} strength={1.6}>
+          <Bump value={streak} strength={1.35}>
             <Text variant="label" color={streak >= 3 ? colors.accent : colors.white}>
               🔥 {streak}
             </Text>
@@ -129,8 +141,11 @@ export default function Play() {
                 {t.play.empty}
               </Text>
             ) : result ? (
-              <AnimatedCard key={`a${question.key}${answered}`} phase={result.correct ? 'correct' : 'wrong'}>
-                <RevealCard question={question} result={result} onNext={next} />
+              <AnimatedCard
+                key={`a${question.key}${answered}${result.correct}`}
+                phase={result.correct ? 'correct' : 'wrong'}
+              >
+                <RevealCard question={question} result={result} onNext={next} onOverride={claimRight} />
               </AnimatedCard>
             ) : (
               <AnimatedCard key={`q${question.key}${answered}`} phase="question">

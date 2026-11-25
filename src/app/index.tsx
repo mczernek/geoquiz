@@ -79,6 +79,7 @@ export default function Home() {
           </Text>
         </View>
         <View style={styles.headerButtons}>
+          <IconButton icon="compass" label={t.home.explore} onPress={() => router.push('/explore')} />
           <IconButton icon="stats-chart" label={t.home.progress} onPress={() => router.push('/progress')} />
           <IconButton icon="person" label={t.home.account} onPress={() => router.push('/account')} />
         </View>

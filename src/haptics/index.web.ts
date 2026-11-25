@@ -10,13 +10,17 @@ const play = (fn: () => Promise<unknown>) => () => {
   fn().catch(() => {});
 };
 
-/** Web haptics: pulsar-haptics (Vibration API), silent where unsupported (decision 012). */
+/** Web haptics: pulsar-haptics (Vibration API), the closest web presets to the native ones (decision 012). */
 export const haptics: Haptics = {
   select: play(() => Presets.softTap()),
   press: play(() => Presets.softTap()),
-  correct: play(() => Presets.doubleTap()),
-  wrong: play(() => Presets.reject()),
-  learned: play(() => Presets.bounce()),
-  streak: play(() => Presets.finale()),
+  correct: play(() => Presets.bounce()),
+  wrong: play(() => Presets.deflate()),
+  reveal: play(() => Presets.unwind()),
+  override: play(() => Presets.connect()),
+  learned: play(() => Presets.skip()),
+  streak: play(() => Presets.knockout()),
+  bigStreak: play(() => Presets.finale()),
   globeTap: play(() => Presets.tap()),
+  globeMiss: play(() => Presets.softTap()),
 };

@@ -21,6 +21,7 @@ export const pl: Strings = {
     learned: (n, total) => `Opanowane: ${n} z ${total}`,
     progress: 'Postępy',
     account: 'Konto',
+    explore: 'Odkrywaj',
     learn: 'Ucz się',
     continentsLabel: 'Kontynenty',
     play: 'Graj',
@@ -45,6 +46,8 @@ export const pl: Strings = {
     check: 'Sprawdź',
     flagOption: (i) => `Flaga ${i}`,
     correct: 'Dobrze!',
+    override: 'Moja odpowiedź była dobra',
+    overridden: 'Zaliczone',
     correctTypo: 'Dobrze! (uważaj na pisownię)',
     reveal: 'To tutaj',
     wrong: 'Nie tym razem',
@@ -55,6 +58,14 @@ export const pl: Strings = {
     capital: (capitals) => `Stolica: ${capitals}`,
     learnedBadge: '★ Opanowane! Wróci później do powtórki.',
     next: 'Dalej',
+  },
+
+  explore: {
+    title: 'Odkrywaj',
+    hintWeb: 'Kliknij dowolny kraj, by zobaczyć flagę i stolicę, albo wyszukaj go poniżej.',
+    hintTouch: 'Dotknij dowolnego kraju, by zobaczyć flagę i stolicę, albo wyszukaj go poniżej.',
+    search: 'Szukaj kraju lub stolicy',
+    noResults: 'Nie ma takiego kraju.',
   },
 
   progress: {

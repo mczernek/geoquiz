@@ -51,3 +51,11 @@ The globe flies to the country: green when right, pink when wrong, and the count
 is another country) in red — then both are framed. The card shows the verdict, flag, name, capital(s), continent,
 what the user answered, and "Learned!" when the card just reached box 3. **Next** (Enter on the web) continues.
 The header shows correct/answered and the current streak.
+
+## Overrides ("I was right")
+
+After a wrong answer (not after "I don't know"), the answer card offers **I was right**. It regrades the card as if
+the answer had been correct, from the state before the answer (so a first-try answer still jumps to learned), counts
+it in the session score and restores the streak, and the globe celebrates. It's for answers the checker can't know
+are fine: an unlisted spelling, a mis-tap on a tiny country. The user is trusted; only the current answer can be
+overridden.

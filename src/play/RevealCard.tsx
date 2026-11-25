@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import Animated, { ZoomIn } from 'react-native-reanimated';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 import { countryByCode } from '@/domain/countries';
 import type { Question } from '@/domain/questions';
@@ -13,6 +13,7 @@ import { Text } from '@/ui/Text';
 type I18n = ReturnType<typeof useI18n>;
 
 function verdictText(result: Result, { t }: I18n): string {
+  if (result.overridden) return t.play.overridden;
   if (result.correct) return result.typo ? t.play.correctTypo : t.play.correct;
   return result.given === null ? t.play.reveal : t.play.wrong;
 }
@@ -32,7 +33,18 @@ function givenText(question: Question, result: Result, { t, name }: I18n): strin
 }
 
 /** The answer: name, flag and capital, with the verdict (the globe shows where it is). */
-export function RevealCard({ question, result, onNext }: { question: Question; result: Result; onNext: () => void }) {
+export function RevealCard({
+  question,
+  result,
+  onNext,
+  onOverride,
+}: {
+  question: Question;
+  result: Result;
+  onNext: () => void;
+  /** "I was right": shown after a wrong answer (not after "I don't know"). */
+  onOverride: () => void;
+}) {
   const { country } = question;
   const i18n = useI18n();
   const { t } = i18n;
@@ -65,13 +77,26 @@ export function RevealCard({ question, result, onNext }: { question: Question; r
         </Text>
       )}
       {result.learned && (
-        <Animated.View entering={ZoomIn.delay(350).springify().damping(8).stiffness(220)} style={styles.learned}>
+        <Animated.View entering={FadeIn.delay(300).duration(260)} style={styles.learned}>
           <Text variant="label" color={colors.ink}>
             {t.play.learnedBadge}
           </Text>
         </Animated.View>
       )}
-      <Button title={t.play.next} icon="arrow-forward" onPress={onNext} testID="next" />
+      <View style={styles.actions}>
+        {!result.correct && result.given !== null && (
+          <Button
+            title={t.play.override}
+            kind="secondary"
+            size="m"
+            icon="checkmark-circle-outline"
+            onPress={onOverride}
+            testID="override"
+            style={styles.outlined}
+          />
+        )}
+        <Button title={t.play.next} icon="arrow-forward" onPress={onNext} testID="next" />
+      </View>
     </View>
   );
 }
@@ -81,6 +106,8 @@ const styles = StyleSheet.create({
   badge: { alignSelf: 'flex-start', paddingHorizontal: 12, paddingVertical: 4, borderRadius: radius.pill },
   row: { flexDirection: 'row', gap: 14, alignItems: 'center' },
   names: { flex: 1, gap: 2 },
+  actions: { gap: 10 },
+  outlined: { borderColor: '#DCCFFF' },
   learned: {
     alignSelf: 'flex-start',
     backgroundColor: colors.accent,

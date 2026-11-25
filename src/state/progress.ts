@@ -23,6 +23,8 @@ interface ProgressState {
   pullCursor: string | null;
 
   answer: (key: CardKey, correct: boolean, now?: number) => { before?: CardState; after: CardState };
+  /** Grades the last answer again from the state it started at (the user overrides a "wrong" verdict). */
+  regrade: (key: CardKey, before: CardState | undefined, correct: boolean, now?: number) => CardState;
   setModes: (modes: Mode[]) => void;
   setContinents: (continents: Continent[]) => void;
   applyRemote: (cards: Record<string, CardState>, settings: Settings | null, cursor: string | null) => void;
@@ -56,6 +58,14 @@ export const useProgress = create<ProgressState>()(
         const after = applyAnswer(before, correct, now);
         set((s) => ({ cards: { ...s.cards, [key]: after }, dirty: { ...s.dirty, [key]: after.updatedAt } }));
         return { before, after };
+      },
+
+      regrade: (key, before, correct, now = Date.now()) => {
+        // Strictly newer than the answer being replaced, so the regrade wins when devices sync (decision 009).
+        const at = Math.max(now, (get().cards[key]?.updatedAt ?? 0) + 1);
+        const after = applyAnswer(before, correct, at);
+        set((s) => ({ cards: { ...s.cards, [key]: after }, dirty: { ...s.dirty, [key]: after.updatedAt } }));
+        return after;
       },
 
       setModes: (modes) =>

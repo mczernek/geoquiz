@@ -17,7 +17,7 @@ function Toast({ streak }: { streak: number }) {
   return (
     <View style={styles.wrap} pointerEvents="none">
       <Animated.View
-        entering={ZoomIn.springify().damping(9).stiffness(200)}
+        entering={ZoomIn.springify().damping(14).stiffness(200)}
         exiting={FadeOut.duration(250)}
         style={styles.toast}
       >

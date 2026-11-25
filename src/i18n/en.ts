@@ -20,6 +20,7 @@ export const en = {
     learned: (n: number, total: number) => `${n} of ${total} learned`,
     progress: 'Progress',
     account: 'Account',
+    explore: 'Explore',
     learn: 'Learn',
     continentsLabel: 'Continents',
     play: 'Play',
@@ -44,6 +45,8 @@ export const en = {
     check: 'Check',
     flagOption: (i: number) => `Flag ${i}`,
     correct: 'Correct!',
+    override: 'I was right',
+    overridden: 'Counted as correct',
     correctTypo: 'Correct! (watch the spelling)',
     reveal: 'Here it is',
     wrong: 'Not quite',
@@ -54,6 +57,14 @@ export const en = {
     capital: (capitals: string) => `Capital: ${capitals}`,
     learnedBadge: '★ Learned! It will come back for review later.',
     next: 'Next',
+  },
+
+  explore: {
+    title: 'Explore',
+    hintWeb: 'Click any country to see its flag and capital, or search below.',
+    hintTouch: 'Tap any country to see its flag and capital, or search below.',
+    search: 'Search a country or capital',
+    noResults: 'No country matches that.',
   },
 
   progress: {
