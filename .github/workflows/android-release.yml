@@ -97,8 +97,13 @@ jobs:
         working-directory: android
         env:
           NODE_ENV: production
-        # The generated gradle.properties caps the daemon at 2 GB, too little for a release build of every ABI.
-        run: ./gradlew bundleRelease -Dorg.gradle.jvmargs="-Xmx6g -XX:MaxMetaspaceSize=1g"
+        # The generated gradle.properties caps the daemon at 2 GB, too little for a release build. A bigger heap plus
+        # parallel C++ builds for every ABI ran the 16 GB runner out of memory (it was shut down), so: 4 GB, three
+        # workers, and no 32-bit x86 (emulators only; Play needs the 64-bit ABIs).
+        run: >-
+          ./gradlew bundleRelease --max-workers=3
+          -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g"
+          -PreactNativeArchitectures=armeabi-v7a,arm64-v8a,x86_64
 
       - name: Keep AAB and mapping
         uses: actions/upload-artifact@v7
