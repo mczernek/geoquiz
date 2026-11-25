@@ -1,4 +1,4 @@
-import { GlobeCamera, type CameraState } from '../camera';
+import { AUTO_ROTATE_PAUSE_MS, GlobeCamera, type CameraState } from '../camera';
 import { countryAt, getWorld } from '../geo';
 import { computeFrame, EMPTY_PAINT } from '../scene';
 
@@ -128,5 +128,33 @@ describe('projectRing', () => {
     );
     expect(p.stroke.split('M').length).toBeGreaterThan(1);
     expect(p.stroke).not.toBe(p.fill);
+  });
+});
+
+describe('GlobeCamera auto-rotation', () => {
+  beforeEach(() => jest.useFakeTimers());
+  afterEach(() => jest.useRealTimers());
+
+  it('holds still for a while after the user moves the globe, then spins on', () => {
+    const cam = new GlobeCamera();
+    const lon = () => cam.snapshot().center[0];
+    cam.setAutoRotate(true);
+    jest.advanceTimersByTime(1000);
+    const spun = lon();
+    expect(spun).not.toBe(15);
+
+    cam.dragStart();
+    cam.dragBy(10, 0);
+    cam.dragEnd(0, 0);
+    const left = lon();
+    jest.advanceTimersByTime(AUTO_ROTATE_PAUSE_MS - 500);
+    expect(lon()).toBe(left);
+
+    cam.zoomBy(1.1); // a pinch restarts the wait
+    jest.advanceTimersByTime(AUTO_ROTATE_PAUSE_MS - 500);
+    expect(lon()).toBe(left);
+
+    jest.advanceTimersByTime(1500);
+    expect(lon()).not.toBe(left);
   });
 });

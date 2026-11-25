@@ -127,3 +127,11 @@ mid-word or didn't render. Nunito is rounded and friendly like Fredoka and cover
 Vietnamese. Baloo 2 looked closer but its tall line metrics push text off-centre in buttons. Fredoka Bold stays for
 the "globik" wordmark, which has no accented letters.
 **Consequences:** a new UI language must be checked against the font's glyphs (`docs/specs/i18n.md`).
+
+## 017 · Auto-rotation waits after the user moves the globe
+
+**Decision:** any manual drag, fling, pinch, wheel or keyboard move pauses auto-rotation for 7 s
+(`AUTO_ROTATE_PAUSE_MS`), restarting the wait on every move; the spin then continues from where the user left
+the view. Fly-to animations and inertia don't count as moves. A spin that starts right after letting go pulls
+the country the user was looking at away.
+**Consequences:** the camera arms a timer to restart its frame loop; it idles (no frames) during the pause.

@@ -25,6 +25,8 @@ export const MIN_ZOOM = 0.6;
 export const MAX_ZOOM = 80;
 const MAX_LAT = 85;
 const AUTO_ROTATE_DEG_PER_S = 5;
+/** Auto-rotation waits this long after the user last moved or zoomed the globe, so it doesn't pull the view away. */
+export const AUTO_ROTATE_PAUSE_MS = 7000;
 const FRICTION = 4;
 /** Idle time after the last change before the detailed borders are drawn. */
 const REST_DELAY_MS = 140;
@@ -70,6 +72,9 @@ export class GlobeCamera {
   private flight: Flight | null = null;
   private slotTween: SlotTween | null = null;
   private autoRotate = false;
+  /** Auto-rotation stays still until then (ms, `now()` clock). */
+  private pausedUntil = 0;
+  private resumeTimer: ReturnType<typeof setTimeout> | null = null;
 
   private frame: number | null = null;
   private lastTick = 0;
@@ -146,12 +151,18 @@ export class GlobeCamera {
   // Gestures --------------------------------------------------------------------------------------------------
 
   dragStart(): void {
+    this.touched();
     this.dragging = true;
     this.velocity = [0, 0];
     this.cancelFlight();
   }
 
   dragBy(dx: number, dy: number): void {
+    this.touched();
+    this.rotateBy(dx, dy);
+  }
+
+  private rotateBy(dx: number, dy: number): void {
     const k = 180 / Math.PI / (this.slot.r * this.zoom);
     this.center = [normLon(this.center[0] - dx * k), clamp(this.center[1] + dy * k, -MAX_LAT, MAX_LAT)];
     this.changed();
@@ -159,12 +170,14 @@ export class GlobeCamera {
 
   /** Velocity in px/s carries the globe on (inertia). */
   dragEnd(vx: number, vy: number): void {
+    this.touched();
     this.dragging = false;
     this.velocity = [vx, vy];
     this.run();
   }
 
   zoomBy(factor: number): void {
+    this.touched();
     this.cancelFlight();
     this.zoom = clamp(this.zoom * factor, MIN_ZOOM, MAX_ZOOM);
     this.changed();
@@ -207,6 +220,20 @@ export class GlobeCamera {
     return clamp(fill / Math.sin(Math.min(r, Math.PI / 2)), 1, max);
   }
 
+  /** The user moved the globe: hold auto-rotation, then pick it up again where they left the view. */
+  private touched(): void {
+    this.pausedUntil = now() + AUTO_ROTATE_PAUSE_MS;
+    if (this.resumeTimer) clearTimeout(this.resumeTimer);
+    this.resumeTimer = setTimeout(() => {
+      this.resumeTimer = null;
+      if (this.autoRotate) this.run();
+    }, AUTO_ROTATE_PAUSE_MS);
+  }
+
+  private spinning(): boolean {
+    return this.autoRotate && !this.dragging && now() >= this.pausedUntil;
+  }
+
   private cancelFlight(): void {
     if (!this.flight) return;
     this.flight.resolve();
@@ -237,12 +264,7 @@ export class GlobeCamera {
   }
 
   private isAnimating(): boolean {
-    return (
-      this.flight !== null ||
-      this.slotTween !== null ||
-      (this.autoRotate && !this.dragging) ||
-      Math.hypot(...this.velocity) > 8
-    );
+    return this.flight !== null || this.slotTween !== null || this.spinning() || Math.hypot(...this.velocity) > 8;
   }
 
   private run(): void {
@@ -270,12 +292,12 @@ export class GlobeCamera {
     } else if (!this.dragging) {
       const [vx, vy] = this.velocity;
       if (Math.hypot(vx, vy) > 8) {
-        this.dragBy(vx * dt, vy * dt);
+        this.rotateBy(vx * dt, vy * dt);
         const decay = Math.exp(-FRICTION * dt);
         this.velocity = [vx * decay, vy * decay];
       } else {
         this.velocity = [0, 0];
-        if (this.autoRotate) this.center = [normLon(this.center[0] + AUTO_ROTATE_DEG_PER_S * dt), this.center[1]];
+        if (this.spinning()) this.center = [normLon(this.center[0] + AUTO_ROTATE_DEG_PER_S * dt), this.center[1]];
       }
     }
 

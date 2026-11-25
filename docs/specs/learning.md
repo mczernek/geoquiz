@@ -45,6 +45,9 @@ spelling, a typo forgiven from 5 letters, two from 9, unless the input is at lea
 | flag-pick, capital-of      | flies to the country, highlighted (the country is in the question)                      |
 | flag-name, capital-country | centre of the selected continents, slowly spinning (no hints)                           |
 
+The spin holds for 7 s after the user drags, flings, pinches or zooms the globe (wheel, keys), counted from their
+last move, so it doesn't carry the view away while they look around (decision 017).
+
 ## Answer
 
 The globe flies to the country: green when right, pink when wrong, and the country the user picked or typed (if it
