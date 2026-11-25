@@ -2,7 +2,7 @@
   "expo": {
     "name": "Globik",
     "slug": "geoquiz",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "geoquiz",
@@ -15,6 +15,7 @@
     },
     "android": {
       "package": "com.michalczernek.geoquiz",
+      "versionCode": 2,
       "adaptiveIcon": {
         "backgroundColor": "#7A06F8",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
