@@ -22,7 +22,9 @@ async function setup() {
     grant execute on function auth.uid() to anon, authenticated;
     insert into auth.users values ('${ALICE}'), ('${BOB}');
   `);
-  for (const file of readdirSync(dir).filter((f) => f.endsWith('.sql')).sort()) {
+  for (const file of readdirSync(dir)
+    .filter((f) => f.endsWith('.sql'))
+    .sort()) {
     await db.exec(readFileSync(new URL(file, dir), 'utf8'));
   }
   return db;
@@ -52,7 +54,10 @@ const card = (over = {}) => ({
 test('push inserts, keeps the newer version, and is idempotent', async () => {
   const db = await setup();
   const push = (cards, settings = null) =>
-    as(db, ALICE, 'select public.push_progress($1::jsonb, $2::jsonb)', [JSON.stringify(cards), settings && JSON.stringify(settings)]);
+    as(db, ALICE, 'select public.push_progress($1::jsonb, $2::jsonb)', [
+      JSON.stringify(cards),
+      settings && JSON.stringify(settings),
+    ]);
 
   await push([card()]);
   await push([card()]);
@@ -80,7 +85,11 @@ test('users only see and change their own progress', async () => {
   await as(db, BOB, "update public.card_progress set box = 0 where card = 'flag:PL'");
   assert.equal((await as(db, ALICE, 'select box from public.card_progress')).rows[0].box, 2);
   await assert.rejects(
-    as(db, BOB, `insert into public.card_progress (user_id, card, box, due_at, updated_at) values ('${ALICE}', 'map:PL', 1, now(), now())`),
+    as(
+      db,
+      BOB,
+      `insert into public.card_progress (user_id, card, box, due_at, updated_at) values ('${ALICE}', 'map:PL', 1, now(), now())`,
+    ),
     /row-level security/,
   );
 });

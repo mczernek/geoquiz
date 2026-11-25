@@ -1,7 +1,15 @@
 import { fromRow, mergeRemote, toRow } from '../sync';
 import type { CardState } from '../scheduler';
 
-const s: CardState = { box: 2, due: 1_800_000_000_000, seen: 3, correct: 2, wrong: 1, lastSeen: 1_799_999_000_000, updatedAt: 1_799_999_000_000 };
+const s: CardState = {
+  box: 2,
+  due: 1_800_000_000_000,
+  seen: 3,
+  correct: 2,
+  wrong: 1,
+  lastSeen: 1_799_999_000_000,
+  updatedAt: 1_799_999_000_000,
+};
 
 describe('sync rows', () => {
   it('round-trips a card', () => expect(fromRow(toRow('flag:PL', s))).toEqual(s));

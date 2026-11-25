@@ -117,7 +117,11 @@ export interface Stats {
   due: number;
 }
 
-export function statsFor(pool: readonly CardKey[], cards: Readonly<Record<string, CardState | undefined>>, now: number): Stats {
+export function statsFor(
+  pool: readonly CardKey[],
+  cards: Readonly<Record<string, CardState | undefined>>,
+  now: number,
+): Stats {
   let learned = 0;
   let seen = 0;
   let due = 0;

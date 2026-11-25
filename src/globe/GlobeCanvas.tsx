@@ -67,7 +67,14 @@ export function GlobeCanvas({ paint }: { paint: Paint }) {
         />
         {paths.outlines.map((o, i) => (
           <Group key={i}>
-            <Path path={o.path} style="stroke" strokeWidth={SUBPIXEL * 7} strokeJoin="round" color={o.color} opacity={0.55}>
+            <Path
+              path={o.path}
+              style="stroke"
+              strokeWidth={SUBPIXEL * 7}
+              strokeJoin="round"
+              color={o.color}
+              opacity={0.55}
+            >
               <BlurMask blur={SUBPIXEL * 3} style="normal" />
             </Path>
             <Path path={o.path} style="stroke" strokeWidth={SUBPIXEL * 2} strokeJoin="round" color="white" />

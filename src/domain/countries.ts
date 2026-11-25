@@ -1,13 +1,6 @@
 import data from '@/data/countries.json';
 
-export const CONTINENTS = [
-  'africa',
-  'asia',
-  'europe',
-  'north-america',
-  'south-america',
-  'oceania',
-] as const;
+export const CONTINENTS = ['africa', 'asia', 'europe', 'north-america', 'south-america', 'oceania'] as const;
 export type Continent = (typeof CONTINENTS)[number];
 
 export const CONTINENT_NAMES: Record<Continent, string> = {

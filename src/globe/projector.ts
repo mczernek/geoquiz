@@ -196,7 +196,7 @@ export function projectRing(ring: Ring, view: View): RingPaths {
 
     // Stroke: visible parts only, cut at the horizon.
     if (i > 0) {
-      const crosses = (d >= 0) !== (prevD >= 0);
+      const crosses = d >= 0 !== prevD >= 0;
       let hx = 0;
       let hy = 0;
       if (crosses) {
@@ -231,5 +231,8 @@ export function projectRing(ring: Ring, view: View): RingPaths {
   }
 
   if (!anyVisible) return { fill: '', stroke: '' };
-  return { fill: ring.closed && n > 2 ? fill + 'Z' : '', stroke: allVisible && ring.closed && !ring.hasCut ? fill + 'Z' : stroke };
+  return {
+    fill: ring.closed && n > 2 ? fill + 'Z' : '',
+    stroke: allVisible && ring.closed && !ring.hasCut ? fill + 'Z' : stroke,
+  };
 }

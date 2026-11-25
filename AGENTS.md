@@ -1,0 +1,49 @@
+# AGENTS.md
+
+GeoQuiz: learn the world's countries — flags, capitals and where they are — on a 3D globe. One Expo (React Native)
+app for iOS, Android and the web, offline-first, with progress synced to Supabase. Details: [README.md](README.md)
+and `docs/`.
+
+## Layout
+
+| Path                           | What                                                                                             |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `src/app/`                     | Expo Router screens (`_layout.tsx` hosts the shared globe behind every screen)                   |
+| `src/domain/`                  | Pure logic with unit tests: countries, answer checking, spaced repetition, questions, sync merge |
+| `src/globe/`                   | The globe: camera, fast projector, scene, Skia (native) / Canvas 2D (web) renderers, gestures    |
+| `src/play/`                    | The quiz screen's parts                                                                          |
+| `src/state/`                   | Zustand stores: persisted progress, in-memory session                                            |
+| `src/sync/`                    | Supabase client, sync engine, account actions, web service worker registration                   |
+| `src/haptics/`                 | Pulsar haptics (native) and pulsar-haptics (web) behind one interface                            |
+| `src/ui/`                      | Design-system components                                                                         |
+| `src/data/`                    | Generated: `countries.json`, `flags.ts` (`pnpm data`)                                            |
+| `assets/geo/`, `assets/flags/` | Generated: borders (TopoJSON, 3 levels of detail), flag PNGs                                     |
+| `scripts/`                     | Data generation and the web service worker build step                                            |
+| `supabase/`                    | Migrations, database tests (PGlite)                                                              |
+| `docs/specs/`                  | Behaviour specs: the source of truth                                                             |
+| `docs/decisions.md`            | Numbered decisions; add one for every non-obvious choice                                         |
+
+## Rules
+
+- `ios/` and `android/` are generated (`npx expo prebuild`); never edit them, configure `app.json` instead.
+- Add packages with `npx expo install` so versions match the Expo SDK.
+- Keep domain logic pure, in `src/domain`, with tests. Screens render state and forward events.
+- The globe is drawn every frame on the JS thread: keep `src/globe/projector.ts` and `scene.ts` allocation-light,
+  and check `pnpm test` (it prints frame timings) after changing them.
+- Backend changes must stay backward compatible with released apps: add, never rename or drop (see zakuper).
+- Behaviour changes update the matching spec in `docs/specs/`.
+- No dead code, no debug logging, comments explain _why_.
+
+## Verify before you finish
+
+```sh
+pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm test:db
+```
+
+UI changes: run the app (`pnpm ios` / `pnpm android` / `pnpm web`) and check it with Argent
+(`argent run screenshot`, `gesture-tap`, …) on each platform you touched.
+
+## Releasing
+
+Push to `release` → CI: checks, `supabase db push`, Netlify production. Mobile builds: EAS (`docs/release.md`).
+Never push to `release`, apply migrations to production or submit builds without the human asking.

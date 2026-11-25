@@ -1,29 +1,49 @@
 import { useEffect, useRef, type ComponentRef, type RefObject } from 'react';
 import { Platform, StyleSheet, View, type LayoutChangeEvent } from 'react-native';
-import {
-  GestureDetector,
-  usePanGesture,
-  usePinchGesture,
-  useSimultaneousGestures,
-  useTapGesture,
-} from 'react-native-gesture-handler';
+import { GestureDetector, usePanGesture, usePinchGesture, useSimultaneousGestures } from 'react-native-gesture-handler';
 
 import { camera } from './camera';
 import { countryAt, tinyNear } from './geo';
 import { GlobeCanvas } from './GlobeCanvas';
 import { useGlobeStore } from './store';
 
-/** Tiny countries' markers win within this many px of a tap (decision 007). */
-const TINY_TAP_PX = 16;
+/**
+ * Tiny countries (decision 007): their marker wins within this many px when the tap is on the sea, and within
+ * MARKER_TAP_PX even on land (so Vatican City can be tapped inside Italy, but France isn't lost to Andorra).
+ */
+const TINY_TAP_PX = 18;
+const MARKER_TAP_PX = 9;
+/** A touch that ends within this distance and time without dragging is a tap. */
+const TAP_SLOP_PX = 10;
+/** A tap on the sea this close to a coast counts as that country (fingers are wide, coastlines thin). */
+const COAST_SNAP_PX = [6, 12];
+const TAP_MAX_MS = 450;
 
 function handleTap(x: number, y: number) {
   const onTap = useGlobeStore.getState().onTap;
   if (!onTap) return;
   const point = camera.invert(x, y);
   if (!point) return;
-  const code = tinyNear(x, y, TINY_TAP_PX, (p) => camera.project(p)) ?? countryAt(point);
+  const land = countryAt(point) ?? nearestCoast(x, y);
+  const tiny = tinyNear(x, y, TINY_TAP_PX, (p) => camera.project(p));
+  const code = tiny && (land === null || tiny.distance <= MARKER_TAP_PX) ? tiny.code : land;
   onTap(code, point);
 }
+
+function nearestCoast(x: number, y: number): string | null {
+  for (const r of COAST_SNAP_PX) {
+    for (let a = 0; a < 8; a++) {
+      const p = camera.invert(x + r * Math.cos((a * Math.PI) / 4), y + r * Math.sin((a * Math.PI) / 4));
+      const code = p && countryAt(p);
+      if (code) return code;
+    }
+  }
+  return null;
+}
+
+/** Taps come from the pan gesture (touch down → up without dragging or a second finger), not a separate tap
+ * recognizer, which could miss the first tap after a pinch. */
+const touch = { x: 0, y: 0, at: 0, dragged: false, multi: false };
 
 /** Web: wheel / trackpad pinch zooms, arrow keys rotate, +/- zoom (decision 010). */
 function useWebControls(ref: RefObject<ComponentRef<typeof View> | null>) {
@@ -77,21 +97,32 @@ export function GlobeStage() {
 
   const pan = usePanGesture({
     runOnJS: true,
-    minDistance: 4,
-    onActivate: () => camera.dragStart(),
-    onUpdate: (e) => camera.dragBy(e.changeX, e.changeY),
+    minDistance: TAP_SLOP_PX,
+    onBegin: (e) => {
+      Object.assign(touch, { x: e.x, y: e.y, at: Date.now(), dragged: false, multi: e.numberOfPointers > 1 });
+    },
+    onActivate: () => {
+      touch.dragged = true;
+      camera.dragStart();
+    },
+    onUpdate: (e) => {
+      if (e.numberOfPointers > 1) touch.multi = true;
+      camera.dragBy(e.changeX, e.changeY);
+    },
     onDeactivate: (e) => camera.dragEnd(e.velocityX, e.velocityY),
+    onFinalize: (e) => {
+      const still = Math.hypot(e.x - touch.x, e.y - touch.y) < TAP_SLOP_PX;
+      if (!touch.dragged && !touch.multi && still && Date.now() - touch.at < TAP_MAX_MS) handleTap(e.x, e.y);
+    },
   });
   const pinch = usePinchGesture({
     runOnJS: true,
+    onActivate: () => {
+      touch.multi = true;
+    },
     onUpdate: (e) => camera.zoomBy(e.scaleChange),
   });
-  const tap = useTapGesture({
-    runOnJS: true,
-    maxDistance: 8,
-    onActivate: (e) => handleTap(e.x, e.y),
-  });
-  const gesture = useSimultaneousGestures(pan, pinch, tap);
+  const gesture = useSimultaneousGestures(pan, pinch);
 
   const onLayout = (e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout;

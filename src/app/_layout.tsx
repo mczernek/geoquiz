@@ -15,10 +15,12 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { GlobeStage } from '@/globe/GlobeStage';
 import { useProgress } from '@/state/progress';
+import { registerServiceWorker } from '@/sync/registerServiceWorker';
 import { useSync } from '@/sync/useSync';
 import { Background } from '@/ui/Background';
 
 SplashScreen.preventAutoHideAsync();
+registerServiceWorker();
 
 function useHydrated(): boolean {
   return useSyncExternalStore(

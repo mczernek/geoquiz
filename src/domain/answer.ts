@@ -47,9 +47,7 @@ export type AnswerKind = 'country' | 'capital';
 
 function candidates(country: Country, kind: AnswerKind): string[] {
   const raw =
-    kind === 'country'
-      ? [country.name, ...country.aliases]
-      : [...country.capitals, ...country.capitalAliases];
+    kind === 'country' ? [country.name, ...country.aliases] : [...country.capitals, ...country.capitalAliases];
   return [...new Set(raw.map(normalize).filter(Boolean))];
 }
 

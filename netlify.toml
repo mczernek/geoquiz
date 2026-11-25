@@ -1,0 +1,30 @@
+# Netlify site: the static web export (docs/release.md). EXPO_PUBLIC_* variables come from the site's environment.
+[build]
+  command = "pnpm build:web"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# The service worker must never be cached by the browser, or updates would stall.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/_expo/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Client-side routing: every path loads the single-page app.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

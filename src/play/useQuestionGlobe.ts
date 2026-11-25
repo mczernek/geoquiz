@@ -1,3 +1,4 @@
+import { geoDistance, geoInterpolate } from 'd3-geo';
 import { useEffect } from 'react';
 
 import { CONTINENTS, countriesIn, getCountry, isTiny, type Continent } from '@/domain/countries';
@@ -24,9 +25,27 @@ function continentsCenter(continents: readonly Continent[]): [number, number] {
   return [(Math.atan2(y, x) * 180) / Math.PI, (Math.atan2(z, Math.hypot(x, y)) * 180) / Math.PI];
 }
 
-function flyToCountry(code: string, fill: number) {
+/** Zoom caps keep the globe recognizable as a globe; tiny countries get a ring instead of a closer look. */
+const MAX_ZOOM_CONTEXT = 4;
+const MAX_ZOOM_FOCUS = 8;
+
+function flyToCountry(code: string, fill: number, max = MAX_ZOOM_FOCUS) {
   const c = getCountry(code);
-  return camera.flyTo([c.focus[0], c.focus[1]], GlobeCamera.zoomToFit(c.focus[2], fill));
+  return camera.flyTo([c.focus[0], c.focus[1]], GlobeCamera.zoomToFit(c.focus[2], fill, max));
+}
+
+/** Frames two countries at once: the answer and the one the user picked instead. */
+function flyToBoth(a: string, b: string) {
+  const ca = getCountry(a);
+  const cb = getCountry(b);
+  const pa: [number, number] = [ca.focus[0], ca.focus[1]];
+  const pb: [number, number] = [cb.focus[0], cb.focus[1]];
+  const between = (geoDistance(pa, pb) * 180) / Math.PI;
+  const radius = between / 2 + Math.max(ca.focus[2], cb.focus[2]);
+  return camera.flyTo(
+    geoInterpolate(pa, pb)(0.5) as [number, number],
+    GlobeCamera.zoomToFit(radius, 0.42, MAX_ZOOM_FOCUS),
+  );
 }
 
 /** What the globe shows for the current question and its answer (docs/specs/learning.md → Globe). */
@@ -35,6 +54,8 @@ export function useQuestionGlobe(
   result: Result | null,
   continents: readonly Continent[],
   onTap: TapHandler,
+  /** Called when the camera arrives at the answer, with its position on screen. */
+  onArrive: (x: number, y: number, correct: boolean) => void,
 ) {
   const setPaint = useGlobeStore((s) => s.setPaint);
   const setOnTap = useGlobeStore((s) => s.setOnTap);
@@ -52,11 +73,18 @@ export function useQuestionGlobe(
         outlines: { [code]: result.correct ? colors.correct : colors.target },
         rings: tiny ? { [code]: result.correct ? colors.correct : colors.target } : {},
       };
-      if (result.givenCountry && result.givenCountry !== code) {
-        paint.fills = { ...paint.fills, [result.givenCountry]: colors.wrong };
+      const other = result.givenCountry && result.givenCountry !== code ? result.givenCountry : null;
+      if (other) {
+        paint.fills = { ...paint.fills, [other]: colors.wrong };
+        paint.outlines = { ...paint.outlines, [other]: colors.wrong };
+        if (isTiny(getCountry(other))) paint.rings = { ...paint.rings, [other]: colors.wrong };
       }
       setPaint(paint);
-      flyToCountry(code, 0.3);
+      const correct = result.correct;
+      (other ? flyToBoth(code, other) : flyToCountry(code, 0.3)).then(() => {
+        const at = camera.project([question.country.focus[0], question.country.focus[1]]);
+        if (at) onArrive(at[0], at[1], correct);
+      });
       return;
     }
 
@@ -82,7 +110,7 @@ export function useQuestionGlobe(
         // The country is in the question, so showing where it is gives nothing away.
         camera.setAutoRotate(false);
         setPaint({ fills: { [code]: colors.target }, outlines: {}, rings: tiny ? { [code]: colors.target } : {} });
-        flyToCountry(code, 0.2);
+        flyToCountry(code, 0.2, MAX_ZOOM_CONTEXT);
         setOnTap(null);
         break;
       case 'flag-name':
@@ -92,7 +120,7 @@ export function useQuestionGlobe(
         setOnTap(null);
         break;
     }
-  }, [question, result, continents, onTap, setPaint, setOnTap]);
+  }, [question, result, continents, onTap, onArrive, setPaint, setOnTap]);
 
   useEffect(
     () => () => {

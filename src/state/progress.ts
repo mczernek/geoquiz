@@ -29,7 +29,10 @@ interface ProgressState {
   markPushed: (pushed: Record<string, number>, settings: boolean) => void;
   /** Local data now belongs to `ownerId`; everything is pushed to it (merge on sign-in, decision 009). */
   adopt: (ownerId: string) => void;
+  /** Forget everything learned (all devices). */
   reset: () => void;
+  /** Drop all local data (sign-out). */
+  clear: () => void;
 }
 
 const DEFAULT_SETTINGS: Settings = { modes: ['flag'], continents: ['europe'], updatedAt: 0 };
@@ -87,7 +90,19 @@ export const useProgress = create<ProgressState>()(
           pullCursor: null,
         })),
 
-      reset: () => set({ ...initial, ownerId: get().ownerId, settings: { ...DEFAULT_SETTINGS, updatedAt: Date.now() } }),
+      // Cards are zeroed rather than deleted, so the reset reaches other devices through sync (decision 009).
+      reset: () =>
+        set((s) => {
+          const now = Date.now();
+          const zero: CardState = { box: 0, due: now, seen: 0, correct: 0, wrong: 0, lastSeen: 0, updatedAt: now };
+          const keys = Object.keys(s.cards);
+          return {
+            cards: Object.fromEntries(keys.map((k) => [k, zero])),
+            dirty: Object.fromEntries(keys.map((k) => [k, now])),
+          };
+        }),
+
+      clear: () => set({ ...initial, settings: { ...DEFAULT_SETTINGS } }),
     }),
     {
       name: 'geoquiz-progress',

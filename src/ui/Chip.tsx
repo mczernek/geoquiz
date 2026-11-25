@@ -16,6 +16,7 @@ export function Chip({
   onPress,
   icon,
   testID,
+  onCard = false,
 }: {
   label: string;
   detail?: string;
@@ -23,8 +24,10 @@ export function Chip({
   onPress: () => void;
   icon?: ComponentProps<typeof Ionicons>['name'];
   testID?: string;
+  /** On a white card instead of the gradient. */
+  onCard?: boolean;
 }) {
-  const fg = selected ? colors.ink : colors.white;
+  const fg = onCard ? (selected ? colors.white : colors.ink) : selected ? colors.ink : colors.white;
   return (
     <Pressy
       testID={testID}
@@ -35,7 +38,7 @@ export function Chip({
         haptics.select();
         onPress();
       }}
-      style={[styles.chip, selected ? styles.on : styles.off]}
+      style={[styles.chip, onCard ? (selected ? styles.cardOn : styles.cardOff) : selected ? styles.on : styles.off]}
     >
       <View style={styles.row}>
         {icon && <Ionicons name={icon} size={18} color={fg} />}
@@ -43,7 +46,7 @@ export function Chip({
           {label}
         </Text>
         {detail ? (
-          <Text variant="caption" color={selected ? colors.inkSoft : 'rgba(255,255,255,0.8)'}>
+          <Text variant="caption" color={selected !== onCard ? colors.inkSoft : 'rgba(255,255,255,0.8)'}>
             {detail}
           </Text>
         ) : null}
@@ -53,8 +56,10 @@ export function Chip({
 }
 
 const styles = StyleSheet.create({
-  chip: { paddingHorizontal: 14, paddingVertical: 9, borderRadius: radius.pill, borderWidth: 1.5 },
+  chip: { paddingHorizontal: 13, paddingVertical: 7, borderRadius: radius.pill, borderWidth: 1.5 },
   on: { backgroundColor: colors.white, borderColor: colors.white },
   off: { backgroundColor: colors.glass, borderColor: colors.glassBorder },
+  cardOn: { backgroundColor: colors.ink, borderColor: colors.ink },
+  cardOff: { backgroundColor: '#F3EEFF', borderColor: '#DCCFFF' },
   row: { flexDirection: 'row', alignItems: 'center', gap: 6 },
 });

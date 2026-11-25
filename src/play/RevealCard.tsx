@@ -1,4 +1,5 @@
 import { StyleSheet, View } from 'react-native';
+import Animated, { ZoomIn } from 'react-native-reanimated';
 
 import { CONTINENT_NAMES, countryByCode } from '@/domain/countries';
 import type { Question } from '@/domain/questions';
@@ -55,9 +56,11 @@ export function RevealCard({ question, result, onNext }: { question: Question; r
         </Text>
       )}
       {result.learned && (
-        <Text variant="label" color={colors.correctDeep}>
-          ★ Learned! It will come back for review later.
-        </Text>
+        <Animated.View entering={ZoomIn.delay(350).springify().damping(8).stiffness(220)} style={styles.learned}>
+          <Text variant="label" color={colors.ink}>
+            ★ Learned! It will come back for review later.
+          </Text>
+        </Animated.View>
       )}
       <Button title="Next" icon="arrow-forward" onPress={onNext} testID="next" />
     </View>
@@ -69,4 +72,11 @@ const styles = StyleSheet.create({
   badge: { alignSelf: 'flex-start', paddingHorizontal: 12, paddingVertical: 4, borderRadius: radius.pill },
   row: { flexDirection: 'row', gap: 14, alignItems: 'center' },
   names: { flex: 1, gap: 2 },
+  learned: {
+    alignSelf: 'flex-start',
+    backgroundColor: colors.accent,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: radius.pill,
+  },
 });

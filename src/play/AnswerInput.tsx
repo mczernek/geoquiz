@@ -38,8 +38,23 @@ export function AnswerInput({
         accessibilityLabel={placeholder}
       />
       <View style={styles.row}>
-        <Button title="I don't know" kind="secondary" size="m" onPress={onGiveUp} style={styles.flex} testID="give-up" />
-        <Button title="Check" size="m" icon="checkmark" onPress={submit} disabled={!text.trim()} style={styles.flex} testID="check" />
+        <Button
+          title="I don't know"
+          kind="secondary"
+          size="m"
+          onPress={onGiveUp}
+          style={[styles.flex, styles.outlined]}
+          testID="give-up"
+        />
+        <Button
+          title="Check"
+          size="m"
+          icon="checkmark"
+          onPress={submit}
+          disabled={!text.trim()}
+          style={styles.flex}
+          testID="check"
+        />
       </View>
     </View>
   );
@@ -60,4 +75,5 @@ const styles = StyleSheet.create({
   },
   row: { flexDirection: 'row', gap: 10 },
   flex: { flex: 1 },
+  outlined: { borderColor: '#DCCFFF' },
 });

@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import { useEffect, useMemo } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
+import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { CONTINENT_NAMES, CONTINENTS, countriesIn, type Continent } from '@/domain/countries';
@@ -14,6 +15,7 @@ import { Button, IconButton } from '@/ui/Button';
 import { Chip } from '@/ui/Chip';
 import { GlassPanel } from '@/ui/Panel';
 import { Text } from '@/ui/Text';
+import { useNow } from '@/ui/useNow';
 
 const MODE_ICONS = { flag: 'flag', capital: 'business', map: 'earth' } as const;
 
@@ -44,6 +46,7 @@ function useHomePaint(modes: readonly Mode[], continents: readonly Continent[]) 
 
 export default function Home() {
   const insets = useSafeAreaInsets();
+  const wide = useWindowDimensions().width >= 900;
   const settings = useProgress((s) => s.settings);
   const cards = useProgress((s) => s.cards);
   const setModes = useProgress((s) => s.setModes);
@@ -56,18 +59,16 @@ export default function Home() {
     return () => camera.setAutoRotate(false);
   }, []);
 
-  const now = Date.now();
+  const now = useNow();
   const stats = useMemo(
     () => Object.fromEntries(MODES.map((m) => [m, statsFor(poolFor([m], settings.continents), cards, now)])),
-    // `now` only matters for "due"; recomputing when cards change is enough.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [cards, settings.continents],
+    [cards, settings.continents, now],
   );
   const total = statsFor(poolFor(settings.modes, settings.continents), cards, now);
 
   return (
     <View style={[styles.screen, { paddingTop: insets.top + 8 }]} pointerEvents="box-none">
-      <View style={styles.header} pointerEvents="box-none">
+      <Animated.View entering={FadeIn.duration(500)} style={styles.header} pointerEvents="box-none">
         <View>
           <Text variant="display">GeoQuiz</Text>
           <Text variant="label" color="rgba(255,255,255,0.85)">
@@ -78,11 +79,15 @@ export default function Home() {
           <IconButton icon="stats-chart" label="Progress" onPress={() => router.push('/progress')} />
           <IconButton icon="person" label="Account" onPress={() => router.push('/account')} />
         </View>
-      </View>
+      </Animated.View>
 
       <GlobeSlot style={styles.globe} fill={0.92} />
 
-      <View style={[styles.bottom, { paddingBottom: insets.bottom + 16 }]} pointerEvents="box-none">
+      <Animated.View
+        entering={FadeInDown.springify().damping(15).stiffness(140)}
+        style={[styles.bottom, wide && styles.bottomWide, { paddingBottom: insets.bottom + 16 }]}
+        pointerEvents="box-none"
+      >
         <GlassPanel style={styles.panel}>
           <ScrollView contentContainerStyle={styles.panelContent} bounces={false} showsVerticalScrollIndicator={false}>
             <Text variant="label" color="rgba(255,255,255,0.85)">
@@ -123,7 +128,7 @@ export default function Home() {
           icon="play"
           onPress={() => router.push('/play')}
         />
-      </View>
+      </Animated.View>
     </View>
   );
 }
@@ -134,7 +139,8 @@ const styles = StyleSheet.create({
   headerButtons: { flexDirection: 'row', gap: 10, marginTop: 6 },
   globe: { flex: 1, minHeight: 160 },
   bottom: { paddingHorizontal: 16, gap: 12 },
-  panel: { maxHeight: 300 },
+  bottomWide: { maxWidth: 560, width: '100%', alignSelf: 'center' },
+  panel: { maxHeight: 360 },
   panelContent: { gap: 8 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   sectionGap: { marginTop: 6 },

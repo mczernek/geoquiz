@@ -38,7 +38,7 @@ export function chooseVariant(key: CardKey, card: CardState | undefined, random:
 
 export function flagOptions(country: Country, random: () => number): string[] {
   // Distractors from the same continent are harder and more useful; top up from anywhere.
-  const shuffle = <T,>(items: T[]) => {
+  const shuffle = <T>(items: T[]) => {
     for (let i = items.length - 1; i > 0; i--) {
       const j = Math.floor(random() * (i + 1));
       [items[i], items[j]] = [items[j], items[i]];

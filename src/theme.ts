@@ -13,7 +13,7 @@ export const colors = {
   oceanDeep: '#1B3BD6',
   atmosphere: 'rgba(140, 230, 255, 0.55)',
   land: '#FFD84D',
-  landOther: '#E9C95A',
+  landOther: '#D4CBE6',
   landMuted: '#B9A6E8',
   border: 'rgba(90, 20, 140, 0.55)',
   graticule: 'rgba(255,255,255,0.13)',

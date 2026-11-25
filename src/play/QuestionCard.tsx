@@ -51,8 +51,18 @@ export function QuestionCard({ question, onAnswer }: { question: Question; onAns
         <View style={styles.body}>
           <Prompt before="Which is the flag of " strong={country.name} after="?" />
           <FlagChoices
+            key={question.key}
+            correct={country.code}
             options={question.options ?? []}
             onPick={(code) => onAnswer({ correct: code === country.code, given: code, givenCountry: code })}
+          />
+          <Button
+            title="I don't know"
+            kind="secondary"
+            size="m"
+            onPress={giveUp}
+            testID="give-up"
+            style={styles.outlined}
           />
         </View>
       );
@@ -97,7 +107,14 @@ export function QuestionCard({ question, onAnswer }: { question: Question; onAns
           <Text variant="caption" color={colors.inkSoft}>
             {HINT}
           </Text>
-          <Button title="I don't know" kind="secondary" size="m" onPress={giveUp} testID="give-up" />
+          <Button
+            title="I don't know"
+            kind="secondary"
+            size="m"
+            onPress={giveUp}
+            testID="give-up"
+            style={styles.outlined}
+          />
         </View>
       );
   }
@@ -108,4 +125,5 @@ const styles = StyleSheet.create({
   prompt: { flexShrink: 1 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   bigFlag: { alignItems: 'center' },
+  outlined: { borderColor: '#DCCFFF' },
 });

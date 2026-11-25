@@ -63,7 +63,7 @@ function graticuleRings(): Ring[] {
 /** Decodes the bundled borders once, on first use. */
 export function getWorld(): World {
   if (world) return world;
-  // eslint-disable-next-line @typescript-eslint/no-require-imports -- 1 MB JSON, loaded lazily.
+  // 1 MB of JSON, decoded lazily on first use.
   const data = require('../../assets/geo/world.json') as Record<Lod, WorldTopology>;
   const decoded = { low: decode(data.low), mid: decode(data.mid), high: decode(data.high) };
   const shapes = decoded.high.map((f, i): Shape => {
@@ -92,13 +92,13 @@ export function countryAt(point: LonLat): string | null {
   return null;
 }
 
-/** The tiny country whose marker is within `maxPx` of a screen point (they win over the land around them). */
+/** The tiny country whose marker is nearest a screen point, within `maxPx`, with its distance. */
 export function tinyNear(
   x: number,
   y: number,
   maxPx: number,
   project: (p: LonLat) => [number, number] | null,
-): string | null {
+): { code: string; distance: number } | null {
   let best: string | null = null;
   let bestD = maxPx;
   for (const c of getWorld().tiny) {
@@ -110,5 +110,5 @@ export function tinyNear(
       best = c.code;
     }
   }
-  return best;
+  return best ? { code: best, distance: bestD } : null;
 }
