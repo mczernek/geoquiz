@@ -25,6 +25,7 @@ export const en = {
     continentsLabel: 'Continents',
     play: 'Play',
     playReview: (due: number) => `Play · ${due} to review`,
+    about: 'Learn the flags, capitals and locations of the world’s countries on a 3D globe. Free, no ads.',
   },
 
   play: {
@@ -120,6 +121,7 @@ export const en = {
       'Borders: Natural Earth (public domain). Country data: mledoze/countries (ODbL), Wikidata. Flags: flagcdn.com.',
     licenses: 'Data licenses',
     privacy: 'Privacy policy',
+    terms: 'Terms of use',
     deleteData: 'Deleting your data',
   },
 

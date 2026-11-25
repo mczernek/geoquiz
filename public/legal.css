@@ -1,4 +1,4 @@
-/* Shared look of the static legal pages (privacy, delete-account): brand colours from docs/brand.md, system fonts
+/* Shared look of the static legal pages (privacy, terms, delete-account): brand colours from docs/brand.md, system fonts
    so the pages load nothing from third parties. */
 :root {
   --violet: #5b0cff;
@@ -114,4 +114,14 @@ footer {
 }
 footer a {
   color: #fff;
+}
+h3 {
+  font-size: 17px;
+  margin: 16px 0 2px;
+}
+code {
+  font-size: 15px;
+  background: #f3eeff;
+  border-radius: 6px;
+  padding: 1px 5px;
 }

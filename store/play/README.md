@@ -37,8 +37,9 @@ question, 4 a map question answered (answer card), 5 Explore with a country sele
 
 - Privacy policy: <https://globik-app.netlify.app/privacy/> (`public/privacy/index.html`, English and Polish)
 - Account and data deletion: <https://globik-app.netlify.app/delete-account/> (`public/delete-account/index.html`)
+- Terms of use (not asked by Play, linked from the app and the policy): <https://globik-app.netlify.app/terms/>
 
-They go live with the next web deploy (`release` → Netlify). Check both URLs load before submitting the forms
+They go live with the next web deploy (merge to `main` → Netlify). Check both URLs load before submitting the forms
 below; Play fetches them.
 
 ## Proposed Play Console answers
@@ -116,8 +117,8 @@ Play doesn't count as sharing; none is processed ephemerally):
 | Personal info → User IDs        | Yes       | Required (anonymous id created on first sync)                               | App functionality, Account management |
 | App activity → App interactions | Yes       | Required (learning progress per card, chosen topics and continents, synced) | App functionality                     |
 
-\* Declare Name only from the release that ships Google sign-in (Supabase keeps the Google profile's name in the
-user's metadata). Not collected: location, contacts, photos, files, messages, audio, health, financial info, web
+\* Declare Name only from the release that ships Google sign-in (Supabase keeps the Google profile's name, and the
+link to its picture, in the user's metadata; the app doesn't use either, and the link isn't a photo the app collects). Not collected: location, contacts, photos, files, messages, audio, health, financial info, web
 history, device or other IDs, app info and performance (no crash reporting or analytics).
 
 Is collection required: the anonymous user id and the progress sync start automatically when the build has Supabase
