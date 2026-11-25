@@ -52,3 +52,6 @@ supabase/.branches/
 
 # Argent local state
 .argent/
+
+# Local credentials (docs/release.md)
+.secrets/
