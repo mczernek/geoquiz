@@ -31,10 +31,12 @@ export const colors = {
 } as const;
 
 export const fonts = {
-  regular: 'Fredoka_400Regular',
-  medium: 'Fredoka_500Medium',
-  semibold: 'Fredoka_600SemiBold',
-  bold: 'Fredoka_700Bold',
+  // Nunito for all text: Fredoka has no ą ć ę ń ś ź ż (decision 016). Nunito runs lighter, hence a step up each.
+  medium: 'Nunito_600SemiBold',
+  semibold: 'Nunito_700Bold',
+  bold: 'Nunito_800ExtraBold',
+  /** The wordmark only ("globik" needs no Polish letters). */
+  brand: 'Fredoka_700Bold',
 } as const;
 
 export const radius = { s: 12, m: 20, l: 28, pill: 999 } as const;

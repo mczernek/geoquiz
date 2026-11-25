@@ -118,3 +118,12 @@ in the nominative.
 Expo slug, URL scheme, bundle id / package (`com.michalczernek.geoquiz`), storage keys and the Supabase project keep
 `geoquiz`: nothing user-visible, and renaming them would orphan installs, stored progress and deep links.
 **Consequences:** check the name's availability in the stores and as a trademark before the first release.
+
+## 016 · Nunito for text, Fredoka only for the wordmark
+
+**Decision:** UI text uses Nunito (SemiBold, Bold, ExtraBold). Fredoka, the original face, has no glyphs for
+ą ć ę ń ś ź ż (upstream too, not just the `@expo-google-fonts` cut), so Polish text fell back to a system font
+mid-word or didn't render. Nunito is rounded and friendly like Fredoka and covers Latin Extended, Cyrillic and
+Vietnamese. Baloo 2 looked closer but its tall line metrics push text off-centre in buttons. Fredoka Bold stays for
+the "globik" wordmark, which has no accented letters.
+**Consequences:** a new UI language must be checked against the font's glyphs (`docs/specs/i18n.md`).

@@ -30,7 +30,7 @@ export function Logo({ size = 'm' }: { size?: keyof typeof SIZES }) {
     transform: [{ rotate: `${spin.get()}deg` }, { scale: scale.get() }],
   }));
 
-  const text = { fontSize: font, lineHeight: font * 1.15, fontFamily: fonts.bold, color: colors.white };
+  const text = { fontSize: font, lineHeight: font * 1.15, fontFamily: fonts.brand, color: colors.white };
   return (
     <View style={styles.row} accessible accessibilityRole="header" accessibilityLabel="Globik">
       <Text style={text}>gl</Text>

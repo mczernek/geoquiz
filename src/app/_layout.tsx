@@ -1,10 +1,5 @@
-import {
-  Fredoka_400Regular,
-  Fredoka_500Medium,
-  Fredoka_600SemiBold,
-  Fredoka_700Bold,
-  useFonts,
-} from '@expo-google-fonts/fredoka';
+import { Fredoka_700Bold } from '@expo-google-fonts/fredoka';
+import { Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold, useFonts } from '@expo-google-fonts/nunito';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
@@ -45,7 +40,7 @@ function useDocumentLanguage() {
 }
 
 export default function RootLayout() {
-  const [fontsLoaded] = useFonts({ Fredoka_400Regular, Fredoka_500Medium, Fredoka_600SemiBold, Fredoka_700Bold });
+  const [fontsLoaded] = useFonts({ Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold, Fredoka_700Bold });
   const hydrated = useHydrated();
   const ready = fontsLoaded && hydrated;
   useSync(hydrated);

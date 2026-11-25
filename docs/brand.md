@@ -41,7 +41,9 @@ Full colours only, one look (no light/dark variants). Tokens: `src/theme.ts`.
 
 ## Type
 
-Fredoka, 400–700: Bold for the wordmark and titles, SemiBold for labels and buttons, Medium for body text.
+- **Wordmark:** Fredoka Bold, only for "globik".
+- **Everything else:** Nunito: ExtraBold for titles, Bold for headings, labels and buttons, SemiBold for body text.
+  Fredoka can't be used for text: it lacks Polish letters (ą ć ę ń ś ź ż; decision 016).
 
 ## Voice
 

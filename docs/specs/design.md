@@ -9,7 +9,7 @@ One vivid look, no light/dark modes. Tokens: `src/theme.ts`.
   Highlight pink `#FF3D9A`, correct mint `#21E6A0`, wrong red `#FF4D6D`. Home: unselected continents lavender,
   learned countries mint, partly learned orange.
 - **Brand:** the Globik wordmark tops Home and closes Account; logo, icons and voice in `docs/brand.md`.
-- **Type:** Fredoka (400–700).
+- **Type:** Nunito 600–800 for text; Fredoka Bold only in the wordmark (decision 016).
 - **Surfaces:** white cards (radius 28) for questions; translucent violet glass panels on the gradient; pill buttons
   (yellow primary, white secondary). Everything squishes when pressed.
 - **Layout:** max content width 720; phones portrait-first; the globe takes the free space between header and panel.
