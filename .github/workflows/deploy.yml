@@ -7,6 +7,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # One-off: Netlify refused deploys (free plan usage) until the billing period reset on 2026-11-26 08:00 UTC; this
+  # ships whatever main holds then. Remove after it has run.
+  schedule:
+    - cron: '15 8 26 11 *'
 
 permissions:
   contents: read
