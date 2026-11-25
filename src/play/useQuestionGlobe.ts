@@ -64,6 +64,11 @@ export function useQuestionGlobe(
     if (!question) return;
     const code = question.country.code;
     const tiny = isTiny(question.country);
+    // A newer question cancels this one's flight, which still resolves: its follow-ups must not run then.
+    let current = true;
+    const stale = () => {
+      current = false;
+    };
 
     if (result) {
       setOnTap(null);
@@ -82,10 +87,11 @@ export function useQuestionGlobe(
       setPaint(paint);
       const correct = result.correct;
       (other ? flyToBoth(code, other) : flyToCountry(code, 0.3)).then(() => {
+        if (!current) return;
         const at = camera.project([question.country.focus[0], question.country.focus[1]]);
         if (at) onArrive(at[0], at[1], correct);
       });
-      return;
+      return stale;
     }
 
     switch (question.variant) {
@@ -116,10 +122,13 @@ export function useQuestionGlobe(
       case 'flag-name':
       case 'capital-country':
         setPaint(EMPTY_PAINT);
-        camera.flyTo(continentsCenter(continents), 1).then(() => camera.setAutoRotate(true));
+        camera.flyTo(continentsCenter(continents), 1).then(() => {
+          if (current) camera.setAutoRotate(true);
+        });
         setOnTap(null);
         break;
     }
+    return stale;
   }, [question, result, continents, onTap, onArrive, setPaint, setOnTap]);
 
   useEffect(
