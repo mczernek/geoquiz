@@ -54,6 +54,8 @@ Create the repository, push, and set:
 4. Stores: App Store Connect app record + Google Play app (first upload of the Android bundle by hand). For
    `--auto-submit`: an App Store Connect API key and a Google Play service account in EAS.
 5. Icons and splash are generated from the globe renderer (`pnpm icons`, sources in `design/icon`).
+6. Google Play listing (texts, graphics, screenshots, Data safety and other Console answers): `store/play/README.md`.
+   Privacy policy and data deletion: `https://globik-app.netlify.app/privacy/` and `/delete-account/` (`public/`).
 
 ## Everyday
 

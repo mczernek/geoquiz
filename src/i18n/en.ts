@@ -117,6 +117,8 @@ export const en = {
     credits:
       'Borders: Natural Earth (public domain). Country data: mledoze/countries (ODbL), Wikidata. Flags: flagcdn.com.',
     licenses: 'Data licenses',
+    privacy: 'Privacy policy',
+    deleteData: 'Deleting your data',
   },
 
   errors: {

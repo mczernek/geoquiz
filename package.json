@@ -69,7 +69,8 @@
     "build:web": "expo export -p web && node scripts/build-sw.mjs",
     "data": "node scripts/build-data.mjs && node scripts/fetch-flags.mjs",
     "test:db": "node --test supabase/tests/*.test.mjs",
-    "icons": "scripts/build-icons.sh"
+    "icons": "scripts/build-icons.sh",
+    "play:check": "node scripts/check-play-listing.mjs"
   },
   "private": true,
   "jest": {

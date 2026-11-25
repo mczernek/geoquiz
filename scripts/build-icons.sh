@@ -15,4 +15,14 @@ done
 shot brand-mark 512 "$PWD/assets/images/brand-mark.png"
 shot favicon 256 "$tmp/favicon.png"
 sips -z 48 48 "$tmp/favicon.png" --out assets/images/favicon.png >/dev/null
+# Play Store: the 512 px icon and the feature graphics (JPEG: Play wants no alpha; the SVGs load fonts from files).
+mkdir -p store/play/graphics
+shot store-icon 1024 "$tmp/store-icon.png"
+sips -z 512 512 "$tmp/store-icon.png" --out store/play/graphics/icon.png >/dev/null
+for lang in en pl; do
+  "$chrome" --headless --disable-gpu --hide-scrollbars --allow-file-access-from-files --user-data-dir="$tmp/profile" \
+    --window-size=1024,500 --screenshot="$tmp/feature-$lang.png" "file://$PWD/design/icon/feature-graphic-$lang.svg" \
+    >/dev/null 2>&1
+  sips -s format jpeg -s formatOptions 92 "$tmp/feature-$lang.png" --out "store/play/graphics/feature-graphic-$lang.jpg" >/dev/null
+done
 rm -rf "$tmp"

@@ -117,6 +117,8 @@ export const pl: Strings = {
     credits:
       'Granice: Natural Earth (domena publiczna). Dane krajów: mledoze/countries (ODbL), Wikidata. Flagi: flagcdn.com.',
     licenses: 'Licencje danych',
+    privacy: 'Polityka prywatności',
+    deleteData: 'Usuwanie danych',
   },
 
   errors: {

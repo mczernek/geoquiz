@@ -135,3 +135,14 @@ the "globik" wordmark, which has no accented letters.
 the view. Fly-to animations and inertia don't count as moves. A spin that starts right after letting go pulls
 the country the user was looking at away.
 **Consequences:** the camera arms a timer to restart its frame loop; it idles (no frames) during the pause.
+
+## 018 · Privacy and data-deletion pages live in the web export
+
+**Decision:** the store-required privacy policy and account-deletion pages are plain static HTML in `public/`, which
+`expo export` copies into `dist/`, so they deploy with the web app at `https://globik-app.netlify.app/privacy/` and
+`/delete-account/`. Netlify serves existing files before applying the SPA catch-all redirect (it isn't
+`force = true`). Both languages sit on one page (anchors `#en`, `#pl`): one URL per page for the stores. They load
+nothing from third parties, matching the app's no-tracking promise.
+**Consequences:** a change to what the app stores or who processes it must update `public/privacy/index.html` and
+the Play Data safety answers (`store/play/README.md`). The Play listing (`store/play/`) is proposed to target ages
+13+, keeping the app out of the Families program until it's deliberately taken on.
