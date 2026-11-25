@@ -180,3 +180,10 @@ nothing from third parties, matching the app's no-tracking promise.
 **Consequences:** a change to what the app stores or who processes it must update `public/privacy/index.html` and
 the Play Data safety answers (`store/play/README.md`). The Play listing (`store/play/`) is proposed to target ages
 13+, keeping the app out of the Families program until it's deliberately taken on.
+
+## 021 · Android: block permissions the app doesn't use
+
+**Decision:** `app.json` → `android.blockedPermissions` removes `SYSTEM_ALERT_WINDOW` (React Native's dev overlay),
+external storage and biometrics (`expo-secure-store`'s optional authentication, unused) from the release manifest.
+Store reviewers and users see only what Globik needs: internet, network state and vibration (haptics).
+**Consequences:** using `requireAuthentication` in secure-store later means unblocking the biometric permissions.
