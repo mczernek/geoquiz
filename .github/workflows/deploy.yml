@@ -8,10 +8,9 @@ on:
   push:
     tags: ['release-*']
   workflow_dispatch:
-  # One-off, asked for before tag releases: Netlify refused deploys (free plan usage) until the billing period reset
-  # on 2026-11-26 08:00 UTC; this ships whatever main holds then. Remove after it has run.
-  schedule:
-    - cron: '15 8 26 11 *'
+  # A tag pushed from a workflow with GITHUB_TOKEN doesn't trigger this one, so workflows that tag (release-scheduled.yml)
+  # call it directly.
+  workflow_call:
 
 permissions:
   contents: read

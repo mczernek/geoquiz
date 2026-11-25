@@ -239,4 +239,5 @@ app stores, or to the Google data it uses, must update the privacy policy's Goog
 checks `main` instead. Supersedes the trigger in 019. Netlify's free plan counts credits per production deploy, and
 deploying every merge used them up within a day (deploys then fail with `Forbidden` until the billing period resets).
 **Consequences:** `main` can be ahead of production; releasing is an explicit tag. Migrations ship with the tag too, so
-a merged migration doesn't reach the database until the next release.
+a merged migration doesn't reach the database until the next release. A tag pushed by a workflow with `GITHUB_TOKEN` doesn't
+start `deploy.yml`, so a workflow that tags must call it (`workflow_call`), as the one-off `release-scheduled.yml` does.
