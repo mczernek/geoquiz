@@ -135,3 +135,19 @@ the "globik" wordmark, which has no accented letters.
 the view. Fly-to animations and inertia don't count as moves. A spin that starts right after letting go pulls
 the country the user was looking at away.
 **Consequences:** the camera arms a timer to restart its frame loop; it idles (no frames) during the pause.
+
+## 019 · Deploy from `main`; Android builds on GitHub Actions, not EAS
+
+**Decision:** every merge to `main` deploys (`deploy.yml`): checks, `supabase db push`, web export, Netlify
+production. The `release` branch is gone: one branch, and pull requests are the gate. Android release bundles are
+built on a GitHub runner (`android-release.yml`, run by hand): `expo prebuild`, `./gradlew bundleRelease`, upload
+with `r0adkll/upload-google-play` (pinned to a commit) to a chosen track (default `alpha`, closed testing) and
+status (default `draft` while the Play app is a draft). No Expo account or token is needed, and a local build takes
+about 1.5 h on the development Mac. `android/` stays generated: the local config plugin
+`plugins/withReleaseSigning.js` adds a `release` signing config fed by `GEOQUIZ_UPLOAD_*` Gradle properties or
+environment variables, used only when they are set (otherwise debug signing, as Expo generates it), and reads
+`versionCode` from `GEOQUIZ_VERSION_CODE`. CI sets it to `ANDROID_VERSION_CODE_OFFSET` (default 100) +
+`github.run_number`: increasing without asking Play or committing a counter. `eas.json` is deleted (nothing uses it).
+**Consequences:** renaming or recreating `android-release.yml` restarts its run counter, so the offset must then be
+raised above the last upload. A change to Expo's `build.gradle` template can break the plugin's anchors; it then
+fails the prebuild instead of shipping a debug-signed bundle. iOS has no pipeline yet.

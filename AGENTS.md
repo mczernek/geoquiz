@@ -20,6 +20,7 @@ and `docs/`.
 | `src/data/`                    | Generated: `countries.json`, `flags.ts` (`pnpm data`)                                            |
 | `assets/geo/`, `assets/flags/` | Generated: borders (TopoJSON, 3 levels of detail), flag PNGs                                     |
 | `scripts/`                     | Data generation and the web service worker build step                                            |
+| `plugins/`                     | Local Expo config plugins (release signing / versionCode in the generated `android/`)            |
 | `supabase/`                    | Migrations, database tests (PGlite)                                                              |
 | `docs/specs/`                  | Behaviour specs: the source of truth                                                             |
 | `docs/decisions.md`            | Numbered decisions; add one for every non-obvious choice                                         |
@@ -46,5 +47,7 @@ UI changes: run the app (`pnpm ios` / `pnpm android` / `pnpm web`) and check it 
 
 ## Releasing
 
-Push to `release` → CI: checks, `supabase db push`, Netlify production. Mobile builds: EAS (`docs/release.md`).
-Never push to `release`, apply migrations to production or submit builds without the human asking.
+Merge/push to `main` → `deploy.yml`: checks, `supabase db push` (production), Netlify production. Android: the
+manual `android-release.yml` builds the AAB on GitHub Actions and uploads it to Google Play (`docs/release.md`).
+Never push or merge to `main`, apply migrations to production, run `android-release.yml` or submit builds without
+the human asking.

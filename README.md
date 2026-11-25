@@ -27,7 +27,7 @@ pnpm android                  # dev build on an Android emulator (expo run:andro
 pnpm test && pnpm test:db     # unit tests, database tests
 ```
 
-Pulsar and Skia are native modules: use dev builds (`expo run:*` / EAS), not Expo Go.
+Pulsar and Skia are native modules: use dev builds (`expo run:*`), not Expo Go.
 
 ## Docs
 

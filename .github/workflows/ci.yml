@@ -1,10 +1,9 @@
 name: CI
 
-# Lint, typecheck, unit + database tests and the web export, on pull requests and main. Called by release.yml.
+# Lint, typecheck, unit + database tests and the web export on pull requests. Pushes to main run these checks
+# through deploy.yml (which calls this workflow), so they don't run twice.
 on:
   pull_request:
-  push:
-    branches: [main]
   workflow_call:
   workflow_dispatch:
 
@@ -38,3 +37,4 @@ jobs:
         env:
           EXPO_PUBLIC_SUPABASE_URL: ${{ vars.EXPO_PUBLIC_SUPABASE_URL }}
           EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+          EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID: ${{ vars.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID }}
