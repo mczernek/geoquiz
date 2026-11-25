@@ -55,3 +55,4 @@ supabase/.branches/
 
 # Local credentials (docs/release.md)
 .secrets/
+.claude/worktrees/
