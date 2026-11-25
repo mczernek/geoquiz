@@ -26,6 +26,7 @@ export const pl: Strings = {
     continentsLabel: 'Kontynenty',
     play: 'Graj',
     playReview: (due) => `Graj · do powtórki: ${due}`,
+    about: 'Poznaj flagi, stolice i położenie krajów świata na globusie 3D. Za darmo, bez reklam.',
   },
 
   play: {
@@ -120,6 +121,7 @@ export const pl: Strings = {
       'Granice: Natural Earth (domena publiczna). Dane krajów: mledoze/countries (ODbL), Wikidata. Flagi: flagcdn.com.',
     licenses: 'Licencje danych',
     privacy: 'Polityka prywatności',
+    terms: 'Regulamin',
     deleteData: 'Usuwanie danych',
   },
 

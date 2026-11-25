@@ -213,3 +213,22 @@ entry in `rnrepo.config.json`, or the patch is ignored. Builds now also talk to 
 misbehaves, `DISABLE_RNREPO` (set to any value) turns the Gradle plugin off for one build, and the _Android release_
 workflow's `rnrepo` input does the same. Downloaded AARs live in Gradle's cache, which `setup-gradle` keeps between
 CI runs.
+
+## 023 · Google consent screen: the web app's root is the home page; ownership by URL-prefix property
+
+**Decision:** for Google's OAuth branding checks, the home page is the web app itself
+(`https://globik-app.netlify.app/`), not a separate landing page. Its static HTML (`public/index.html`, the template
+`expo export` uses for the single-page output; `+html.tsx` only applies to static rendering) carries a meta
+description, `rel="privacy-policy"` / `rel="terms-of-service"` links and a `<noscript>` description with links, and
+the web Home screen ends with a one-line description and links to the privacy policy and terms (real `<a href>`
+through expo-router's `Link`, `src/ui/ExternalLink.tsx`). The privacy policy gains a Google user data section with
+the Limited Use statement, and a short terms of use page joins it in `public/terms/` (EN + PL). Domain ownership:
+`netlify.app` is on the Public Suffix List, so `globik-app.netlify.app` is the authorized domain, verified with a
+Search Console **URL-prefix** property, by an HTML file committed to `public/` or the meta tag that
+`scripts/site-verification.mjs` adds after the export when `EXPO_PUBLIC_GOOGLE_SITE_VERIFICATION` is set (the
+template can't read environment variables).
+**Consequences:** the verification file or variable must stay, or ownership lapses. `<ref>.supabase.co` (the web
+sign-in's redirect URI) is also its own top private domain and can't be verified by us, so brand verification needs
+either web sign-in by ID token (Google's button + `signInWithIdToken`) or a Supabase custom domain; publishing with
+only non-sensitive scopes doesn't wait for it (docs/release.md → Google OAuth consent screen). A change to what the
+app stores, or to the Google data it uses, must update the privacy policy's Google section too.

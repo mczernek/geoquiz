@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Globik · Privacy policy / Polityka prywatności</title>
-    <meta name="description" content="How Globik handles your data. Jak Globik obchodzi się z Twoimi danymi." />
+    <meta
+      name="description"
+      content="Globik's privacy policy: what data the app uses, why, who processes it and your rights. Polityka prywatności Globika."
+    />
     <meta name="theme-color" content="#7A06F8" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/legal.css" />
@@ -20,225 +23,526 @@
     <main>
       <section id="en" lang="en">
         <h1>Privacy policy</h1>
-        <p class="updated">Last updated: 25 November 2026</p>
+        <p class="updated">Effective date: 26 November 2026</p>
         <p>
           Globik is a free app for learning the world's countries — their flags, capitals and where they are — on a 3D
-          globe, for Android, iOS and the web. It has no ads, no analytics and no tracking, and we never sell or share
-          your data. This policy explains the little data the app needs to work.
+          globe, for Android, iOS and the web (<a href="/">globik-app.netlify.app</a>). It has no ads, no analytics and
+          no tracking, and your data is never sold. This policy explains what data the app uses, why, who processes it
+          and what rights you have. It applies to the Android and iOS apps, the web app and these web pages.
+        </p>
+        <p class="note">
+          <strong>In short:</strong> your progress is stored on your device and, so it can sync, in our database in the
+          EU under a random anonymous id. An account (email + password, or Google) is optional. From Google we get only
+          your account id, email address, name and profile picture link, use them only to sign you in, and share them
+          with no one. You can delete everything in the app at any time.
         </p>
 
-        <h2>Who we are</h2>
+        <h2 id="en-controller">1. Who is responsible for your data</h2>
         <p>
-          Globik is made by Michał Czernek, an independent developer in Poland, who is the controller of your data.
-          Contact: <a href="mailto:czernekmichal@gmail.com">czernekmichal@gmail.com</a>.
+          The controller of your personal data is <strong>Michał Czernek</strong>, an independent developer (a private
+          individual) in Poland, who makes Globik. Contact for everything about your data and this policy:
+          <a href="mailto:czernekmichal@gmail.com">czernekmichal@gmail.com</a>. We haven't appointed a data protection
+          officer (we aren't required to).
         </p>
 
-        <h2>What data the app uses</h2>
+        <h2 id="en-data">2. What data we use and why</h2>
+        <h3>Learning progress and settings</h3>
+        <p>
+          For each card (for example "the flag of Poland"): how well you know it, when it's due for review, how many
+          times you answered it right or wrong and when you last saw it; and which topics (flags, capitals, map) and
+          continents you chose. We use it to pick your next questions, show your progress and keep it in sync between
+          your devices. <em>Legal basis:</em> performance of the service you asked for (Art. 6(1)(b) GDPR).
+        </p>
+        <h3>Anonymous user id</h3>
+        <p>
+          The first time the app syncs, our authentication provider creates a random user id for your device, so your
+          progress can be saved in the cloud without an account. It isn't linked to your name, your device's advertising
+          id or anything else about you. <em>Legal basis:</em> Art. 6(1)(b) GDPR.
+        </p>
+        <h3>Account: email address and password (optional)</h3>
+        <p>
+          If you create an account with email and password, we store your email address and your password as a one-way
+          hash (we can't read it). We use your email address to sign you in, to send the emails the sign-in service
+          needs (such as confirming your address) and to answer you. We don't send marketing emails.
+          <em>Legal basis:</em> Art. 6(1)(b) GDPR.
+        </p>
+        <h3>Sign in with Google (optional)</h3>
+        <p>
+          If you choose "Continue with Google", we receive basic profile data from Google; see
+          <a href="#en-google">section 3</a>. <em>Legal basis:</em> Art. 6(1)(b) GDPR — you ask us to sign you in with
+          your Google account.
+        </p>
+        <h3>Technical and security data</h3>
+        <p>
+          When the app talks to our servers, our providers process your IP address and basic request data (time, browser
+          or app version, the page or API requested) to deliver the service. The sign-in service also records sign-in
+          events (time, IP address, browser or app) to protect accounts and stop abuse. These logs are kept for a
+          limited time. <em>Legal basis:</em> our legitimate interest in running a secure, working service (Art. 6(1)(f)
+          GDPR).
+        </p>
+        <h3>When you write to us</h3>
+        <p>
+          If you email us, we use your email address and what you write to answer you and, for example, to carry out a
+          deletion request. <em>Legal basis:</em> our legitimate interest in answering you (Art. 6(1)(f) GDPR) and,
+          where you exercise a right under the GDPR, our legal obligation to handle it (Art. 6(1)(c) GDPR).
+        </p>
+        <h3>What we don't collect</h3>
+        <p>
+          The app doesn't ask for your location, contacts, photos, camera, microphone or any other device permission. It
+          has no ads, no advertising id, no analytics or crash-reporting SDKs and no tracking across apps or websites.
+          We don't use your data for profiling or automated decisions with legal or similarly significant effects
+          (picking which flag to ask about next isn't one). Your language choice is kept only on your device.
+        </p>
+        <p>
+          Giving us data is voluntary. The anonymous id and progress sync are needed for your progress to be backed up
+          and synced; without an account everything else still works. An account is optional.
+        </p>
+
+        <h2 id="en-google">3. Google user data</h2>
+        <p>This section explains how Globik handles data it receives from Google when you sign in with Google.</p>
         <ul>
           <li>
-            <strong>Learning progress:</strong> for each card (for example "the flag of Poland") how well you know it,
-            when it is due for review and how many times you answered it right or wrong.
-          </li>
-          <li><strong>Settings:</strong> which topics (flags, capitals, map) and continents you chose to learn.</li>
-          <li>
-            <strong>An anonymous user id:</strong> a random id created the first time the app syncs, so your progress
-            can be saved in the cloud without an account. It is not linked to your name, your device's advertising id or
-            anything else about you.
+            <strong>What we access:</strong> only the basic sign-in scopes <code>openid</code>, <code>email</code> and
+            <code>profile</code>. Google gives us your Google account id, your email address (and whether Google has
+            verified it), your name and a link to your profile picture. We don't request or get access to your Gmail,
+            Drive, contacts, calendar or any other Google data, and we never see your Google password.
           </li>
           <li>
-            <strong>Email address and password</strong> — only if you create an account. The password is stored by our
-            authentication provider as a one-way hash; we can't read it.
+            <strong>How we use it:</strong> only to sign you in — to create your Globik account, recognize you the next
+            time you sign in, keep your learning progress with your account and show your email address on the Account
+            screen. If you already have a Globik account with the same confirmed email address, Google sign-in opens
+            that account. Your name and profile picture link are saved because Google sends them with the sign-in, but
+            Globik doesn't use or show them.
           </li>
           <li>
-            <strong>Your Google account's email address and name</strong> — only if you choose to sign in with Google.
-            We receive them from Google to create and identify your account; we don't get your Google password or any
-            other Google data.
+            <strong>How we store it:</strong> with your account in our authentication provider, Supabase, in the
+            European Union (Ireland), encrypted in transit.
           </li>
           <li>
-            <strong>Technical data:</strong> when the app talks to our servers, our hosting providers process your IP
-            address and basic request data (time, browser or app version) to deliver the service and keep it secure, and
-            keep them briefly in server logs.
+            <strong>Sharing:</strong> we don't sell, share or transfer Google user data to anyone. Supabase processes it
+            only on our behalf, to run the sign-in. We don't use it for advertising, don't give it to advertising
+            platforms, data brokers or information resellers, and don't use it to develop, improve or train generalized
+            AI or machine-learning models. No one reads it, except when you ask us for help with your account, for
+            security reasons (such as investigating abuse) or when the law requires it.
+          </li>
+          <li>
+            <strong>Retention and deletion:</strong> we keep it as long as your account exists. Account → Delete account
+            in the app deletes it immediately, together with all your progress; you can also ask by email (see
+            <a href="/delete-account/">how to delete your account</a>). You can remove Globik's access to your Google
+            account at any time at
+            <a href="https://myaccount.google.com/connections">myaccount.google.com/connections</a>; this stops sign-in
+            with Google but doesn't delete your Globik account, so delete the account in the app as well if you want
+            your data gone.
           </li>
         </ul>
         <p>
-          The app doesn't ask for your location, contacts, photos, microphone or any other device permission. Your
-          language choice is kept only on your device.
+          Globik's use and transfer to any other app of information received from Google APIs will adhere to the
+          <a href="https://developers.google.com/terms/api-services-user-data-policy"
+            >Google API Services User Data Policy</a
+          >, including the Limited Use requirements.
         </p>
 
-        <h2>Where it is stored</h2>
+        <h2 id="en-storage">4. Where your data is stored</h2>
         <p>
-          Everything works offline, so your progress and settings are always stored <strong>on your device</strong>. A
-          copy of your progress and settings, your anonymous user id and, if you have an account, your email address are
-          also stored <strong>in the cloud</strong> so they can be synced between your devices and restored when you
-          sign in.
+          The app works offline, so your progress and settings are always stored <strong>on your device</strong>: in the
+          app's storage on Android and iOS, and in your browser's local storage on the web. A copy of your progress and
+          settings, your user id and, if you have an account, your email address (and the Google profile data from
+          section 3) are stored <strong>in our database in the European Union</strong> (Supabase, Ireland), so they can
+          be synced between your devices and restored when you sign in.
         </p>
 
-        <h2>Why we use it</h2>
-        <p>
-          Only to run the app: to pick the next question, show your progress and keep it in sync across your devices,
-          and to let you sign in to your account. The legal basis is the performance of the service you asked for (Art.
-          6(1)(b) GDPR) and, for server logs, our legitimate interest in keeping the service secure (Art. 6(1)(f) GDPR).
-          We don't use your data for advertising, profiling or analytics, and we don't send you marketing emails.
-        </p>
-
-        <h2>Who processes it for us</h2>
+        <h2 id="en-processors">5. Who processes your data</h2>
+        <p>We use a few service providers (processors), who process data only on our instructions:</p>
         <ul>
-          <li><strong>Supabase</strong> — hosts the database and the sign-in service, in the European Union.</li>
-          <li><strong>Netlify</strong> — hosts the web version of the app (globik-app.netlify.app).</li>
-          <li><strong>Google</strong> — only when you choose to sign in with Google.</li>
+          <li>
+            <strong>Supabase</strong> (Supabase, Inc.) — database and sign-in service, hosted in the EU (Ireland). It
+            also sends the sign-in emails.
+          </li>
+          <li>
+            <strong>Netlify</strong> (Netlify, Inc.) — hosts the web app and these pages (globik-app.netlify.app) and
+            serves them through its worldwide network.
+          </li>
+        </ul>
+        <p>These act as independent controllers, under their own privacy policies:</p>
+        <ul>
+          <li>
+            <strong>Google</strong> — only if you sign in with Google: Google handles your Google account and the
+            sign-in screen.
+          </li>
+          <li>
+            <strong>Google Play and the Apple App Store</strong> — when you download the app. We get from them only the
+            aggregated statistics and crash reports they give every developer.
+          </li>
+          <li><strong>Our email provider</strong> (Gmail) — when you write to us.</li>
         </ul>
         <p>
-          These companies process data only on our behalf, to provide their service. Netlify and Google may process data
-          outside the EU under the European Commission's standard contractual clauses or the EU–US Data Privacy
-          Framework. We don't share your data with anyone else, unless the law requires it.
+          We don't share your data with anyone else, unless the law requires it (for example, a binding order from a
+          court or authority).
         </p>
 
-        <h2>Security</h2>
+        <h2 id="en-transfers">6. Transfers outside the EU</h2>
         <p>
-          All traffic between the app and our servers is encrypted (HTTPS/TLS). Each user can read and change only their
-          own progress, enforced by the database itself.
+          Our database is in the EU. Supabase and Netlify are US companies and Netlify serves the web app from servers
+          around the world, so some data (mainly IP addresses and request data, and access needed for support and
+          maintenance) may be processed outside the European Economic Area. Such transfers rely on the European
+          Commission's standard contractual clauses or on an adequacy decision, such as the EU–US Data Privacy Framework
+          for certified companies. You can ask us for more information about these safeguards.
         </p>
 
-        <h2>How long we keep it</h2>
+        <h2 id="en-retention">7. How long we keep it</h2>
+        <ul>
+          <li>
+            <strong>Account, progress, settings, Google profile data:</strong> until you delete your account. Deleting
+            it removes them from our database immediately.
+          </li>
+          <li>
+            <strong>Anonymous profiles</strong> (no account): while you use the app; profiles unused for 60 days or more
+            may be deleted automatically. You can also ask us by email to delete one.
+          </li>
+          <li>
+            <strong>Server and sign-in logs:</strong> for a short period set by our providers, then deleted
+            automatically.
+          </li>
+          <li><strong>Emails with us:</strong> as long as needed to handle your request.</li>
+          <li>
+            <strong>Backups:</strong> if our database provider keeps automatic backups, deleted data disappears from
+            them as those backups expire.
+          </li>
+          <li>
+            <strong>On your device:</strong> until you sign out or uninstall the app (or clear the site's data in your
+            browser).
+          </li>
+        </ul>
+
+        <h2 id="en-rights">8. Your rights</h2>
+        <p>Under the GDPR you have the right to:</p>
+        <ul>
+          <li>access your data and get a copy of it;</li>
+          <li>have it corrected (rectification);</li>
+          <li>have it deleted (erasure);</li>
+          <li>restrict its processing;</li>
+          <li>
+            receive it in a structured, machine-readable format and have it transmitted to someone else (portability);
+          </li>
+          <li>object to processing based on our legitimate interest;</li>
+          <li>
+            lodge a complaint with a supervisory authority — in Poland the President of the Personal Data Protection
+            Office (Prezes Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Warszawa,
+            <a href="https://uodo.gov.pl">uodo.gov.pl</a>), or the authority where you live or work.
+          </li>
+        </ul>
         <p>
-          As long as you use the app. Deleting your account removes your account, email address and all your progress
-          from our servers immediately. Anonymous profiles that haven't been used for a long time may be deleted
-          automatically. Server logs are kept by our providers for a short period only. Data on your device is removed
-          when you uninstall the app (or clear the site's data in your browser).
+          The quickest way to delete everything is in the app: Account → Delete account (see
+          <a href="/delete-account/">how to delete your account and data</a>). For anything else, email
+          <a href="mailto:czernekmichal@gmail.com">czernekmichal@gmail.com</a> — from your account's address, or tell us
+          which it is, so we can check the data is yours. We answer within one month.
         </p>
 
-        <h2>Your rights</h2>
+        <h2 id="en-storage-web">9. Cookies and local storage</h2>
         <p>
-          You can access, correct, export or delete your data, restrict or object to its processing, and complain to a
-          data protection authority (in Poland: the President of the Personal Data Protection Office, UODO). The
-          quickest way to delete everything is in the app: Account → Delete account. See
-          <a href="/delete-account/">how to delete your account and data</a>. For anything else, email
-          <a href="mailto:czernekmichal@gmail.com">czernekmichal@gmail.com</a>.
+          Globik sets <strong>no cookies</strong> and uses no tracking technologies. The web app keeps your progress,
+          settings, language and sign-in session in your browser's local storage, and its files in the browser's cache
+          (a service worker), so it works offline. This storage is strictly necessary for the app you asked to use,
+          stays in your browser and isn't used to track you. You can remove it by clearing the site's data in your
+          browser.
         </p>
 
-        <h2>Children</h2>
+        <h2 id="en-security">10. Security</h2>
         <p>
-          Globik is meant for a general audience who want to learn geography. It has no ads, no chat and no way to share
-          content with other users, and an account is optional. If you are a parent and believe your child has given us
-          an email address, write to us and we'll delete it.
+          All traffic between the app and our servers is encrypted (HTTPS/TLS). The database enforces row-level
+          security: each user can read and change only their own progress and settings. Passwords are stored only as
+          one-way hashes. The app holds only a public key that can't bypass these rules. No system is perfectly secure;
+          if a breach puts your data at risk, we'll tell you and the authority as the law requires.
         </p>
 
-        <h2>Changes</h2>
-        <p>If this policy changes, we'll update it on this page and change the date above.</p>
+        <h2 id="en-children">11. Children</h2>
+        <p>
+          Globik is meant for a general audience who want to learn geography and isn't directed at children under 13. It
+          has no ads, no chat and no way to share content with other users, and an account is optional. If you are under
+          16, please create an account only with a parent's or guardian's permission. If you are a parent and believe
+          your child has given us an email address, write to us and we'll delete it.
+        </p>
+
+        <h2 id="en-changes">12. Changes to this policy</h2>
+        <p>
+          If this policy changes, we'll publish the new version on this page and change the effective date above. If we
+          ever want to use your data, including Google user data, in a new way, we'll tell you in the app first and,
+          where required, ask for your consent.
+        </p>
+
+        <p>See also: <a href="/terms/">Terms of use</a>.</p>
       </section>
 
       <section id="pl" lang="pl">
         <h1>Polityka prywatności</h1>
-        <p class="updated">Ostatnia aktualizacja: 25 listopada 2026</p>
+        <p class="updated">Obowiązuje od: 26 listopada 2026</p>
         <p>
           Globik to darmowa aplikacja do nauki krajów świata — ich flag, stolic i położenia — na globusie 3D, na
-          Androida, iOS i w przeglądarce. Nie ma reklam, analityki ani śledzenia, a Twoich danych nigdy nie sprzedajemy
-          ani nie udostępniamy. Tu opisujemy te nieliczne dane, których aplikacja potrzebuje do działania.
+          Androida, iOS i w przeglądarce (<a href="/">globik-app.netlify.app</a>). Nie ma reklam, analityki ani
+          śledzenia, a Twoich danych nigdy nie sprzedajemy. Tu wyjaśniamy, jakich danych używa aplikacja, po co, kto je
+          przetwarza i jakie masz prawa. Polityka dotyczy aplikacji na Androida i iOS, aplikacji w przeglądarce i tych
+          stron.
+        </p>
+        <p class="note">
+          <strong>W skrócie:</strong> Twoje postępy są zapisane na urządzeniu oraz — żeby mogły się synchronizować — w
+          naszej bazie w UE pod losowym, anonimowym identyfikatorem. Konto (e-mail i hasło albo Google) jest opcjonalne.
+          Od Google dostajemy tylko identyfikator konta, adres e-mail, imię i nazwisko oraz link do zdjęcia profilowego,
+          używamy ich wyłącznie do logowania i nikomu ich nie udostępniamy. W każdej chwili możesz wszystko usunąć w
+          aplikacji.
         </p>
 
-        <h2>Kim jesteśmy</h2>
+        <h2 id="pl-controller">1. Kto odpowiada za Twoje dane</h2>
         <p>
-          Globika tworzy Michał Czernek, niezależny programista z Polski, który jest administratorem Twoich danych.
-          Kontakt: <a href="mailto:czernekmichal@gmail.com">czernekmichal@gmail.com</a>.
+          Administratorem Twoich danych osobowych jest <strong>Michał Czernek</strong>, niezależny programista (osoba
+          prywatna) z Polski, który tworzy Globika. Kontakt we wszystkich sprawach dotyczących danych i tej polityki:
+          <a href="mailto:czernekmichal@gmail.com">czernekmichal@gmail.com</a>. Nie wyznaczyliśmy inspektora ochrony
+          danych (nie mamy takiego obowiązku).
         </p>
 
-        <h2>Jakich danych używa aplikacja</h2>
+        <h2 id="pl-data">2. Jakich danych używamy i po co</h2>
+        <h3>Postępy w nauce i ustawienia</h3>
+        <p>
+          Dla każdej karty (np. „flaga Polski”): jak dobrze ją znasz, kiedy przyjdzie pora na powtórkę, ile razy
+          odpowiedź była dobra lub zła i kiedy ostatnio ją widziałeś; oraz wybrane tematy (flagi, stolice, mapa) i
+          kontynenty. Używamy ich, żeby wybierać kolejne pytania, pokazywać postępy i synchronizować je między
+          urządzeniami. <em>Podstawa prawna:</em> wykonanie usługi, o którą prosisz (art. 6 ust. 1 lit. b RODO).
+        </p>
+        <h3>Anonimowy identyfikator użytkownika</h3>
+        <p>
+          Przy pierwszej synchronizacji nasz dostawca logowania tworzy losowy identyfikator dla Twojego urządzenia, żeby
+          postępy mogły być zapisane w chmurze bez zakładania konta. Nie jest powiązany z Twoim imieniem,
+          identyfikatorem reklamowym urządzenia ani niczym innym, co Cię dotyczy. <em>Podstawa prawna:</em> art. 6 ust.
+          1 lit. b RODO.
+        </p>
+        <h3>Konto: adres e-mail i hasło (opcjonalnie)</h3>
+        <p>
+          Jeśli założysz konto z e-mailem i hasłem, przechowujemy adres e-mail i hasło w postaci jednokierunkowego
+          skrótu (hash — nie możemy go odczytać). Adresu e-mail używamy do logowania, do wiadomości potrzebnych usłudze
+          logowania (np. potwierdzenia adresu) i do odpowiadania Ci. Nie wysyłamy e-maili marketingowych.
+          <em>Podstawa prawna:</em> art. 6 ust. 1 lit. b RODO.
+        </p>
+        <h3>Logowanie przez Google (opcjonalnie)</h3>
+        <p>
+          Jeśli wybierzesz „Kontynuuj z Google”, dostajemy od Google podstawowe dane profilu — zobacz
+          <a href="#pl-google">punkt 3</a>. <em>Podstawa prawna:</em> art. 6 ust. 1 lit. b RODO — prosisz nas o
+          zalogowanie kontem Google.
+        </p>
+        <h3>Dane techniczne i bezpieczeństwo</h3>
+        <p>
+          Kiedy aplikacja łączy się z naszymi serwerami, dostawcy przetwarzają Twój adres IP i podstawowe dane o
+          zapytaniu (czas, wersja przeglądarki lub aplikacji, żądana strona lub funkcja), żeby dostarczyć usługę. Usługa
+          logowania zapisuje też zdarzenia logowania (czas, adres IP, przeglądarka lub aplikacja), żeby chronić konta i
+          zapobiegać nadużyciom. Te logi są przechowywane przez ograniczony czas. <em>Podstawa prawna:</em> nasz prawnie
+          uzasadniony interes w zapewnieniu bezpiecznej i działającej usługi (art. 6 ust. 1 lit. f RODO).
+        </p>
+        <h3>Kiedy do nas piszesz</h3>
+        <p>
+          Jeśli napiszesz e-mail, używamy Twojego adresu i treści wiadomości, żeby odpowiedzieć i np. wykonać prośbę o
+          usunięcie danych. <em>Podstawa prawna:</em> nasz prawnie uzasadniony interes w udzieleniu odpowiedzi (art. 6
+          ust. 1 lit. f RODO), a gdy korzystasz z praw z RODO — nasz obowiązek prawny (art. 6 ust. 1 lit. c RODO).
+        </p>
+        <h3>Czego nie zbieramy</h3>
+        <p>
+          Aplikacja nie prosi o dostęp do lokalizacji, kontaktów, zdjęć, aparatu, mikrofonu ani o żadne inne
+          uprawnienia. Nie ma reklam, identyfikatora reklamowego, narzędzi analitycznych ani raportowania awarii i nie
+          śledzi Cię w innych aplikacjach ani na stronach. Nie profilujemy Cię i nie podejmujemy wobec Ciebie
+          zautomatyzowanych decyzji wywołujących skutki prawne lub podobnie istotne (wybór, o którą flagę zapytać, nie
+          jest taką decyzją). Wybrany język jest zapisany tylko na Twoim urządzeniu.
+        </p>
+        <p>
+          Podanie danych jest dobrowolne. Anonimowy identyfikator i synchronizacja są potrzebne, żeby postępy miały
+          kopię w chmurze i synchronizowały się między urządzeniami; bez konta cała reszta działa. Konto jest
+          opcjonalne.
+        </p>
+
+        <h2 id="pl-google">3. Dane użytkownika Google</h2>
+        <p>Ten punkt wyjaśnia, co Globik robi z danymi, które dostaje od Google przy logowaniu przez Google.</p>
         <ul>
           <li>
-            <strong>Postępy w nauce:</strong> dla każdej karty (np. „flaga Polski”) to, jak dobrze ją znasz, kiedy
-            przyjdzie pora na powtórkę i ile razy odpowiedź była dobra lub zła.
-          </li>
-          <li><strong>Ustawienia:</strong> wybrane tematy (flagi, stolice, mapa) i kontynenty.</li>
-          <li>
-            <strong>Anonimowy identyfikator użytkownika:</strong> losowy identyfikator tworzony przy pierwszej
-            synchronizacji, żeby postępy mogły być zapisane w chmurze bez zakładania konta. Nie jest powiązany z Twoim
-            imieniem, identyfikatorem reklamowym urządzenia ani niczym innym, co Cię dotyczy.
+            <strong>Do czego mamy dostęp:</strong> tylko do podstawowych zakresów logowania <code>openid</code>,
+            <code>email</code> i <code>profile</code>. Google przekazuje nam identyfikator Twojego konta Google, adres
+            e-mail (i informację, czy Google go zweryfikował), imię i nazwisko oraz link do zdjęcia profilowego. Nie
+            prosimy o dostęp do Gmaila, Dysku, kontaktów, kalendarza ani żadnych innych danych Google i nigdy nie
+            widzimy Twojego hasła do Google.
           </li>
           <li>
-            <strong>Adres e-mail i hasło</strong> — tylko jeśli założysz konto. Hasło jest przechowywane przez naszego
-            dostawcę logowania jako jednokierunkowy skrót (hash); nie możemy go odczytać.
+            <strong>Jak ich używamy:</strong> wyłącznie do logowania — żeby założyć Twoje konto w Globiku, rozpoznać Cię
+            przy kolejnym logowaniu, przypisać postępy do konta i pokazać adres e-mail na ekranie Konto. Jeśli masz już
+            konto w Globiku z tym samym potwierdzonym adresem e-mail, logowanie przez Google otwiera to konto. Imię i
+            nazwisko oraz link do zdjęcia są zapisywane, bo Google przesyła je razem z logowaniem, ale Globik ich nie
+            używa ani nie wyświetla.
           </li>
           <li>
-            <strong>Adres e-mail i imię z konta Google</strong> — tylko jeśli wybierzesz logowanie przez Google.
-            Dostajemy je od Google, żeby założyć i rozpoznać Twoje konto; nie dostajemy hasła do Google ani żadnych
-            innych danych z Google.
+            <strong>Gdzie je przechowujemy:</strong> razem z Twoim kontem u naszego dostawcy logowania, Supabase, w Unii
+            Europejskiej (Irlandia); przesyłanie jest szyfrowane.
           </li>
           <li>
-            <strong>Dane techniczne:</strong> kiedy aplikacja łączy się z naszymi serwerami, dostawcy hostingu
-            przetwarzają Twój adres IP i podstawowe dane o zapytaniu (czas, wersja przeglądarki lub aplikacji), żeby
-            dostarczyć usługę i dbać o jej bezpieczeństwo, i przez krótki czas przechowują je w logach serwera.
+            <strong>Udostępnianie:</strong> nie sprzedajemy, nie udostępniamy i nie przekazujemy danych użytkownika
+            Google nikomu. Supabase przetwarza je wyłącznie w naszym imieniu, żeby obsłużyć logowanie. Nie używamy ich
+            do reklam, nie przekazujemy ich platformom reklamowym, brokerom danych ani pośrednikom i nie używamy ich do
+            tworzenia, ulepszania ani trenowania ogólnych modeli AI lub uczenia maszynowego. Nikt ich nie czyta, chyba
+            że poprosisz nas o pomoc z kontem, ze względów bezpieczeństwa (np. przy wyjaśnianiu nadużycia) albo gdy
+            wymaga tego prawo.
+          </li>
+          <li>
+            <strong>Przechowywanie i usuwanie:</strong> przechowujemy je, dopóki istnieje Twoje konto. Konto → Usuń
+            konto w aplikacji natychmiast je usuwa razem ze wszystkimi postępami; możesz też poprosić e-mailem (zobacz
+            <a href="/delete-account/#pl">jak usunąć konto</a>). Dostęp Globika do konta Google możesz w każdej chwili
+            odebrać na <a href="https://myaccount.google.com/connections">myaccount.google.com/connections</a>; to
+            wyłącza logowanie przez Google, ale nie usuwa konta w Globiku — jeśli chcesz usunąć dane, usuń też konto w
+            aplikacji.
           </li>
         </ul>
         <p>
-          Aplikacja nie prosi o dostęp do lokalizacji, kontaktów, zdjęć, mikrofonu ani o żadne inne uprawnienia. Wybrany
-          język jest zapisany tylko na Twoim urządzeniu.
+          Wykorzystywanie i przekazywanie przez Globika do innych aplikacji informacji otrzymanych z interfejsów API
+          Google jest zgodne z
+          <a href="https://developers.google.com/terms/api-services-user-data-policy"
+            >Zasadami dotyczącymi danych użytkownika w usługach interfejsu API Google</a
+          >
+          (Google API Services User Data Policy), w tym z wymaganiami dotyczącymi ograniczonego użytkowania (Limited
+          Use).
         </p>
 
-        <h2>Gdzie są przechowywane</h2>
+        <h2 id="pl-storage">4. Gdzie są przechowywane dane</h2>
         <p>
-          Wszystko działa offline, więc postępy i ustawienia są zawsze zapisane <strong>na Twoim urządzeniu</strong>.
-          Kopia postępów i ustawień, anonimowy identyfikator oraz — jeśli masz konto — adres e-mail są też przechowywane
-          <strong>w chmurze</strong>, żeby można je było synchronizować między urządzeniami i odzyskać po zalogowaniu.
+          Aplikacja działa offline, więc postępy i ustawienia są zawsze zapisane <strong>na Twoim urządzeniu</strong>: w
+          pamięci aplikacji na Androidzie i iOS, a w przeglądarce — w jej pamięci lokalnej (local storage). Kopia
+          postępów i ustawień, identyfikator użytkownika oraz — jeśli masz konto — adres e-mail (i dane profilu Google z
+          punktu 3) są przechowywane <strong>w naszej bazie w Unii Europejskiej</strong> (Supabase, Irlandia), żeby
+          można je było synchronizować między urządzeniami i odzyskać po zalogowaniu.
         </p>
 
-        <h2>Po co ich używamy</h2>
+        <h2 id="pl-processors">5. Kto przetwarza Twoje dane</h2>
         <p>
-          Wyłącznie do działania aplikacji: żeby wybrać kolejne pytanie, pokazać postępy i synchronizować je między
-          urządzeniami oraz żeby umożliwić logowanie do konta. Podstawą prawną jest wykonanie usługi, o którą prosisz
-          (art. 6 ust. 1 lit. b RODO), a w przypadku logów serwera — nasz prawnie uzasadniony interes w zapewnieniu
-          bezpieczeństwa usługi (art. 6 ust. 1 lit. f RODO). Nie używamy Twoich danych do reklam, profilowania ani
-          analityki i nie wysyłamy e-maili marketingowych.
+          Korzystamy z kilku dostawców usług (podmiotów przetwarzających), którzy działają wyłącznie na nasze polecenie:
         </p>
-
-        <h2>Kto przetwarza je w naszym imieniu</h2>
         <ul>
-          <li><strong>Supabase</strong> — baza danych i usługa logowania, w Unii Europejskiej.</li>
-          <li><strong>Netlify</strong> — hosting wersji przeglądarkowej (globik-app.netlify.app).</li>
-          <li><strong>Google</strong> — tylko jeśli wybierzesz logowanie przez Google.</li>
+          <li>
+            <strong>Supabase</strong> (Supabase, Inc.) — baza danych i usługa logowania, serwery w UE (Irlandia); wysyła
+            też e-maile związane z logowaniem.
+          </li>
+          <li>
+            <strong>Netlify</strong> (Netlify, Inc.) — hosting aplikacji w przeglądarce i tych stron
+            (globik-app.netlify.app), serwowanych przez jego światową sieć serwerów.
+          </li>
+        </ul>
+        <p>Jako odrębni administratorzy, na podstawie własnych polityk prywatności, działają:</p>
+        <ul>
+          <li>
+            <strong>Google</strong> — tylko jeśli logujesz się przez Google: Google obsługuje Twoje konto Google i ekran
+            logowania.
+          </li>
+          <li>
+            <strong>Google Play i Apple App Store</strong> — kiedy pobierasz aplikację. Dostajemy od nich tylko zbiorcze
+            statystyki i raporty awarii, które sklepy udostępniają wszystkim twórcom.
+          </li>
+          <li><strong>Nasz dostawca poczty</strong> (Gmail) — kiedy do nas piszesz.</li>
         </ul>
         <p>
-          Te firmy przetwarzają dane wyłącznie na nasze zlecenie, żeby świadczyć swoją usługę. Netlify i Google mogą
-          przetwarzać dane poza UE na podstawie standardowych klauzul umownych Komisji Europejskiej lub programu EU–US
-          Data Privacy Framework. Nie przekazujemy Twoich danych nikomu innemu, chyba że wymaga tego prawo.
+          Nie przekazujemy Twoich danych nikomu innemu, chyba że wymaga tego prawo (np. wiążące postanowienie sądu lub
+          organu).
         </p>
 
-        <h2>Bezpieczeństwo</h2>
+        <h2 id="pl-transfers">6. Przekazywanie danych poza UE</h2>
         <p>
-          Cała komunikacja między aplikacją a naszymi serwerami jest szyfrowana (HTTPS/TLS). Każdy użytkownik może
-          odczytywać i zmieniać tylko własne postępy — pilnuje tego sama baza danych.
+          Nasza baza danych jest w UE. Supabase i Netlify to firmy z USA, a Netlify serwuje aplikację z serwerów na
+          całym świecie, więc część danych (głównie adresy IP i dane o zapytaniach oraz dostęp potrzebny do wsparcia i
+          utrzymania) może być przetwarzana poza Europejskim Obszarem Gospodarczym. Takie przekazanie opiera się na
+          standardowych klauzulach umownych Komisji Europejskiej lub na decyzji stwierdzającej odpowiedni stopień
+          ochrony, np. EU–US Data Privacy Framework dla firm z certyfikacją. Możesz poprosić nas o więcej informacji o
+          tych zabezpieczeniach.
         </p>
 
-        <h2>Jak długo je przechowujemy</h2>
+        <h2 id="pl-retention">7. Jak długo przechowujemy dane</h2>
+        <ul>
+          <li>
+            <strong>Konto, postępy, ustawienia, dane profilu Google:</strong> do usunięcia konta. Usunięcie konta
+            natychmiast usuwa je z naszej bazy.
+          </li>
+          <li>
+            <strong>Anonimowe profile</strong> (bez konta): dopóki korzystasz z aplikacji; profile nieużywane przez co
+            najmniej 60 dni mogą być usuwane automatycznie. Możesz też poprosić e-mailem o usunięcie profilu.
+          </li>
+          <li>
+            <strong>Logi serwera i logowania:</strong> przez krótki czas ustalony przez dostawców, potem są
+            automatycznie usuwane.
+          </li>
+          <li><strong>Korespondencja e-mail:</strong> tak długo, jak to potrzebne do załatwienia sprawy.</li>
+          <li>
+            <strong>Kopie zapasowe:</strong> jeśli dostawca bazy danych robi automatyczne kopie zapasowe, usunięte dane
+            znikają z nich, gdy te kopie wygasają.
+          </li>
+          <li>
+            <strong>Na urządzeniu:</strong> do wylogowania lub odinstalowania aplikacji (albo wyczyszczenia danych
+            strony w przeglądarce).
+          </li>
+        </ul>
+
+        <h2 id="pl-rights">8. Twoje prawa</h2>
+        <p>Na podstawie RODO masz prawo:</p>
+        <ul>
+          <li>dostępu do swoich danych i otrzymania ich kopii;</li>
+          <li>ich sprostowania;</li>
+          <li>ich usunięcia;</li>
+          <li>ograniczenia przetwarzania;</li>
+          <li>
+            otrzymania ich w ustrukturyzowanym formacie nadającym się do odczytu maszynowego i przesłania ich innemu
+            administratorowi (przenoszenie danych);
+          </li>
+          <li>sprzeciwu wobec przetwarzania opartego na naszym prawnie uzasadnionym interesie;</li>
+          <li>
+            wniesienia skargi do organu nadzorczego — Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193
+            Warszawa, <a href="https://uodo.gov.pl">uodo.gov.pl</a>) lub organu w kraju, w którym mieszkasz lub
+            pracujesz.
+          </li>
+        </ul>
         <p>
-          Tak długo, jak korzystasz z aplikacji. Usunięcie konta natychmiast usuwa z naszych serwerów konto, adres
-          e-mail i wszystkie postępy. Anonimowe profile nieużywane przez długi czas mogą być usuwane automatycznie. Logi
-          serwera nasi dostawcy przechowują tylko przez krótki czas. Dane na urządzeniu znikają po odinstalowaniu
-          aplikacji (albo po wyczyszczeniu danych strony w przeglądarce).
+          Najszybciej usuniesz wszystko w aplikacji: Konto → Usuń konto (zobacz
+          <a href="/delete-account/#pl">jak usunąć konto i dane</a>). W pozostałych sprawach napisz na
+          <a href="mailto:czernekmichal@gmail.com">czernekmichal@gmail.com</a> — z adresu konta albo podaj ten adres,
+          żebyśmy mogli sprawdzić, że dane należą do Ciebie. Odpowiadamy w ciągu miesiąca.
         </p>
 
-        <h2>Twoje prawa</h2>
+        <h2 id="pl-storage-web">9. Pliki cookie i pamięć lokalna</h2>
         <p>
-          Masz prawo dostępu do swoich danych, ich sprostowania, przeniesienia i usunięcia, ograniczenia przetwarzania,
-          sprzeciwu wobec niego oraz prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (UODO).
-          Najszybciej usuniesz wszystko w aplikacji: Konto → Usuń konto. Zobacz też
-          <a href="/delete-account/#pl">jak usunąć konto i dane</a>. W pozostałych sprawach napisz na
-          <a href="mailto:czernekmichal@gmail.com">czernekmichal@gmail.com</a>.
+          Globik <strong>nie używa plików cookie</strong> ani technologii śledzących. Aplikacja w przeglądarce zapisuje
+          postępy, ustawienia, język i sesję logowania w pamięci lokalnej przeglądarki (local storage), a swoje pliki —
+          w pamięci podręcznej przeglądarki (service worker), żeby działać offline. Ta pamięć jest niezbędna do
+          działania aplikacji, z której chcesz korzystać, zostaje w Twojej przeglądarce i nie służy do śledzenia. Możesz
+          ją usunąć, czyszcząc dane strony w przeglądarce.
         </p>
 
-        <h2>Dzieci</h2>
+        <h2 id="pl-security">10. Bezpieczeństwo</h2>
         <p>
-          Globik jest przeznaczony dla wszystkich, którzy chcą uczyć się geografii. Nie ma reklam, czatu ani możliwości
-          dzielenia się treściami z innymi użytkownikami, a konto jest opcjonalne. Jeśli jesteś rodzicem i uważasz, że
-          Twoje dziecko podało nam adres e-mail, napisz do nas — usuniemy go.
+          Cała komunikacja między aplikacją a naszymi serwerami jest szyfrowana (HTTPS/TLS). Baza danych stosuje
+          zabezpieczenia na poziomie wierszy (row-level security): każdy użytkownik może odczytywać i zmieniać tylko
+          własne postępy i ustawienia. Hasła są przechowywane wyłącznie jako jednokierunkowe skróty. Aplikacja ma tylko
+          publiczny klucz, który nie pozwala obejść tych reguł. Żaden system nie jest w pełni bezpieczny; jeśli
+          naruszenie zagrozi Twoim danym, powiadomimy Cię i organ nadzorczy, tak jak wymaga tego prawo.
         </p>
 
-        <h2>Zmiany</h2>
-        <p>Jeśli ta polityka się zmieni, zaktualizujemy ją na tej stronie i zmienimy datę powyżej.</p>
+        <h2 id="pl-children">11. Dzieci</h2>
+        <p>
+          Globik jest przeznaczony dla wszystkich, którzy chcą uczyć się geografii, i nie jest skierowany do dzieci
+          poniżej 13 lat. Nie ma reklam, czatu ani możliwości dzielenia się treściami z innymi użytkownikami, a konto
+          jest opcjonalne. Jeśli masz mniej niż 16 lat, załóż konto tylko za zgodą rodzica lub opiekuna. Jeśli jesteś
+          rodzicem i uważasz, że Twoje dziecko podało nam adres e-mail, napisz do nas — usuniemy go.
+        </p>
+
+        <h2 id="pl-changes">12. Zmiany tej polityki</h2>
+        <p>
+          Jeśli polityka się zmieni, opublikujemy nową wersję na tej stronie i zmienimy datę powyżej. Gdybyśmy kiedyś
+          chcieli używać Twoich danych, w tym danych użytkownika Google, w nowy sposób, najpierw powiemy Ci o tym w
+          aplikacji i — gdy to wymagane — poprosimy o zgodę.
+        </p>
+
+        <p>Zobacz też: <a href="/terms/#pl">Regulamin</a>.</p>
       </section>
     </main>
     <footer>
       <p>
-        Globik · <a href="/delete-account/">Delete account / Usuń konto</a> · <a href="/">globik-app.netlify.app</a>
+        Globik · <a href="/terms/">Terms / Regulamin</a> · <a href="/delete-account/">Delete account / Usuń konto</a> ·
+        <a href="/">globik-app.netlify.app</a>
       </p>
     </footer>
   </body>

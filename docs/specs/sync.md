@@ -22,9 +22,11 @@
 5. **Sign out** (warns when changes haven't synced): local progress is cleared; a new anonymous profile starts.
 6. **Delete account**: deletes the user and all their rows, then signs out.
 
-Account ends with links to the privacy policy and how to delete your data: static bilingual pages in `public/`
-(`/privacy/`, `/delete-account/`) on the web app's site, opened in the browser at the Polish section when the app is
-in Polish. The app stores link to them too (`store/play/README.md`).
+Account ends with links to the privacy policy, terms of use and how to delete your data: static bilingual pages in
+`public/` (`/privacy/`, `/terms/`, `/delete-account/`) on the web app's site, opened in the browser at the Polish
+section when the app is in Polish. The app stores link to them too (`store/play/README.md`). On the web only, Home
+ends with a one-line description of the app and links to the privacy policy and terms (Google's consent screen
+requires the home page to link the policy, decision 023).
 
 ## Sync (decision 009)
 

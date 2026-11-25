@@ -60,20 +60,21 @@ environment. Non-sensitive values are **variables** (visible in logs, easy to ed
 **secret**. The jobs that deploy declare the GitHub environment `production` (deployment history, and a place to
 add protection rules such as required reviewers or a `main`-only branch policy); it needs no secrets of its own.
 
-| Name                                   | Kind     | Used by       | What / where to get it                                                                                                                            | How to encode                        |
-| -------------------------------------- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| `SUPABASE_DB_URL`                      | secret   | migrations    | Dashboard → Connect → Session pooler URI with the database password filled in (IPv4; runners have no IPv6). Required: the deploy fails without it | plain                                |
-| `NETLIFY_AUTH_TOKEN`                   | secret   | web           | Netlify → User settings → Applications → Personal access tokens                                                                                   | plain                                |
-| `NETLIFY_SITE_ID`                      | secret   | web           | Netlify → site `globik-app` → Site configuration → Site ID                                                                                        | plain                                |
-| `ANDROID_KEYSTORE_BASE64`              | secret   | Android       | Upload keystore (_Google Play_ step 3)                                                                                                            | `base64 -i upload.jks \| pbcopy`     |
-| `ANDROID_KEYSTORE_PASSWORD`            | secret   | Android       | Keystore password chosen in `keytool`                                                                                                             | plain                                |
-| `ANDROID_KEY_ALIAS`                    | secret   | Android       | Key alias, e.g. `upload`                                                                                                                          | plain                                |
-| `ANDROID_KEY_PASSWORD`                 | secret   | Android       | Key password (same as the store password unless you set another)                                                                                  | plain                                |
-| `PLAY_SERVICE_ACCOUNT_JSON`            | secret   | Android       | JSON key of the Google Cloud service account (_Google Play_ step 6)                                                                               | paste the JSON (`pbcopy < key.json`) |
-| `EXPO_PUBLIC_SUPABASE_URL`             | variable | web, Android  | `https://<project-ref>.supabase.co`                                                                                                               | plain                                |
-| `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | variable | web, Android  | Dashboard → Project Settings → API → publishable key (`sb_publishable_…`)                                                                         | plain                                |
-| `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`     | variable | web, Android  | Google Cloud → APIs & Services → Credentials → OAuth client "Web application" (also in Supabase Auth → Google)                                    | plain                                |
-| `ANDROID_VERSION_CODE_OFFSET`          | variable | Android, opt. | Added to the run number to form `versionCode` (default `100`, see _Versioning_)                                                                   | plain                                |
+| Name                                   | Kind     | Used by       | What / where to get it                                                                                                                                                              | How to encode                        |
+| -------------------------------------- | -------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| `SUPABASE_DB_URL`                      | secret   | migrations    | Dashboard → Connect → Session pooler URI with the database password filled in (IPv4; runners have no IPv6). Required: the deploy fails without it                                   | plain                                |
+| `NETLIFY_AUTH_TOKEN`                   | secret   | web           | Netlify → User settings → Applications → Personal access tokens                                                                                                                     | plain                                |
+| `NETLIFY_SITE_ID`                      | secret   | web           | Netlify → site `globik-app` → Site configuration → Site ID                                                                                                                          | plain                                |
+| `ANDROID_KEYSTORE_BASE64`              | secret   | Android       | Upload keystore (_Google Play_ step 3)                                                                                                                                              | `base64 -i upload.jks \| pbcopy`     |
+| `ANDROID_KEYSTORE_PASSWORD`            | secret   | Android       | Keystore password chosen in `keytool`                                                                                                                                               | plain                                |
+| `ANDROID_KEY_ALIAS`                    | secret   | Android       | Key alias, e.g. `upload`                                                                                                                                                            | plain                                |
+| `ANDROID_KEY_PASSWORD`                 | secret   | Android       | Key password (same as the store password unless you set another)                                                                                                                    | plain                                |
+| `PLAY_SERVICE_ACCOUNT_JSON`            | secret   | Android       | JSON key of the Google Cloud service account (_Google Play_ step 6)                                                                                                                 | paste the JSON (`pbcopy < key.json`) |
+| `EXPO_PUBLIC_SUPABASE_URL`             | variable | web, Android  | `https://<project-ref>.supabase.co`                                                                                                                                                 | plain                                |
+| `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | variable | web, Android  | Dashboard → Project Settings → API → publishable key (`sb_publishable_…`)                                                                                                           | plain                                |
+| `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`     | variable | web, Android  | Google Cloud → APIs & Services → Credentials → OAuth client "Web application" (also in Supabase Auth → Google)                                                                      | plain                                |
+| `EXPO_PUBLIC_GOOGLE_SITE_VERIFICATION` | variable | web, opt.     | Search Console → HTML tag method: only the `content="…"` value. Adds the ownership tag to `index.html` ([Google OAuth consent screen](#8-google-oauth-consent-screen-verification)) | plain                                |
+| `ANDROID_VERSION_CODE_OFFSET`          | variable | Android, opt. | Added to the run number to form `versionCode` (default `100`, see _Versioning_)                                                                                                     | plain                                |
 
 `EXPO_PUBLIC_*` values end up in the shipped app, so they are variables, not secrets. Without the Supabase ones the
 app builds and works offline-only. RNRepo (prebuilt native libraries, below) needs no secret or variable: its
@@ -110,17 +111,17 @@ repository is public.
 ### 6. Icons, splash and the store listing
 
 Generated from the globe renderer (`pnpm icons`, sources in `design/icon`). Google Play listing (texts, graphics,
-screenshots, Data safety and other Console answers): `store/play/README.md`. Privacy policy and data deletion:
-`https://globik-app.netlify.app/privacy/` and `/delete-account/` (`public/`, decision 020).
+screenshots, Data safety and other Console answers): `store/play/README.md`. Privacy policy, terms of use and data
+deletion: `https://globik-app.netlify.app/privacy/`, `/terms/` and `/delete-account/` (`public/`, decisions 020 and
+023).
 
 ### 7. Google sign-in
 
 Optional: without the client ids the "Continue with Google" button is hidden (decision 018). Everything lives in the
 Google Cloud project **AISurveys** (shared; its consent screen is branded Globik) → **Google Auth Platform**:
 
-1. **Branding / Audience:** app name Globik, support email, authorized domain `netlify.app` (and `supabase.co`);
-   publish the app to production so any Google account can sign in. Scopes: the defaults (`openid`, `email`,
-   `profile`).
+1. **Branding / Audience:** see [Google OAuth consent screen](#8-google-oauth-consent-screen-verification) below
+   (authorized domain `globik-app.netlify.app`, publishing). Scopes: the defaults (`openid`, `email`, `profile`).
 2. **Clients → Create client → Web application** ("Globik web"):
    - Authorized JavaScript origins: `https://globik-app.netlify.app` (plus `http://localhost:8081` for `pnpm web`).
    - Authorized redirect URIs: `https://<supabase-ref>.supabase.co/auth/v1/callback`.
@@ -145,6 +146,59 @@ Google Cloud project **AISurveys** (shared; its consent screen is branded Globik
    Configuration). For local web testing add `http://localhost:8081/**` there by hand.
 6. Set `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` (and `EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID`) in `.env`, Netlify and the GitHub
    variables. Native builds need a new build (the module is native code).
+
+### 8. Google OAuth consent screen: verification
+
+With only non-sensitive scopes (`openid`, `email`, `profile`) the consent screen can be published ("In
+production", any Google account can sign in) without a review. Showing the name "Globik" on it needs **brand
+verification**: the home page and privacy policy pass Google's checks, and every **authorized domain** is verified
+in Google Search Console by an owner or editor of the Cloud project (decision 023). Globik's pages for it: home
+`https://globik-app.netlify.app/` (the web app; its static HTML and its Home screen describe the app and link the
+policy and terms), privacy policy `/privacy/` (with a Google user data section and the Limited Use statement) and
+terms `/terms/`.
+
+**Which domain.** `netlify.app` is on the [Public Suffix List](https://publicsuffix.org/list/), so for Google the
+"top private domain" is `globik-app.netlify.app` itself: that is the authorized domain, and it is verified with a
+**URL-prefix** property `https://globik-app.netlify.app/` (a Domain property needs DNS, which Netlify's domain
+doesn't give us). `netlify.app` alone can't be verified or authorized. The site needs no custom domain (but see
+step 7 for Supabase's). If Google's reviewers ever object to the shared hosting domain, buy one (roughly 10–20 € a
+year for a `.com` or `.app`, ~50–100 zł for `.pl`), add it to the Netlify site (Domain management, free TLS),
+verify it with a Domain property (DNS TXT record) and update the URLs below, the Supabase redirect URLs and the Web
+client's JavaScript origins.
+
+1. **Search Console** (<https://search.google.com/search-console>), signed in as an owner of the Cloud project
+   **AISurveys**: _Add property_ → **URL prefix** → `https://globik-app.netlify.app/` → pick one method:
+   - **HTML file** (simplest): download `google<…>.html` and commit it unchanged to `public/` (served at
+     `https://globik-app.netlify.app/google<…>.html`; `expo export` copies `public/` into `dist/`, and Netlify serves
+     existing files before the single-page catch-all redirect, which isn't forced). Search Console doesn't follow
+     redirects for this file, and none applies.
+   - **HTML tag**: copy only the `content="…"` value into the GitHub variable `EXPO_PUBLIC_GOOGLE_SITE_VERIFICATION`;
+     the build adds `<meta name="google-site-verification" …>` to the head of `index.html`
+     (`scripts/site-verification.mjs`).
+2. Merge to `main` (or _Actions → Deploy → Run workflow_) and wait for the deploy; check the file loads (or that
+   _View source_ of the home page shows the tag) in a private window.
+3. Back in Search Console: **Verify**. Keep the file or the variable afterwards: Google re-checks periodically and
+   ownership lapses without it.
+4. **Google Auth Platform → Branding:** app name `Globik`; user support email; app logo: leave empty (a logo makes
+   brand verification mandatory); **Application home page** `https://globik-app.netlify.app/`; **Application
+   privacy policy link** `https://globik-app.netlify.app/privacy/`; **Application terms of service link**
+   `https://globik-app.netlify.app/terms/`; **Authorized domains**: `globik-app.netlify.app` (shown as verified after
+   step 3; remove `netlify.app` if it's still listed) and `<supabase-ref>.supabase.co`, which the Web client's
+   redirect URI needs; developer contact email. Save.
+5. **Google Auth Platform → Data access:** only `openid`, `.../auth/userinfo.email`, `.../auth/userinfo.profile`
+   (non-sensitive). No other scopes.
+6. **Google Auth Platform → Audience:** user type External → **Publish app** → confirm "In production". With only
+   non-sensitive scopes Google doesn't require app verification, so publishing doesn't wait for a review: any
+   Google account can sign in, and without brand verification the consent screen names the app by domain instead
+   of "Globik".
+7. Optional, **brand verification** (Branding → _Verify branding_, then Verification Center; a few business days):
+   it shows "Globik" on the consent screen and needs **every** authorized domain verified. `supabase.co` is on the
+   Public Suffix List too, so `<supabase-ref>.supabase.co` is its own top private domain, and we can't verify it
+   in Search Console: brand verification fails on it while the web sign-in redirects through Supabase. The ways
+   out: switch the web to Google's own sign-in button with an ID token (`signInWithIdToken`, like Android; the Web
+   client then needs only the JavaScript origin `https://globik-app.netlify.app` and no Supabase redirect URI; a
+   code change, free), or a Supabase custom domain (paid add-on on a paid plan) on our own domain such as
+   `auth.<domain>`, verified with a Domain property.
 
 ## Everyday
 

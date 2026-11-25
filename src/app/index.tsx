@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import { useEffect, useMemo } from 'react';
-import { ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -14,12 +14,14 @@ import { poolFor, useProgress } from '@/state/progress';
 import { colors } from '@/theme';
 import { Button, IconButton } from '@/ui/Button';
 import { Chip } from '@/ui/Chip';
+import { ExternalLink, sitePage } from '@/ui/ExternalLink';
 import { Logo } from '@/ui/Logo';
 import { GlassPanel } from '@/ui/Panel';
 import { Text } from '@/ui/Text';
 import { useNow } from '@/ui/useNow';
 
 const MODE_ICONS = { flag: 'flag', capital: 'business', map: 'earth' } as const;
+const LEGAL_COLOR = 'rgba(255,255,255,0.75)';
 
 function toggle<T>(list: readonly T[], item: T): T[] {
   if (list.includes(item)) return list.length > 1 ? list.filter((x) => x !== item) : [...list];
@@ -48,7 +50,7 @@ function useHomePaint(modes: readonly Mode[], continents: readonly Continent[]) 
 
 export default function Home() {
   const insets = useSafeAreaInsets();
-  const { t } = useI18n();
+  const { t, language } = useI18n();
   const wide = useWindowDimensions().width >= 900;
   const settings = useProgress((s) => s.settings);
   const cards = useProgress((s) => s.cards);
@@ -132,6 +134,19 @@ export default function Home() {
           icon="play"
           onPress={() => router.push('/play')}
         />
+        {/* The web app's root is its home page, which must link the privacy policy for Google's OAuth consent screen
+            (decision 023) and say what the app is; the apps keep these links in Account. */}
+        {Platform.OS === 'web' && (
+          <View style={styles.about}>
+            <Text variant="caption" color={LEGAL_COLOR} style={styles.center}>
+              {t.home.about}
+            </Text>
+            <View style={styles.legal}>
+              <ExternalLink url={sitePage('privacy', language)} title={t.account.privacy} color={LEGAL_COLOR} />
+              <ExternalLink url={sitePage('terms', language)} title={t.account.terms} color={LEGAL_COLOR} />
+            </View>
+          </View>
+        )}
       </Animated.View>
     </View>
   );
@@ -148,4 +163,7 @@ const styles = StyleSheet.create({
   panelContent: { gap: 8 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   sectionGap: { marginTop: 6 },
+  about: { gap: 2, marginTop: -4 },
+  center: { textAlign: 'center' },
+  legal: { flexDirection: 'row', justifyContent: 'center', gap: 16 },
 });
