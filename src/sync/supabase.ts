@@ -13,7 +13,10 @@ export const supabase: SupabaseClient | null =
           storage: Platform.OS === 'web' ? undefined : AsyncStorage,
           autoRefreshToken: true,
           persistSession: true,
-          detectSessionInUrl: false,
+          // Google sign-in on the web is a redirect that comes back with a PKCE code; supabase-js exchanges it while
+          // starting up. Native apps sign in with ID tokens and never receive auth URLs, so they keep the defaults.
+          detectSessionInUrl: Platform.OS === 'web',
+          flowType: Platform.OS === 'web' ? 'pkce' : 'implicit',
         },
       })
     : null;

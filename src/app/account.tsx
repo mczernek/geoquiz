@@ -1,10 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Linking, Platform, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { LANGUAGE_NAMES, LANGUAGES, useI18n, useLanguageStore } from '@/i18n';
 import { useProgress } from '@/state/progress';
-import { AccountError, deleteAccount, pendingChanges, signIn, signOut, signUp } from '@/sync/account';
+import {
+  AccountError,
+  deleteAccount,
+  googleAvailable,
+  googleRedirectError,
+  pendingChanges,
+  signIn,
+  signInWithGoogle,
+  signOut,
+  signUp,
+} from '@/sync/account';
 import { syncNow, useSyncStatus } from '@/sync/engine';
 import { colors, fonts, radius } from '@/theme';
 import { GlobeSlot } from '@/globe/GlobeSlot';
@@ -59,7 +69,31 @@ function AuthForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
+  const [googleBusy, setGoogleBusy] = useState(false);
   const [message, setMessage] = useState<{ text: string; error: boolean } | null>(null);
+
+  // Web: a Google sign-in that failed comes back to this screen with the error in the URL.
+  useEffect(() => {
+    let active = true;
+    googleRedirectError().then((text) => {
+      if (active && text) setMessage({ text, error: true });
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const google = async () => {
+    setGoogleBusy(true);
+    setMessage(null);
+    try {
+      await signInWithGoogle();
+    } catch (e) {
+      setMessage({ text: e instanceof AccountError ? e.message : String(e), error: true });
+    } finally {
+      setGoogleBusy(false);
+    }
+  };
 
   const submit = async () => {
     setBusy(true);
@@ -84,6 +118,24 @@ function AuthForm() {
       <Text variant="body" color={colors.inkSoft}>
         {t.account.keepBody}
       </Text>
+      {googleAvailable && (
+        <>
+          <Button
+            title={t.account.google}
+            kind="secondary"
+            size="m"
+            icon="logo-google"
+            onPress={google}
+            loading={googleBusy}
+            disabled={busy}
+            style={styles.outlined}
+            testID="google-sign-in"
+          />
+          <Text variant="caption" color={colors.inkSoft} style={styles.center}>
+            {t.account.orEmail}
+          </Text>
+        </>
+      )}
       <View style={styles.row}>
         <Chip onCard label={t.account.createAccount} selected={mode === 'up'} onPress={() => setMode('up')} />
         <Chip onCard label={t.account.signIn} selected={mode === 'in'} onPress={() => setMode('in')} />
@@ -123,7 +175,7 @@ function AuthForm() {
         title={mode === 'up' ? t.account.createAccount : t.account.signIn}
         onPress={submit}
         loading={busy}
-        disabled={!email.includes('@') || password.length < 8}
+        disabled={!email.includes('@') || password.length < 8 || googleBusy}
         testID="auth-submit"
       />
     </Panel>
@@ -269,4 +321,5 @@ const styles = StyleSheet.create({
   about: { alignItems: 'center', gap: 2, marginTop: 6 },
   credits: { gap: 4, paddingHorizontal: 4 },
   link: { textDecorationLine: 'underline' },
+  center: { textAlign: 'center' },
 });

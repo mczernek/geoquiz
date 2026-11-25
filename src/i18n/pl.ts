@@ -95,6 +95,8 @@ export const pl: Strings = {
     keepBody: 'Załóż konto, żeby grać dalej na innych urządzeniach. Twoje postępy przejdą razem z tobą.',
     createAccount: 'Załóż konto',
     signIn: 'Zaloguj się',
+    google: 'Kontynuuj z Google',
+    orEmail: 'lub e-mailem',
     email: 'E-mail',
     password: 'Hasło (min. 8 znaków)',
     passwordLabel: 'Hasło',
@@ -125,5 +127,7 @@ export const pl: Strings = {
     alreadyRegistered: 'Ten e-mail ma już konto. Zaloguj się.',
     shortPassword: 'Hasło musi mieć co najmniej 8 znaków.',
     offline: 'Jesteś offline. Spróbuj ponownie po połączeniu z siecią.',
+    googlePlayServices: 'Logowanie przez Google wymaga Usług Google Play na tym urządzeniu.',
+    googleFailed: 'Nie udało się zalogować przez Google. Spróbuj ponownie albo użyj e-maila.',
   },
 };

@@ -94,6 +94,8 @@ export const en = {
     keepBody: 'Create an account to continue on your other devices. What you’ve learned here comes with you.',
     createAccount: 'Create account',
     signIn: 'Sign in',
+    google: 'Continue with Google',
+    orEmail: 'or with email',
     email: 'Email',
     password: 'Password (8+ characters)',
     passwordLabel: 'Password',
@@ -125,6 +127,8 @@ export const en = {
     alreadyRegistered: 'That email already has an account. Sign in instead.',
     shortPassword: 'Use at least 8 characters for the password.',
     offline: "You're offline. Try again when you're connected.",
+    googlePlayServices: 'Signing in with Google needs Google Play services on this device.',
+    googleFailed: 'Couldn’t sign in with Google. Try again or use your email.',
   },
 };
 
