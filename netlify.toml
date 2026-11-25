@@ -1,4 +1,5 @@
-# Netlify site: the static web export (docs/release.md). EXPO_PUBLIC_* variables come from the site's environment.
+# Netlify site `globik-app`: the static web export (docs/release.md). CI (deploy.yml) builds and uploads it with
+# the GitHub EXPO_PUBLIC_* variables; Netlify's own builds would need them in the site's environment.
 [build]
   command = "pnpm build:web"
   publish = "dist"

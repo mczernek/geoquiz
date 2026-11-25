@@ -14,7 +14,7 @@ module.exports = defineConfig([
     rules: { 'import/first': 'off', '@typescript-eslint/no-require-imports': 'off' },
   },
   {
-    files: ['scripts/**', 'supabase/tests/**'],
+    files: ['scripts/**', 'supabase/tests/**', 'plugins/**'],
     languageOptions: { globals: globals.node },
   },
 ]);

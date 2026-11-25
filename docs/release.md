@@ -1,19 +1,29 @@
 # Setup & release
 
+Every push (merge) to `main` deploys: CI checks → database migrations (Supabase production) → the web app (Netlify
+site `globik-app`, https://globik-app.netlify.app). Android release builds run on GitHub Actions by hand and upload
+to Google Play (decision 019). iOS has no pipeline yet.
+
+| Workflow              | Trigger                      | What                                                                  |
+| --------------------- | ---------------------------- | --------------------------------------------------------------------- |
+| `ci.yml`              | pull requests (and called)   | lint, format, typecheck, unit + database tests, web export            |
+| `deploy.yml`          | push to `main`, manual       | `ci.yml` → `supabase db push` → `pnpm build:web` → Netlify production |
+| `android-release.yml` | manual (`workflow_dispatch`) | `ci.yml` → prebuild → signed `bundleRelease` → artifact + Play upload |
+
 ## One-time setup
 
 ### 1. Supabase
 
 1. Create a project (EU region like zakuper). Note the project ref, the database password and the publishable key
    (Project Settings → API).
-2. Link and apply the schema:
+2. Link and apply the schema (later migrations are applied by `deploy.yml`):
    ```sh
    supabase link --project-ref <ref>
    supabase db push
    ```
 3. Auth settings — anonymous sign-ins **must** be on (decision 011):
    ```sh
-   SUPABASE_ACCESS_TOKEN=<personal token> SUPABASE_PROJECT_REF=<ref> WEB_URL=https://<site>.netlify.app \
+   SUPABASE_ACCESS_TOKEN=<personal token> SUPABASE_PROJECT_REF=<ref> WEB_URL=https://globik-app.netlify.app \
      ./supabase/scripts/apply-auth-config.sh
    ```
    Or in the dashboard: Authentication → Sign In / Providers → allow anonymous sign-ins; email provider on.
@@ -25,6 +35,7 @@
    where u.is_anonymous and u.created_at < now() - interval '60 days'
      and not exists (select 1 from public.card_progress p where p.user_id = u.id and p.synced_at > now() - interval '60 days');
    ```
+6. Add the `SUPABASE_*` secrets and `EXPO_PUBLIC_SUPABASE_*` variables to GitHub (below).
 
 ### 2. Local config
 
@@ -32,28 +43,71 @@
 
 ### 3. Netlify (web)
 
-1. Create a site (e.g. `geoquiz`); build settings come from `netlify.toml`.
-2. Site environment variables: `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
-3. Deploys run from CI (below); disable Netlify's own Git builds or leave them for previews.
+1. The site `globik-app` exists; its build settings come from `netlify.toml`.
+2. Deploys run from CI (`deploy.yml` builds with the GitHub variables and uploads `dist/`). Turn off Netlify's own
+   Git builds (Site configuration → Build & deploy → Stop builds), or, if you keep them for previews, set the same
+   `EXPO_PUBLIC_*` variables in the site's environment.
+3. `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` go to GitHub (below).
 
 ### 4. GitHub
 
-Create the repository, push, and set:
+#### Secrets and variables
 
-- **Variables:** `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, optionally
-  `EAS_RELEASE_ENABLED=true`.
-- **Environment `production`** (restricted to the `release` branch) **secrets:** `SUPABASE_ACCESS_TOKEN`,
-  `SUPABASE_DB_URL` (session pooler URL with password), `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `EXPO_TOKEN`.
+All are repository-level (_Settings → Secrets and variables → Actions_): there is a single production
+environment. Non-sensitive values are **variables** (visible in logs, easy to edit); everything else is a
+**secret**. The jobs that deploy declare the GitHub environment `production` (deployment history, and a place to
+add protection rules such as required reviewers or a `main`-only branch policy); it needs no secrets of its own.
 
-### 5. Mobile (EAS)
+| Name                                   | Kind     | Used by       | What / where to get it                                                                                                                            | How to encode                        |
+| -------------------------------------- | -------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| `SUPABASE_ACCESS_TOKEN`                | secret   | migrations    | supabase.com → Account → Access tokens                                                                                                            | plain                                |
+| `SUPABASE_DB_URL`                      | secret   | migrations    | Dashboard → Connect → Session pooler URI with the database password filled in (IPv4; runners have no IPv6). Required: the deploy fails without it | plain                                |
+| `NETLIFY_AUTH_TOKEN`                   | secret   | web           | Netlify → User settings → Applications → Personal access tokens                                                                                   | plain                                |
+| `NETLIFY_SITE_ID`                      | secret   | web           | Netlify → site `globik-app` → Site configuration → Site ID                                                                                        | plain                                |
+| `ANDROID_KEYSTORE_BASE64`              | secret   | Android       | Upload keystore (_Google Play_ step 3)                                                                                                            | `base64 -i upload.jks \| pbcopy`     |
+| `ANDROID_KEYSTORE_PASSWORD`            | secret   | Android       | Keystore password chosen in `keytool`                                                                                                             | plain                                |
+| `ANDROID_KEY_ALIAS`                    | secret   | Android       | Key alias, e.g. `upload`                                                                                                                          | plain                                |
+| `ANDROID_KEY_PASSWORD`                 | secret   | Android       | Key password (same as the store password unless you set another)                                                                                  | plain                                |
+| `PLAY_SERVICE_ACCOUNT_JSON`            | secret   | Android       | JSON key of the Google Cloud service account (_Google Play_ step 6)                                                                               | paste the JSON (`pbcopy < key.json`) |
+| `EXPO_PUBLIC_SUPABASE_URL`             | variable | web, Android  | `https://<project-ref>.supabase.co`                                                                                                               | plain                                |
+| `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | variable | web, Android  | Dashboard → Project Settings → API → publishable key (`sb_publishable_…`)                                                                         | plain                                |
+| `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`     | variable | web, Android  | Google Cloud → APIs & Services → Credentials → OAuth client "Web application" (also in Supabase Auth → Google)                                    | plain                                |
+| `ANDROID_VERSION_CODE_OFFSET`          | variable | Android, opt. | Added to the run number to form `versionCode` (default `100`, see _Versioning_)                                                                   | plain                                |
 
-1. `npx eas-cli@latest init` (adds the EAS project id to `app.json`), `npx eas-cli@latest env:create` for the two
-   `EXPO_PUBLIC_*` variables in the `preview` and `production` environments.
-2. Bundle id / package: `com.michalczernek.geoquiz` (change in `app.json` if you prefer).
-3. Credentials: `eas credentials` (EAS can manage iOS certificates and the Android keystore).
-4. Stores: App Store Connect app record + Google Play app (first upload of the Android bundle by hand). For
-   `--auto-submit`: an App Store Connect API key and a Google Play service account in EAS.
-5. Icons and splash are generated from the globe renderer (`pnpm icons`, sources in `design/icon`).
+`EXPO_PUBLIC_*` values end up in the shipped app, so they are variables, not secrets. Without the Supabase ones the
+app builds and works offline-only.
+
+### 5. Google Play (closed testing)
+
+1. Google Play Console developer account. Personal accounts created after Nov 2023 need a closed test with 12
+   testers for 14 days before _production_.
+2. Play Console → **Create app**: name "Globik", default language English (United States) (add Polish in the store
+   listing), app, free. Package `com.michalczernek.geoquiz` is fixed by the first upload (decision 015).
+3. Create the **upload keystore** (keep the file and passwords in a password manager; never commit it):
+   ```sh
+   keytool -genkeypair -v -keystore upload.jks -alias upload -keyalg RSA -keysize 4096 -validity 10000
+   ```
+   → `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`.
+4. **First upload is manual** (the Play API can't create the first release of a new app): GitHub → Actions →
+   _Android release_ → Run workflow on `main` with **upload** unchecked, then download the
+   `globik-android-<version>-<versionCode>` artifact (`app-release.aab`).
+5. Play Console → Testing → **Closed testing** → the default track (API name `alpha`) → Testers: create an email
+   list, add testers and copy the opt-in link for them. Then **Create new release** → accept **Play App Signing**
+   (Google keeps the app signing key; our keystore is only the upload key) → upload the AAB → release name
+   `1.1.2 (101)` → save. Complete the app content declarations Play asks for (privacy policy, ads: none, app
+   access, content rating, target audience, data safety) and send the app for review.
+6. **Service account**: Google Cloud console → create/select a project → enable **Google Play Android Developer
+   API** → IAM & Admin → Service accounts → create (no roles needed) → Keys → Add key → JSON →
+   `PLAY_SERVICE_ACCOUNT_JSON`. Play Console → **Users and permissions → Invite new users** → the service account
+   e-mail → App permissions → Globik → _Release apps to testing tracks_ and _View app information_. Access can take
+   a few minutes to propagate.
+7. From then on run _Android release_ with **upload** checked. While the app is still a draft in Play (before its
+   first review), Play only accepts releases with status **draft** (the default input): finish them in the Play
+   Console. After the review, choose **completed** to roll out to the testers directly.
+
+### 6. Icons and splash
+
+Generated from the globe renderer (`pnpm icons`, sources in `design/icon`).
 
 ## Everyday
 
@@ -66,8 +120,23 @@ supabase migration new <name>                      # schema change (backward com
 
 ## Releasing
 
-- `main` is the integration branch. Pull requests run CI (`ci.yml`).
-- Merge to `release` → `release.yml`: CI → `supabase db push` (pending migrations) → Netlify production, and EAS
-  production builds with auto-submit when `EAS_RELEASE_ENABLED` is `true`.
-- Manual mobile builds: `npx eas-cli build --profile preview` (internal testing) or `--profile production`.
-- JS-only fixes could later ship as EAS Updates (`expo-updates`, not installed yet).
+- **Web + backend:** merging a pull request into `main` deploys it (`deploy.yml`): migrations first, then the web
+  app, so migrations must stay backward compatible with the released apps. _Actions → Deploy → Run workflow_
+  redeploys the current `main`.
+- **Android:** _Actions → Android release → Run workflow_ on `main`. Inputs: **track** (`alpha` = closed testing,
+  default; `internal`, `beta`, `production`), **status** (`draft` default, `completed`), **upload** (default on;
+  off = build only). Every run keeps the AAB and R8 `mapping.txt` as an artifact for 30 days; with upload on, both
+  go to Play, release name `<version> (<versionCode>)`. It is manual on purpose, also after a deploy.
+- **Locally**, `npx expo prebuild -p android && cd android && ./gradlew bundleRelease` gives a debug-signed bundle
+  (fine for testing, rejected by Play). Set `GEOQUIZ_UPLOAD_STORE_FILE` (absolute path),
+  `GEOQUIZ_UPLOAD_STORE_PASSWORD`, `GEOQUIZ_UPLOAD_KEY_ALIAS`, `GEOQUIZ_UPLOAD_KEY_PASSWORD` and optionally
+  `GEOQUIZ_VERSION_CODE` as environment variables or Gradle properties (`-P…`, `~/.gradle/gradle.properties`) to
+  sign it with the upload key (`plugins/withReleaseSigning.js`).
+
+### Versioning
+
+- **Version name**: `expo.version` in `app.json` (and `package.json`). Bump it on `main` before a release.
+- **versionCode**: CI sets `ANDROID_VERSION_CODE_OFFSET` (default 100) + `github.run_number` of
+  `android-release.yml`, so every run, uploaded or not, has a new, increasing number. Build-only runs use a number
+  too; that only leaves gaps. If the workflow is renamed or recreated its run counter restarts: raise the offset
+  above the last uploaded versionCode. `android.versionCode` in `app.json` is only the local fallback.
