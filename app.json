@@ -54,7 +54,8 @@
       "expo-font",
       "expo-secure-store",
       "./plugins/withReleaseSigning",
-      "@react-native-google-signin/google-signin"
+      "@react-native-google-signin/google-signin",
+      "@rnrepo/expo-config-plugin"
     ],
     "experiments": {
       "typedRoutes": true,

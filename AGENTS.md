@@ -31,6 +31,8 @@ and `docs/`.
 
 - `ios/` and `android/` are generated (`npx expo prebuild`); never edit them, configure `app.json` instead.
 - Add packages with `npx expo install` so versions match the Expo SDK.
+- Native builds pull prebuilt libraries from RNRepo (decision 022): when upgrading a native library or React
+  Native, prefer versions it has artifacts for, and add a library you patch to `rnrepo.config.json`'s `denyList`.
 - Keep domain logic pure, in `src/domain`, with tests. Screens render state and forward events.
 - The globe is drawn every frame on the JS thread: keep `src/globe/projector.ts` and `scene.ts` allocation-light,
   and check `pnpm test` (it prints frame timings) after changing them.
