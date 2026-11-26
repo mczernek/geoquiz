@@ -4,12 +4,11 @@ Pushing a `release-*` tag deploys: CI checks → database migrations (Supabase p
 site `globik-app`, https://globik-app.netlify.app). Merging to `main` only runs the checks (decision 024). Android release builds run on GitHub Actions by hand and upload
 to Google Play (decision 019). iOS has no pipeline yet.
 
-| Workflow                | Trigger                       | What                                                                  |
-| ----------------------- | ----------------------------- | --------------------------------------------------------------------- |
-| `ci.yml`                | pull requests, push to `main` | lint, format, typecheck, unit + database tests, web export            |
-| `deploy.yml`            | `release-*` tag, manual       | `ci.yml` → `supabase db push` → `pnpm build:web` → Netlify production |
-| `android-release.yml`   | manual (`workflow_dispatch`)  | `ci.yml` → prebuild → signed `bundleRelease` → artifact + Play upload |
-| `release-scheduled.yml` | 2026-11-26 08:15 UTC, manual  | one-off: tag `main` `release-<version>` → `deploy.yml` (delete after) |
+| Workflow              | Trigger                       | What                                                                  |
+| --------------------- | ----------------------------- | --------------------------------------------------------------------- |
+| `ci.yml`              | pull requests, push to `main` | lint, format, typecheck, unit + database tests, web export            |
+| `deploy.yml`          | `release-*` tag, manual       | `ci.yml` → `supabase db push` → `pnpm build:web` → Netlify production |
+| `android-release.yml` | manual (`workflow_dispatch`)  | `ci.yml` → prebuild → signed `bundleRelease` → artifact + Play upload |
 
 ## One-time setup
 

@@ -8,8 +8,8 @@ on:
   push:
     tags: ['release-*']
   workflow_dispatch:
-  # A tag pushed from a workflow with GITHUB_TOKEN doesn't trigger this one, so workflows that tag (release-scheduled.yml)
-  # call it directly.
+  # A tag pushed from a workflow with GITHUB_TOKEN doesn't trigger this one, so a workflow that tags
+  # must call it directly.
   workflow_call:
 
 permissions:
