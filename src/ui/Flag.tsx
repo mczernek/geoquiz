@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { StyleSheet, type StyleProp, type ImageStyle } from 'react-native';
+import { Platform, StyleSheet, type StyleProp, type ImageStyle } from 'react-native';
 
 import { FLAGS } from '@/data/flags';
 
@@ -21,7 +21,9 @@ export function Flag({
       style={[styles.flag, { width, height }, style]}
       contentFit="contain"
       accessibilityIgnoresInvertColors
-      transition={120}
+      // On the web the fade-in left some flags in a long list stuck invisible (expo-image's transition on images
+      // that load at once); a fade isn't worth that.
+      transition={Platform.OS === 'web' ? undefined : 120}
     />
   );
 }
