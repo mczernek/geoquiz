@@ -1,14 +1,21 @@
 import { Presets, Settings } from 'pulsar-haptics';
 
+import { whenEnabled } from './settings';
 import type { Haptics } from './types';
+
+export { useHapticsStore } from './settings';
 
 // The web fallback plays sounds where the Vibration API is missing (iOS Safari); a quiz shouldn't beep.
 Settings.enableSound(false);
 
-const play = (fn: () => Promise<unknown>) => () => {
-  if (!Settings.isHapticsAvailable()) return;
-  fn().catch(() => {});
-};
+/** Browsers without the Vibration API (desktop, iOS Safari) have nothing to switch off. */
+export const hapticsSupported = Settings.isHapticsAvailable();
+
+const play = (fn: () => Promise<unknown>) =>
+  whenEnabled(() => {
+    if (!hapticsSupported) return;
+    fn().catch(() => {});
+  });
 
 /** Web haptics: pulsar-haptics (Vibration API), the closest web presets to the native ones (decision 012). */
 export const haptics: Haptics = {

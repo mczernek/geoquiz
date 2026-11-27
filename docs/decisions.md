@@ -241,3 +241,21 @@ deploying every merge used them up within a day (deploys then fail with `Forbidd
 **Consequences:** `main` can be ahead of production; releasing is an explicit tag. Migrations ship with the tag too, so
 a merged migration doesn't reach the database until the next release. A tag pushed by a workflow with `GITHUB_TOKEN` doesn't
 start `deploy.yml`, so a workflow that tags must call it (`workflow_call`), as the one-off `release-scheduled.yml` did (deployed `release-1.1.3`, then removed).
+
+## 025 · Haptics switch: per device, not synced
+
+**Decision:** Account → Haptics turns every haptic off. It is a local persisted store (`geoquiz-haptics`), like the
+language (decision 014), checked when each haptic plays (`whenEnabled` in `src/haptics/settings.ts`), so call sites
+don't change. **Why:** whether to buzz depends on the device (a phone vs. a tablet on a desk), and syncing it would need
+a backend column. **Consequences:** a new device starts with haptics on. The web hides the switch where the browser has
+no Vibration API.
+
+## 026 · Lessons: fixed geographic groups, steps saved on the device
+
+**Decision:** Lessons are computed from the country data (each continent halved along its main spread until groups
+have about ten countries), not hand-written, and their finished steps are stored per device (`geoquiz-lessons`), not
+synced. Flashcard steps grade the regular cards. **Why:** computed groups stay complete when the data changes and
+keep neighbours together, which is how a map is learned; per-device step progress needs no backend change, while the
+knowledge itself (the cards) already syncs. **Consequences:** a lesson's countries change if the country list does;
+finished steps don't follow the user to another device (their learned cards do). Lesson progress isn't shown on the
+globe.

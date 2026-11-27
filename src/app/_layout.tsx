@@ -9,7 +9,9 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { GlobeStage } from '@/globe/GlobeStage';
+import { useHapticsStore } from '@/haptics';
 import { useLanguage, useLanguageStore } from '@/i18n';
+import { useLessonProgress } from '@/state/lessons';
 import { useProgress } from '@/state/progress';
 import { registerServiceWorker } from '@/sync/registerServiceWorker';
 import { useSync } from '@/sync/useSync';
@@ -18,7 +20,7 @@ import { Background } from '@/ui/Background';
 SplashScreen.preventAutoHideAsync();
 registerServiceWorker();
 
-const persisted = [useProgress.persist, useLanguageStore.persist];
+const persisted = [useProgress.persist, useLanguageStore.persist, useHapticsStore.persist, useLessonProgress.persist];
 
 function useHydrated(): boolean {
   return useSyncExternalStore(

@@ -19,6 +19,9 @@ One vivid look, no light/dark modes. Tokens: `src/theme.ts`.
 The globe carries the celebration (fly-to, confetti); the card stays calm: short fades and lifts, no overshoot.
 Haptics are Pulsar presets picked by character (decision 012).
 
+Account → Haptics: On / Off (default On) silences every haptic below. The choice is remembered on the device, not
+synced (decision 025), and is hidden on the web where the browser can't vibrate.
+
 | Moment                      | Motion                                                                          | Haptic (native / web) |
 | --------------------------- | ------------------------------------------------------------------------------- | --------------------- |
 | Press a button              | squish (spring to 0.94)                                                         | peck / softTap        |

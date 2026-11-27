@@ -1,4 +1,5 @@
 import type { Continent } from '@/domain/countries';
+import type { LessonStep } from '@/domain/lessons';
 import type { Mode } from '@/domain/scheduler';
 import type { SyncStatus } from '@/sync/engine';
 
@@ -21,6 +22,7 @@ export const en = {
     progress: 'Progress',
     account: 'Account',
     explore: 'Explore',
+    lessons: 'Lessons',
     learn: 'Learn',
     continentsLabel: 'Continents',
     play: 'Play',
@@ -58,6 +60,36 @@ export const en = {
     capital: (capitals: string) => `Capital: ${capitals}`,
     learnedBadge: '★ Learned! It will come back for review later.',
     next: 'Next',
+  },
+
+  lessons: {
+    title: 'Lessons',
+    lesson: (n: number) => `Lesson ${n}`,
+    heading: (continent: string, n: number) => `${continent} · ${n}`,
+    countries: (n: number) => `${n} countries`,
+    done: 'Done',
+    steps: {
+      meet: 'Countries',
+      capitals: 'Capitals',
+      map: 'Map quiz',
+      flag: 'Flag quiz',
+      capital: 'Capital quiz',
+    } as Record<LessonStep, string>,
+    stepIntro: {
+      meet: 'Meet the countries of this lesson.',
+      capitals: 'Now their capitals.',
+      map: 'Find them on the map.',
+      flag: 'Match their flags.',
+      capital: 'Name their capitals.',
+    } as Record<LessonStep, string>,
+    of: (i: number, n: number) => `${i} of ${n}`,
+    left: (n: number) => `${n} to go`,
+    stepDone: 'Step done!',
+    continueTo: (step: string) => `Next: ${step}`,
+    lessonDone: 'Lesson complete!',
+    lessonDoneBody: 'Your answers count toward your progress in Play too.',
+    nextLesson: 'Next lesson',
+    allLessons: 'All lessons',
   },
 
   explore: {
@@ -112,6 +144,9 @@ export const en = {
     delete: 'Delete',
     deleteFailed: 'Couldn’t delete the account',
     language: 'Language',
+    haptics: 'Haptics',
+    hapticsOn: 'On',
+    hapticsOff: 'Off',
     startOver: 'Start over',
     reset: 'Reset progress',
     resetTitle: 'Reset progress?',

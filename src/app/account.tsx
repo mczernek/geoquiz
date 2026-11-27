@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { haptics, hapticsSupported, useHapticsStore } from '@/haptics';
 import { LANGUAGE_NAMES, LANGUAGES, useI18n, useLanguageStore } from '@/i18n';
 import { useProgress } from '@/state/progress';
 import {
@@ -245,6 +246,39 @@ function LanguagePicker() {
   );
 }
 
+function HapticsSwitch() {
+  const { t } = useI18n();
+  const enabled = useHapticsStore((s) => s.enabled);
+  const setEnabled = useHapticsStore((s) => s.setEnabled);
+  return (
+    <Panel style={styles.card}>
+      <Text variant="heading" color={colors.ink}>
+        {t.account.haptics}
+      </Text>
+      <View style={styles.row}>
+        <Chip
+          onCard
+          testID="haptics-on"
+          label={t.account.hapticsOn}
+          selected={enabled}
+          onPress={() => {
+            setEnabled(true);
+            // The chip's own tap haptic ran while they were still off: confirm they're back.
+            haptics.select();
+          }}
+        />
+        <Chip
+          onCard
+          testID="haptics-off"
+          label={t.account.hapticsOff}
+          selected={!enabled}
+          onPress={() => setEnabled(false)}
+        />
+      </View>
+    </Panel>
+  );
+}
+
 export default function AccountScreen() {
   const insets = useSafeAreaInsets();
   const { status, user } = useSyncStatus();
@@ -267,6 +301,7 @@ export default function AccountScreen() {
           {status !== 'disabled' &&
             (user && !user.anonymous && user.email ? <SignedIn email={user.email} /> : <AuthForm />)}
           <LanguagePicker />
+          {hapticsSupported && <HapticsSwitch />}
           <Panel style={styles.card}>
             <Text variant="heading" color={colors.ink}>
               {t.account.startOver}

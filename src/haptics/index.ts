@@ -1,18 +1,25 @@
 import { Presets } from 'react-native-pulsar';
 
+import { whenEnabled } from './settings';
 import type { Haptics } from './types';
+
+export { useHapticsStore } from './settings';
+
+/** Every device with a haptic engine; one without just plays nothing. */
+export const hapticsSupported = true;
 
 /**
  * Native haptics: Pulsar presets (decision 012), chosen by their character: a coin-drop for a win, a wobble (not an
  * error buzz) for a miss, a level-up rush for a learned card. Calls never throw: haptics are decoration.
  */
-const safe = (fn: () => void) => () => {
-  try {
-    fn();
-  } catch {
-    // A device without a haptic engine: nothing to play.
-  }
-};
+const safe = (fn: () => void) =>
+  whenEnabled(() => {
+    try {
+      fn();
+    } catch {
+      // A device without a haptic engine: nothing to play.
+    }
+  });
 
 export const haptics: Haptics = {
   select: safe(() => Presets.flick()),

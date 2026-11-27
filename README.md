@@ -5,6 +5,8 @@ Android and the web, in English and Polish. Brand: [docs/brand.md](docs/brand.md
 
 - Pick what to learn (flags, capitals, map — one or more) and where (one or more continents)
 - Flashcard-style spaced repetition: the app knows what you've learned and always has something to ask
+- Lessons: about ten neighbouring countries at a time — meet them, see their capitals, then a quiz each for the map,
+  flags and capitals
 - Flags: pick the right one of four, or type the country for a flag
 - Capitals: type the capital of a country, or the country of a capital
 - Map: name the highlighted country, or find it and tap it on the globe
@@ -31,7 +33,7 @@ Pulsar and Skia are native modules: use dev builds (`expo run:*`), not Expo Go.
 
 ## Docs
 
-- [docs/specs/](docs/specs/) — learning, questions, globe, sync, design
+- [docs/specs/](docs/specs/) — learning, lessons, questions, globe, explore, sync, design
 - [docs/decisions.md](docs/decisions.md) — why things are the way they are
 - [docs/architecture.md](docs/architecture.md) — how the code fits together
 - [docs/release.md](docs/release.md) — setup, deployment and releases

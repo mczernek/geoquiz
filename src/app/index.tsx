@@ -128,12 +128,22 @@ export default function Home() {
             </View>
           </ScrollView>
         </GlassPanel>
-        <Button
-          testID="play"
-          title={total.due > 0 ? t.home.playReview(total.due) : t.home.play}
-          icon="play"
-          onPress={() => router.push('/play')}
-        />
+        <View style={styles.actions}>
+          <Button
+            testID="lessons"
+            title={t.home.lessons}
+            kind="ghost"
+            icon="school"
+            onPress={() => router.push('/lessons')}
+          />
+          <Button
+            testID="play"
+            title={total.due > 0 ? t.home.playReview(total.due) : t.home.play}
+            icon="play"
+            onPress={() => router.push('/play')}
+            style={styles.flex}
+          />
+        </View>
         {/* The web app's root is its home page, which must link the privacy policy for Google's OAuth consent screen
             (decision 023) and say what the app is; the apps keep these links in Account. */}
         {Platform.OS === 'web' && (
@@ -163,6 +173,8 @@ const styles = StyleSheet.create({
   panelContent: { gap: 8 },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   sectionGap: { marginTop: 6 },
+  actions: { flexDirection: 'row', gap: 10 },
+  flex: { flex: 1 },
   about: { gap: 2, marginTop: -4 },
   center: { textAlign: 'center' },
   legal: { flexDirection: 'row', justifyContent: 'center', gap: 16 },
